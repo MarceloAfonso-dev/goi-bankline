@@ -1,7 +1,7 @@
 Banco GOI
 Este projeto representa a estrutura e funcionamento do Banco GOI, incluindo serviços financeiros e produtos bancários. Além disso, descrevemos a organização do time (Squad) responsável pelo desenvolvimento.
 
-O Banco GOI possui a seguinte organização:
+O Banco GOI possui as seguinte funcionalidades:
 
 📂 Conta Corrente Serviços
 
@@ -17,7 +17,6 @@ O Banco GOI possui a seguinte organização:
 
 📈 CDBs
 
-Squad de Desenvolvimento
 O time de desenvolvimento está dividido em três áreas principais:
 
 Backend ⚙️ (Marcelo Afonso, Italo Silva)
@@ -30,8 +29,7 @@ Infraestrutura 🛠️ (Marcelo Afonso)
 
 Cada área tem a responsabilidade de desenvolver e manter suas respectivas partes do sistema.
 
-Tecnologias Utilizadas
-(Adicione aqui as tecnologias usadas no projeto, por exemplo:)
+Tecnologias Utilizadas:
 
 Backend: Java 
 
