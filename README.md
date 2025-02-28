@@ -5,21 +5,30 @@ Estrutura do Banco
 O Banco GOI possui a seguinte organização:
 
 📂 Conta Corrente Serviços
+
 📥 Depositar
+
 🔄 Transferir
-🆕 Cadastro
-Produtos
+
+🆕 Cadastro Produtos
+
 💳 Cheque Especial
+
 🏦 Cartão de Crédito
+
 📈 CDBs
 
 Squad de Desenvolvimento
 O time de desenvolvimento está dividido em três áreas principais:
 
 Backend ⚙️ (Marcelo Afonso, Italo Silva)
+
 Frontend 🎨 (Maycon Daynor, Gustavo)
+
 Banco de Dados 🗄️ (Marcelo Afonso, Italo Silva)
+
 Infraestrutura 🛠️ (Marcelo Afonso)
+
 Cada área tem a responsabilidade de desenvolver e manter suas respectivas partes do sistema.
 
 Tecnologias Utilizadas
