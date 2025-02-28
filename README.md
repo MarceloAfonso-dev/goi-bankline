@@ -1,7 +1,6 @@
 Banco GOI
 Este projeto representa a estrutura e funcionamento do Banco GOI, incluindo serviços financeiros e produtos bancários. Além disso, descrevemos a organização do time (Squad) responsável pelo desenvolvimento.
 
-Estrutura do Banco
 O Banco GOI possui a seguinte organização:
 
 📂 Conta Corrente Serviços
@@ -35,6 +34,9 @@ Tecnologias Utilizadas
 (Adicione aqui as tecnologias usadas no projeto, por exemplo:)
 
 Backend: Java 
+
 Frontend: Html, CSS, JavaScript
+
 Banco de Dados: MySQL
+
 Cloud: AWS RDS 
