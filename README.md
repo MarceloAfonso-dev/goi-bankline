@@ -1,7 +1,7 @@
-Banco GOI
+# Banco GOI
 Este projeto representa a estrutura e funcionamento do Banco GOI, incluindo serviços financeiros e produtos bancários. Além disso, descrevemos a organização do time (Squad) responsável pelo desenvolvimento.
 
-O Banco GOI possui as seguinte funcionalidades:
+### O Banco GOI possui as seguinte funcionalidades:
 
 📂 Conta Corrente Serviços
 
@@ -17,24 +17,53 @@ O Banco GOI possui as seguinte funcionalidades:
 
 📈 CDBs
 
-O time de desenvolvimento está dividido em três áreas principais:
+### O time de desenvolvimento está dividido em três áreas principais:
 
-Backend ⚙️ (Marcelo Afonso, Italo Silva)
+- Backend ⚙️ (Marcelo Afonso, Italo Silva)
 
-Frontend 🎨 (Maycon Daynor, Gustavo)
+- Frontend 🎨 (Maycon Daynor, Gustavo)
 
-Banco de Dados 🗄️ (Marcelo Afonso, Italo Silva)
+- Banco de Dados 🗄️ (Marcelo Afonso, Italo Silva)
 
-Infraestrutura 🛠️ (Marcelo Afonso)
+- Infraestrutura 🛠️ (Marcelo Afonso)
 
 Cada área tem a responsabilidade de desenvolver e manter suas respectivas partes do sistema.
 
-Tecnologias Utilizadas:
+### Tecnologias Utilizadas:
 
-Backend: Java 
+- Backend: Java 
 
-Frontend: Html, CSS, JavaScript
+- Frontend: Html, CSS, JavaScript
 
-Banco de Dados: MySQL
+- Banco de Dados: MySQL
 
-Cloud: AWS RDS 
+- Cloud: AWS RDS MySQL 
+
+## Prototipagem
+
+Nesta seção, apresentamos as imagens das prototipagens do projeto. As imagens foram geradas para auxiliar no desenvolvimento e na validação das interfaces do sistema.
+
+Imagens das Prototipagens
+
+As imagens a seguir representam as principais telas do sistema e estão armazenadas no repositório, no diretório ./Prototipagens.
+
+### 1. Tela Inicial
+![Landing Page](./Prototipagens/landing-page.png)
+
+
+### 2. Tela de Login
+![Login](./Prototipagens/login.png)
+
+
+
+### 3. Tela de Cadastro
+
+
+
+### 4. Tela Menu Logado
+
+
+
+### 5. Tela de Configurações
+
+
