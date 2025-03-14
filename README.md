@@ -49,11 +49,12 @@ As imagens a seguir representam as principais telas do sistema e estão armazena
 
 ### 1. Tela Inicial
 ![Landing Page](./Prototipagens/landing-page.png)
+*Figura 1: Feito por Maycol e Gustavo*
 
 
 ### 2. Tela de Login
 ![Login](./Prototipagens/login.png)
-
+*Figura 2: Feito por Marcelo*
 
 
 ### 3. Tela de Cadastro
