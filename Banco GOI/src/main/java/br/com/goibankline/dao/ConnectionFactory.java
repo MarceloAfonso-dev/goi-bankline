@@ -1,34 +1,41 @@
 package br.com.goibankline.dao;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.*;
+import java.util.*;
+import java.util.logging.*;
 
 public class ConnectionFactory {
     private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
 
-    // Lista para armazenar todas as conexões abertas
     private static List<Connection> connectionPool = new ArrayList<>();
-
-    // Constantes para a URL, usuário e senha do banco de dados RDS
-    private static final String URL = "jdbc:mysql://goi-database.cjsxgdipkurd.us-east-1.rds.amazonaws.com:3306/goi-database";
-    private static final String URL_NO_DB = "jdbc:mysql://goi-database.cjsxgdipkurd.us-east-1.rds.amazonaws.com:3306/";
-    private static final String USER = "admin";
-    private static final String PASSWORD = "SENAC2005$";
+    private static String URL;
+    private static String URL_NO_DB;
+    private static String USER;
+    private static String PASSWORD;
 
     static {
         try {
-            // Registrar o driver JDBC do MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Properties props = new Properties();
+            // Caminho relativo ou absoluto do arquivo db.properties
+            FileInputStream fis = new FileInputStream("db.properties");
+            props.load(fis);
+
+            URL = props.getProperty("db.url");
+            URL_NO_DB = URL.substring(0, URL.lastIndexOf("/") + 1);
+            USER = props.getProperty("db.user");
+            PASSWORD = props.getProperty("db.password");
+
         } catch (ClassNotFoundException e) {
             LOGGER.log(Level.SEVERE, "MySQL JDBC Driver not found", e);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Could not load database properties file", e);
         }
     }
 
-    // Método para obter uma conexão e adicionar à lista
     public static Connection getConnection() throws SQLException {
         Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
         connectionPool.add(connection);
@@ -36,7 +43,6 @@ public class ConnectionFactory {
         return connection;
     }
 
-    // Método para obter uma conexão sem especificar o banco de dados
     public static Connection getConnectionWithoutDatabase() throws SQLException {
         Connection connection = DriverManager.getConnection(URL_NO_DB, USER, PASSWORD);
         connectionPool.add(connection);
@@ -44,7 +50,6 @@ public class ConnectionFactory {
         return connection;
     }
 
-    // Método para fechar todas as conexões abertas
     public static void closeAllConnections() throws SQLException {
         for (Connection connection : connectionPool) {
             if (connection != null && !connection.isClosed()) {
@@ -52,7 +57,7 @@ public class ConnectionFactory {
                 LOGGER.info("Connection closed.");
             }
         }
-        connectionPool.clear(); // Limpa a lista de conexões após fechá-las
+        connectionPool.clear();
         LOGGER.info("Connection pool cleared.");
     }
 }
