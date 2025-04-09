@@ -3,6 +3,8 @@
     margin: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 body {
     background-color: #F1F2F4;
 }
@@ -11,4 +13,98 @@ header {
     height: 56px;
     width: auto;
     background-color: #ffffff;
+    padding: 0px 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: flex-start; /* Centraliza horizontalmente */
+
+}
+
+header > h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #000;
+    margin-top: 10px; /* Adiciona distância do topo */
+    font-size: 26px;
+}
+
+.icone-goi {
+    height: 52px;
+    width: 52px;
+    margin-right: 12px;
+}
+
+.container-principal > h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #464646;
+    margin: 50px 0 0 65px; /* Adiciona distância do topo */
+    font-size: 26px;
+}
+
+.container-login {
+    width: 780px;
+    height: 330px;
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    background-color: #ffffff;
+    border: #C8C8C8 1px solid;
+    border-radius: 10px;
+    margin-left: 65px;
+    margin-top: 44px;
+}
+
+.container-login > h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #464646;
+    margin: 45px 0 0 44px; /* Adiciona distância do topo */
+    font-size: 26px;
+}
+
+.container-login > hr {
+    width: 393px;
+    height: 1px;
+    background-color: hsla(0, 0%, 60%, 0.70);
+    margin: 10px 44px 0 44px; /* Adiciona margem para posicionamento */
+}
+
+.container-login > h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #464646;
+    margin: 11px 0 0 44px; /* Adiciona distância do topo */
+    font-size: 16px;
+}
+
+.teclado {
+    display: grid;
+    grid-template-columns: repeat(3, 0fr); /* 3 colunas */
+    gap: 16px; /* Espaçamento entre os botões */
+    margin: -70px 44px 0 auto; /* Margem automática à esquerda para alinhar à direita */
+    align-self: flex-end; /* Alinha o teclado à esquerda */
+
+}
+
+.teclado button {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #464646;
+    background-color: #ffffff;
+    border: 1px solid #D2D2D2;
+    border-radius: 7px;
+    padding: 7px;
+    text-align: center;
+    line-height: 1.5; /* Espaçamento entre os números */
+    cursor: pointer;
+    width: 80px; /* Largura do botão */
+    height: 81px; /* Altura do botão */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra leve para o botão */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave para o hover */
+}
+
+.teclado button:hover {
+    background-color: #E0E0E0; /* Cor de fundo ao passar o mouse */
 }
