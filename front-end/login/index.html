@@ -25,8 +25,36 @@
                 <button>03 ou 04</button>
                 <button>05 ou 06</button>
                 <button>07 ou 08</button>
-                <button>09 ou 10</button>
-                <button>11 ou 12</button>
+                <button >09 ou 10</button>
+                <button><img src="../assets/img/backspace.png" alt="botao de apagar"></button>
+            </div>
+            <div class="botao-logar">
+                <button class="btn-logar">acessar</button>
+            </div>
+            <div class="senha-content">
+                <input type="password" id="senha" readonly maxlength="6" placeholder="******">
+                <script>
+                    const senhaInput = document.getElementById('senha');
+                    const botoesTeclado = document.querySelectorAll('.teclado button');
+                
+                    botoesTeclado.forEach(botao => {
+                        botao.addEventListener('click', (event) => {
+                            // Verifica se o botão ou a imagem foi clicado
+                            const isBackspace = botao.querySelector('img') !== null;
+                
+                            if (isBackspace) {
+                                // Se for o botão de apagar (com imagem)
+                                senhaInput.value = senhaInput.value.slice(0, -1); // Remove o último caractere
+                            } else if (senhaInput.value.length < senhaInput.maxLength) {
+                                // Adiciona um '*' se não for o botão de apagar
+                                senhaInput.value += '*';
+                            }
+                
+                            // Evita que o clique na imagem dentro do botão cause problemas
+                            event.stopPropagation();
+                        });
+                    });
+                </script>
             </div>
         </div>
 

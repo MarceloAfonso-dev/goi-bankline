@@ -88,6 +88,9 @@ header > h1 {
 }
 
 .teclado button {
+    display: flex; /* Define o botão como um contêiner flex */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
     font-family: 'Outfit', sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -97,14 +100,66 @@ header > h1 {
     border-radius: 7px;
     padding: 7px;
     text-align: center;
-    line-height: 1.5; /* Espaçamento entre os números */
+    line-height: 1.5;
     cursor: pointer;
-    width: 80px; /* Largura do botão */
-    height: 81px; /* Altura do botão */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra leve para o botão */
-    transition: background-color 0.3s, transform 0.2s; /* Transição suave para o hover */
+    width: 80px;
+    height: 81px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.teclado button img {
+    width: 27px;
+    height: 27px;
+    margin-right: 5px;
 }
 
 .teclado button:hover {
     background-color: #E0E0E0; /* Cor de fundo ao passar o mouse */
+}
+
+.botao-logar {
+    margin: 22px 44px 0 auto; /* Margem automática à esquerda para alinhar à direita */
+    text-align: center; /* Centraliza o botão dentro da div */
+}
+
+.botao-logar > .btn-logar {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    border-radius: 4px;
+    width: 274px;
+    height: 52px;
+    background-color: #FF5593;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra leve para o botão */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave para o hover */
+}
+
+.botao-logar > .btn-logar:hover {
+    background-color: #FF2B7D; /* Cor de fundo ao passar o mouse */
+    cursor: pointer; /* Indica que o botão é clicável */
+}
+
+.senha-content {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    margin: -155px 44px 0 44px; /* Margem automática à esquerda para alinhar à direita */
+}
+
+.senha-content input {
+    width: 194px;
+    height: 46px;
+    padding: 0 7px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #464646;
+    background-color: #ffffff;
+    border: 2px solid #D2D2D2;
+    border-radius: 4px;
+    box-sizing: border-box; /* Inclui o padding e a borda no tamanho total */
+    letter-spacing: 7px; /* Adiciona espaçamento entre os caracteres */
+    text-align: left; /* Centraliza o texto no input */
 }
