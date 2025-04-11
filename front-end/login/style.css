@@ -84,7 +84,8 @@ header > h1 {
     gap: 16px; /* Espaçamento entre os botões */
     margin: -70px 44px 0 auto; /* Margem automática à esquerda para alinhar à direita */
     align-self: flex-end; /* Alinha o teclado à esquerda */
-
+    position: relative; /* ou absolute, dependendo da necessidade */
+    z-index: 10; /* Garante que o teclado fique acima das outras divs */
 }
 
 .teclado button {
@@ -162,4 +163,181 @@ header > h1 {
     box-sizing: border-box; /* Inclui o padding e a borda no tamanho total */
     letter-spacing: 7px; /* Adiciona espaçamento entre os caracteres */
     text-align: left; /* Centraliza o texto no input */
+}
+
+.senha-content .recuperar-senha {
+    justify-content: flex-end; /* Alinha o texto à direita */
+    margin-top: 10px; /* Adiciona distância do topo */
+    margin-left: 4px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 550;
+    color: #001FBD;
+}
+
+.container-alerta {
+    display: flex;
+    flex-direction: row; /* Alinha os elementos verticalmente */
+    width: 781px;
+    height: 45px;
+    background-color: #ffffff;
+    border: #C8C8C8 1px solid;
+    border-radius: 10px;
+    margin-left: 65px;
+    margin-top: 17px;
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.container-alerta > h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #464646;
+    margin: 3px 0 0 0; /* Adiciona distância do topo */
+    font-size: 16px;
+}
+
+.container-alerta > img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px; /* Adiciona distância à direita */
+    margin-left: 10px; /* Adiciona distância à esquerda */
+}
+
+.container-alerta > h4 > a {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 550;
+    color: #001FBD;
+}
+
+.container-aviso {
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    width: 572px;
+    height: auto; /* Ajusta a altura automaticamente */
+    margin-left: 50px;
+    margin-top: 36px;
+    text-align: center; /* Centraliza o texto dentro da div */
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+}
+
+.container-aviso-header {
+    display: flex;
+    flex-direction: row; /* Alinha os elementos horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+.container-aviso-header > img {
+    width: 34px;
+    height: 34px;
+}
+
+.container-aviso-header > h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: #464646;
+    margin: 6px 0 0 7px; /* Adiciona espaçamento entre os elementos */
+    font-size: 22px;
+}
+
+.container-aviso > ul {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 550;
+    color: #464646;
+    margin: 15px 0 0 25px; /* Adiciona distância do topo */
+    font-size: 16px;
+    text-align: left; /* Alinha o texto à esquerda */
+    padding-left: 20px; /* Adiciona espaçamento interno para os itens */
+}
+
+.container-aviso > ul > p {
+    margin: 4px 0 6px 0; /* Adiciona distância entre os itens */
+    font-weight: 400;
+}
+
+.container-nps {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    width: 358px;
+    margin: -657px 0 0 900px;
+    height: auto; /* Ajusta a altura automaticamente */
+    background-color: #ffffff;
+    border: #C8C8C8 1px solid;
+    border-radius: 10px;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha os itens no topo */
+    gap: 20px; /* Espaçamento entre o header e as faces */
+}
+
+.nps-header {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos horizontalmente */
+    align-items: center; /* Centraliza os elementos verticalmente */
+    width: 100%; /* Ocupa toda a largura do container */
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.nps-header > hr {
+    width: 328px;
+    height: 0.1px;
+    background-color: hsla(0, 0%, 70%, 0.70);
+    margin: 0px 44px 0 44px; /* Adiciona margem para posicionamento */
+}
+
+.nps-header > h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 550;
+    color: #464646;
+    margin: 0; /* Remove a margem padrão */
+    font-size: 18px;
+    align-self: flex-start; /* Alinha o texto à esquerda */
+    margin-left: 14px; /* Adiciona distância à esquerda */
+    margin-top: 10px; /* Adiciona distância do topo */
+}
+
+.faces {
+    display: flex;
+    flex-direction: row; /* Alinha os itens lado a lado */
+    justify-content: space-between; /* Espaçamento uniforme entre os itens */
+    align-items: flex-start; /* Alinha os itens no topo */
+    width: 90%; /* Ocupa toda a largura do container */
+    gap: 1px; /* Espaçamento entre os itens */
+    margin-bottom: 20px;
+}
+
+.face-item {
+    display: flex;
+    flex-direction: column; /* Alinha a imagem e o texto verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    text-align: center; /* Centraliza o texto */
+}
+
+.face-item img {
+    width: 50px; /* Define a largura das imagens */
+    height: 50px; /* Define a altura das imagens */
+    margin-bottom: 5px; /* Espaçamento entre a imagem e o texto */
+}
+
+.face-item h6 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #464646;
+    margin: 0; /* Remove margens padrão */
+}
+
+.faces img {
+    display: block;
+    width: 50px; /* Define a largura das imagens */
+    height: 50px; /* Define a altura das imagens */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}
+
+.faces h6 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #464646;
+    text-align: center; /* Centraliza o texto abaixo da imagem */
+    margin-top: 5px; /* Espaçamento entre a imagem e o texto */
 }

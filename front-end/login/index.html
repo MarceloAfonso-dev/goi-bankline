@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>GOI Bankline - 24h</title>
 </head>
 <body>
     <header>
@@ -21,11 +21,11 @@
             <h6>digite sua senha de acesso no teclado virtual:</h6>
         
             <div class="teclado">
-                <button>01 ou 02</button>
-                <button>03 ou 04</button>
-                <button>05 ou 06</button>
-                <button>07 ou 08</button>
-                <button >09 ou 10</button>
+                <button>1 ou 2</button>
+                <button>3 ou 4</button>
+                <button>5 ou 6</button>
+                <button>7 ou 8</button>
+                <button>9 ou 10</button>
                 <button><img src="../assets/img/backspace.png" alt="botao de apagar"></button>
             </div>
             <div class="botao-logar">
@@ -33,31 +33,55 @@
             </div>
             <div class="senha-content">
                 <input type="password" id="senha" readonly maxlength="6" placeholder="******">
-                <script>
-                    const senhaInput = document.getElementById('senha');
-                    const botoesTeclado = document.querySelectorAll('.teclado button');
-                
-                    botoesTeclado.forEach(botao => {
-                        botao.addEventListener('click', (event) => {
-                            // Verifica se o botão ou a imagem foi clicado
-                            const isBackspace = botao.querySelector('img') !== null;
-                
-                            if (isBackspace) {
-                                // Se for o botão de apagar (com imagem)
-                                senhaInput.value = senhaInput.value.slice(0, -1); // Remove o último caractere
-                            } else if (senhaInput.value.length < senhaInput.maxLength) {
-                                // Adiciona um '*' se não for o botão de apagar
-                                senhaInput.value += '*';
-                            }
-                
-                            // Evita que o clique na imagem dentro do botão cause problemas
-                            event.stopPropagation();
-                        });
-                    });
-                </script>
+                <a href="recuperar-senha.html" class="recuperar-senha">esqueceu sua senha?</a>
             </div>
         </div>
 
+        <div class="container-alerta">
+            <img src="../assets/img/warning.png" alt="">
+            <h4>Se o nome acima não estiver correto, não continue a operação e mande um <a href="www.google.com">e-mail</a></a></h4>
+        </div>
+        <div class="container-aviso">
+            <div class="container-aviso-header">
+                <img src="../assets/img/lock.png" alt="">
+                <h4>dicas de segurança</h4>
+            </div>
+            <ul>
+                <li>Nunca passe sua senha para ninguém</li>
+                <p>Caso ocorra, troque sua senha imediatamente.</p>
+                <li>Não utilize dados pessoais</li>
+                <p>Se tratando de um projeto acadêmico, não utilize seus dados pessoais.</p>
+                <li>Sempre verifique a URL</li>
+                <p>Observe o endereço do site antes de inserir seus dados para evitar golpes de phishing.</p>
+            </ul>
+        </div>
+        <div class="container-nps">
+            <div class="nps-header">
+                <h5>Avalie o nosso serviço</h5>
+                <hr>
+            </div>
+            <div class="faces">
+                <div class="face-item">
+                    <img src="../assets/img/mau-cinza.png" alt="face1">
+                    <h6>Insatisfeito</h6>
+                </div>
+                <div class="face-item">
+                    <img src="../assets/img/medio-cinza.png" alt="face2">
+                    <h6>Indiferente</h6>
+                </div>
+                <div class="face-item">
+                    <img src="../assets/img/ok-cinza.png" alt="face3">
+                    <h6>Satisfeito</h6>
+                </div>
+                <div class="face-item">
+                    <img src="../assets/img/feliz-cinza.png" alt="face4">
+                    <h6>Muito satisfeito</h6>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Vincula o arquivo script.js -->
+    <script src="script.js"></script>
 </body>
 </html>
