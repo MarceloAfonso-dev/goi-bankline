@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+body {
+    background-color: #F1F2F4;
+}
+
+header {
+    height: 56px;
+    width: auto;
+    background-color: #ffffff;
+    padding: 0px 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+
+}
+
+header > h1 {
+    font-weight: 500;
+    color: #000;
+    margin-top: 10px; 
+    font-size: 26px;
+}
+
+.icone-goi {
+    height: 52px;
+    width: 52px;
+    margin-right: 12px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #3B3B3B;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    height: 210px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    
+}
+
+footer > h1 {
+    font-weight: 500;
+    color: #ffffff;
+    margin-top: 10px; 
+    font-size: 896px;
+}
+
+.container-blocos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px; 
+}
+
+.bloco1, .bloco2, .bloco3, .bloco4 {
+
+    height: 120px;
+    width: 400px;
+    border: 2px solid red;
+    color: #ffffff;
+}
+
+
+.container-principal > h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #464646;
+    margin: 50px 0 0 65px; 
+    font-size: 26px;
+}
+
+.container-login {
+    width: 780px;
+    height: 330px;
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    background-color: #ffffff;
+    border: #C8C8C8 1px solid;
+    border-radius: 10px;
+    margin-left: 65px;
+    margin-top: 44px;
+}
+
+.container-login > h2 {
+    font-weight: 500;
+    color: #464646;
+    margin: 45px 0 0 44px; 
+    font-size: 26px;
+}
+
+.container-login > hr {
+    width: 393px;
+    height: 1px;
+    background-color: hsla(0, 0%, 60%, 0.70);
+    margin: 10px 44px 0 44px; 
+}
+
+.container-login > h6 {
+    font-weight: 500;
+    color: #464646;
+    margin: 11px 0 0 44px; 
+    font-size: 16px;
+}
+
+
+
