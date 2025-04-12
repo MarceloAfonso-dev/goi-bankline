@@ -1,62 +1,61 @@
-// ======== 1) Seleciona os botões do teclado ========
-const botoesTeclado = document.querySelectorAll('.teclado button');
+// login.js
 
-// Precisamos identificar manualmente quais pares cada botão representa.
-// (Índice 0 => "1 ou 2", índice 1 => "3 ou 4", etc.)
-// O último botão (índice 5) é o backspace, então não tem par.
-botoesTeclado[0].dataset.num1 = "1";
-botoesTeclado[0].dataset.num2 = "2";
-
-botoesTeclado[1].dataset.num1 = "3";
-botoesTeclado[1].dataset.num2 = "4";
-
-botoesTeclado[2].dataset.num1 = "5";
-botoesTeclado[2].dataset.num2 = "6";
-
-botoesTeclado[3].dataset.num1 = "7";
-botoesTeclado[3].dataset.num2 = "8";
-
-botoesTeclado[4].dataset.num1 = "9";
-// Aqui é meio estranho "9 ou 10", mas vamos manter igual ao HTML
-// Observação: "10" é dois caracteres, mas tudo bem, tratamos como string
-botoesTeclado[4].dataset.num2 = "10";
-
-// ======== 2) Array para armazenar o índice dos botões clicados ========
+// Array para saber qual botão (0..4) foi clicado (o 5 é backspace)
 let botoesPressionados = [];
 
-// ======== 3) Referências aos campos de input ========
-const senhaInput = document.getElementById('senha');            // mostra asteriscos
-const indicesInput = document.getElementById('indicesClicados'); // envia índices ao servidor
-const form = document.querySelector('form');
+// Guardará os pares retornados pelo servidor
+let pares = []; // ex.: [ {num1:"7", num2:"3"}, {num1:"0", num2:"9"}, ... ]
 
-// ======== 4) Lógica de clique ========
-botoesTeclado.forEach((botao, index) => {
-  botao.addEventListener('click', () => {
-    // Se for o último botão (backspace, índice 5), apaga o último
-    if (index === 5) {
-      botoesPressionados.pop();
-      senhaInput.value = senhaInput.value.slice(0, -1);
+window.onload = function() {
+  // 1) Carrega os pares via AJAX GET ?acao=getPares
+  fetch("login?acao=getPares")
+    .then(resp => resp.json())
+    .then(data => {
+      pares = data; // array de objetos {num1, num2}
+      // Preenche o texto dos 5 primeiros botões
+      const botoes = document.querySelectorAll('.teclado button');
+      for (let i = 0; i < 5; i++) {
+        const p = pares[i];
+        // Ex.: p.num1=7, p.num2=3 => "7 ou 3"
+        botoes[i].textContent = p.num1 + " ou " + p.num2;
+      }
+    })
+    .catch(err => {
+      console.error("Erro ao buscar pares aleatórios: ", err);
+      alert("Não foi possível carregar os pares. Recarregue a página.");
+    });
+
+  // 2) Configura o clique nos botões
+  const botoes = document.querySelectorAll('.teclado button');
+  const senhaInput = document.getElementById('senha');
+  const indicesInput = document.getElementById('indicesClicados');
+  const form = document.querySelector('form');
+
+  botoes.forEach((botao, index) => {
+    botao.addEventListener('click', () => {
+      // Se for o último (backspace, index=5)
+      if (index === 5) {
+        // Apagar o último clique
+        botoesPressionados.pop();
+        senhaInput.value = senhaInput.value.slice(0, -1);
+      } else {
+        // Se ainda não tem 6 cliques
+        if (botoesPressionados.length < 6) {
+          botoesPressionados.push(index);
+          senhaInput.value += "*";
+        }
+      }
+    });
+  });
+
+  // 3) Ao submeter o form, enviamos o array de índices
+  form.addEventListener('submit', (e) => {
+    if (botoesPressionados.length !== 6) {
+      e.preventDefault();
+      alert("Digite 6 dígitos!");
       return;
     }
-
-    // Caso contrário, se ainda não temos 6 cliques, adiciona o índice
-    if (botoesPressionados.length < 6) {
-      botoesPressionados.push(index);
-      senhaInput.value += "*"; // só exibe asterisco
-    }
+    // Armazena em JSON no campo hidden
+    indicesInput.value = JSON.stringify(botoesPressionados);
   });
-});
-
-// ======== 5) Ao submeter o form, gravamos a lista de índices em indicesClicados ========
-form.addEventListener('submit', (event) => {
-  if (botoesPressionados.length !== 6) {
-    event.preventDefault();
-    alert("Senha incompleta! Você precisa clicar 6 vezes nos botões.");
-    return;
-  }
-
-  // Exemplo: se botoesPressionados = [0,2,4,0,2,1], transformamos em JSON " [0,2,4,0,2,1] "
-  indicesInput.value = JSON.stringify(botoesPressionados);
-
-  // Submete o form normalmente depois disso.
-});
+};
