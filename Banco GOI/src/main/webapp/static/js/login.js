@@ -4,28 +4,38 @@
 let botoesPressionados = [];
 
 // Guardará os pares retornados pelo servidor
-let pares = []; // ex.: [ {num1:"7", num2:"3"}, {num1:"0", num2:"9"}, ... ]
+let pares = [];
 
 window.onload = function() {
-  // 1) Carrega os pares via AJAX GET ?acao=getPares
+  // ================== 0) VERIFICAR SE HÁ MENSAGEM DE ERRO ==================
+  // Fazemos um fetch em "login?acao=verErro" para ver se há loginError na sessão.
+  fetch("login?acao=verErro")
+    .then(resp => resp.json())
+    .then(data => {
+      // Ex.: data = { erro: "Senha incorreta!" } ou { erro: null }
+      if (data.erro) {
+        alert(data.erro);
+      }
+    })
+    .catch(err => console.error("Erro ao verificar erro:", err));
+
+  // ================== 1) CARREGAR OS PARES DE DÍGITOS ==================
   fetch("login?acao=getPares")
     .then(resp => resp.json())
     .then(data => {
-      pares = data; // array de objetos {num1, num2}
+      pares = data; // array de { num1, num2 }
       // Preenche o texto dos 5 primeiros botões
       const botoes = document.querySelectorAll('.teclado button');
       for (let i = 0; i < 5; i++) {
-        const p = pares[i];
-        // Ex.: p.num1=7, p.num2=3 => "7 ou 3"
-        botoes[i].textContent = p.num1 + " ou " + p.num2;
+        botoes[i].textContent = pares[i].num1 + " ou " + pares[i].num2;
       }
     })
     .catch(err => {
-      console.error("Erro ao buscar pares aleatórios: ", err);
+      console.error("Erro ao buscar pares:", err);
       alert("Não foi possível carregar os pares. Recarregue a página.");
     });
 
-  // 2) Configura o clique nos botões
+  // ================== 2) LÓGICA DE CLIQUE NOS BOTÕES ==================
   const botoes = document.querySelectorAll('.teclado button');
   const senhaInput = document.getElementById('senha');
   const indicesInput = document.getElementById('indicesClicados');
@@ -33,13 +43,14 @@ window.onload = function() {
 
   botoes.forEach((botao, index) => {
     botao.addEventListener('click', () => {
-      // Se for o último (backspace, index=5)
+      // Se for o botão de backspace (index=5)
       if (index === 5) {
-        // Apagar o último clique
+        // Remove o último clique
         botoesPressionados.pop();
+        // Remove o último asterisco
         senhaInput.value = senhaInput.value.slice(0, -1);
       } else {
-        // Se ainda não tem 6 cliques
+        // Se ainda não chegamos a 6 dígitos
         if (botoesPressionados.length < 6) {
           botoesPressionados.push(index);
           senhaInput.value += "*";
@@ -48,14 +59,15 @@ window.onload = function() {
     });
   });
 
-  // 3) Ao submeter o form, enviamos o array de índices
+  // ================== 3) AO SUBMETER O FORM ==================
   form.addEventListener('submit', (e) => {
     if (botoesPressionados.length !== 6) {
       e.preventDefault();
-      alert("Digite 6 dígitos!");
+      alert("Digite 6 dígitos antes de acessar!");
       return;
     }
-    // Armazena em JSON no campo hidden
+    // Convertemos o array para JSON e guardamos no campo hidden
     indicesInput.value = JSON.stringify(botoesPressionados);
+    // O form então será submetido normalmente (action="login" method="post")
   });
 };

@@ -16,7 +16,7 @@
 <div class="container-principal">
     <h3>olá, Fulano, essa é a página de acesso à sua conta</h3>
 
-    <!-- Formulário de Login: engloba o teclado virtual e os campos de senha -->
+    <!-- Formulário de Login -->
     <form action="login" method="post">
         <div class="container-login">
             <h2>Teclado virtual</h2>
@@ -24,23 +24,28 @@
             <h6>digite sua senha de acesso no teclado virtual:</h6>
 
             <div class="teclado">
+                <!-- 5 botões para duplas e 1 para backspace -->
                 <button type="button">1 ou 2</button>
                 <button type="button">3 ou 4</button>
                 <button type="button">5 ou 6</button>
                 <button type="button">7 ou 8</button>
                 <button type="button">9 ou 10</button>
-                <button type="button"><img src="/static/img/backspace.png" alt="botao de apagar"></button>
+                <button type="button">
+                    <img src="/static/img/backspace.png" alt="botao de apagar">
+                </button>
             </div>
+
             <div class="botao-logar">
                 <button type="submit" class="btn-logar">acessar</button>
             </div>
+
             <div class="senha-content">
                 <input type="password" id="senha" readonly maxlength="6" placeholder="******">
-                <!-- Campo oculto para enviar a senha digitada pelo usuário -->
-                <!-- Já existe esse trecho no HTML, só acrescentamos "id=indicesClicados" e "name=indicesClicados" -->
-                <input type="hidden" id="senhaReal" name="senhaReal">
-                <!-- Adicione também: -->
+                <!-- Campo oculto para enviar os índices de cada clique -->
                 <input type="hidden" id="indicesClicados" name="indicesClicados">
+
+                <!-- (Se quiser, pode remover senhaReal se não for mais usado) -->
+                <input type="hidden" id="senhaReal" name="senhaReal">
 
                 <a href="recuperar-senha.html" class="recuperar-senha">esqueceu sua senha?</a>
             </div>
@@ -51,6 +56,7 @@
         <img src="/static/img/warning.png" alt="">
         <h4>Se o nome acima não estiver correto, não continue a operação e mande um <a href="www.google.com">e-mail</a></h4>
     </div>
+
     <div class="container-aviso">
         <div class="container-aviso-header">
             <img src="/static/img/lock.png" alt="">
@@ -65,6 +71,7 @@
             <p>Observe o endereço do site antes de inserir seus dados para evitar golpes de phishing.</p>
         </ul>
     </div>
+
     <div class="container-nps">
         <div class="nps-header">
             <h5>Avalie o nosso serviço</h5>
@@ -91,15 +98,7 @@
     </div>
 </div>
 
+<!-- Seu script principal -->
 <script src="/static/js/login.js"></script>
-<!-- Se houver parâmetro "erro" na URL, exibe um alerta -->
-<script>
-    (function() {
-        const params = new URLSearchParams(window.location.search);
-        if (params.has("erro")) {
-            alert(params.get("erro"));
-        }
-    })();
-</script>
 </body>
 </html>

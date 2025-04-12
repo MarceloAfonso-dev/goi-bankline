@@ -18,10 +18,12 @@ public class LoginServlet extends HttpServlet {
     public static class Par {
         private String num1;
         private String num2;
+
         public Par(String n1, String n2) {
             this.num1 = n1;
             this.num2 = n2;
         }
+
         public String getNum1() { return num1; }
         public String getNum2() { return num2; }
     }
@@ -30,7 +32,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Se for AJAX pedindo "acao=getPares", retorna o JSON
+        // Verifica se é chamada AJAX para obter pares
         String acao = request.getParameter("acao");
         if ("getPares".equals(acao)) {
             HttpSession session = request.getSession();
@@ -41,7 +43,7 @@ public class LoginServlet extends HttpServlet {
                 pares = gerarParesAleatorios();
                 session.setAttribute("paresAleatorios", pares);
             }
-            // Responde com JSON
+            // Retorna em JSON
             Gson gson = new Gson();
             String json = gson.toJson(pares);
             response.setContentType("application/json; charset=UTF-8");
@@ -49,13 +51,14 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         else if ("verErro".equals(acao)) {
-            // Retorna eventual erro em JSON
+            // Retorna em JSON a mensagem de erro (se houver)
             HttpSession session = request.getSession();
             String msgErro = (String) session.getAttribute("loginError");
+            // Se existir, remove da sessão para não repetir
             if (msgErro != null) {
-                // Remove da sessão para não exibir de novo depois
                 session.removeAttribute("loginError");
             }
+
             // Ex.: {"erro":"Senha incorreta!"} ou {"erro":null}
             response.setContentType("application/json; charset=UTF-8");
             String json = "{\"erro\":" + (msgErro == null ? "null" : "\"" + msgErro + "\"") + "}";
@@ -63,20 +66,22 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        // CASO NORMAL: exibir a página login.html
-        // 1) Gera 5 pares aleatórios e guarda na sessão
-        List<Par> pares = gerarParesAleatorios();
+        // Caso normal (sem acao): exibir login.html
         HttpSession session = request.getSession();
+
+        // Gera 5 pares aleatórios e guarda na sessão para uso posterior
+        List<Par> pares = gerarParesAleatorios();
         session.setAttribute("paresAleatorios", pares);
 
-        // 2) Verifica se tem cliente na sessão
+        // Verifica se cliente está na sessão
         Cliente cliente = (Cliente) session.getAttribute("cliente");
         if (cliente == null) {
+            // Se não houver cliente, redireciona para index.html
             response.sendRedirect(request.getContextPath() + "/index.html");
             return;
         }
 
-        // 3) Encaminha (forward) para o login.html (NÃO altera a URL)
+        // Forward para login.html (não muda URL)
         request.getRequestDispatcher("/templates/login.html").forward(request, response);
     }
 
@@ -84,10 +89,9 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Lê array de índices
+        // Lê os índices clicados
         String indicesJson = request.getParameter("indicesClicados");
         if (indicesJson == null || indicesJson.isEmpty()) {
-            // Armazena msg de erro e forward de volta pra login.html
             request.getSession().setAttribute("loginError", "Indices não recebidos");
             request.getRequestDispatcher("/templates/login.html").forward(request, response);
             return;
@@ -103,20 +107,20 @@ public class LoginServlet extends HttpServlet {
         List<Par> paresAleatorios = (List<Par>) session.getAttribute("paresAleatorios");
 
         if (cliente == null || paresAleatorios == null) {
-            // Manda voltar ao index
             request.getSession().setAttribute("loginError", "Recarregue a página!");
             request.getRequestDispatcher("/templates/login.html").forward(request, response);
             return;
         }
 
-        String senhaDoBanco = cliente.getSenha();
+        // Verifica tamanho
+        String senhaDoBanco = cliente.getSenha(); // ex. "124578"
         if (arrayIndices.length != senhaDoBanco.length()) {
             request.getSession().setAttribute("loginError", "Senha incompleta!");
             request.getRequestDispatcher("/templates/login.html").forward(request, response);
             return;
         }
 
-        // Valida
+        // Valida cada dígito da senha em relação aos pares clicados
         boolean senhaValida = true;
         for (int i = 0; i < senhaDoBanco.length(); i++) {
             char digitoCorreto = senhaDoBanco.charAt(i);
@@ -126,20 +130,22 @@ public class LoginServlet extends HttpServlet {
                 senhaValida = false;
                 break;
             }
+
             Par p = paresAleatorios.get(indiceBotao);
             String d = String.valueOf(digitoCorreto);
+
             if (!d.equals(p.getNum1()) && !d.equals(p.getNum2())) {
                 senhaValida = false;
                 break;
             }
         }
 
+        // Se falhou, define loginError e forward p/ login.html
         if (!senhaValida) {
-            // Armazena msg erro na sessão e forward
             request.getSession().setAttribute("loginError", "Senha incorreta!");
             request.getRequestDispatcher("/templates/login.html").forward(request, response);
         } else {
-            // Senha correta, manda para home
+            // Senha correta: redireciona para home
             response.sendRedirect(request.getContextPath() + "/templates/home.html");
         }
     }
