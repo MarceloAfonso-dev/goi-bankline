@@ -30,45 +30,53 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Verifica se é uma chamada AJAX pedindo os pares em JSON
+        // Se for AJAX pedindo "acao=getPares", retorna o JSON
         String acao = request.getParameter("acao");
         if ("getPares".equals(acao)) {
-            // Retorna os pares que já foram gerados e estão na sessão
             HttpSession session = request.getSession();
             @SuppressWarnings("unchecked")
             List<Par> pares = (List<Par>) session.getAttribute("paresAleatorios");
             if (pares == null) {
-                // Se não existir, geramos agora (pode acontecer se recarregar AJAX sem ter ido no GET normal)
+                // Se não existir, gera
                 pares = gerarParesAleatorios();
                 session.setAttribute("paresAleatorios", pares);
             }
-
-            // Converte em JSON e envia de volta
+            // Responde com JSON
             Gson gson = new Gson();
             String json = gson.toJson(pares);
             response.setContentType("application/json; charset=UTF-8");
             response.getWriter().write(json);
             return;
         }
+        else if ("verErro".equals(acao)) {
+            // Retorna eventual erro em JSON
+            HttpSession session = request.getSession();
+            String msgErro = (String) session.getAttribute("loginError");
+            if (msgErro != null) {
+                // Remove da sessão para não exibir de novo depois
+                session.removeAttribute("loginError");
+            }
+            // Ex.: {"erro":"Senha incorreta!"} ou {"erro":null}
+            response.setContentType("application/json; charset=UTF-8");
+            String json = "{\"erro\":" + (msgErro == null ? "null" : "\"" + msgErro + "\"") + "}";
+            response.getWriter().write(json);
+            return;
+        }
 
-        // Se não for AJAX, então é acesso “normal” para exibir o login.html
-        // 1) Gera 5 pares aleatórios
+        // CASO NORMAL: exibir a página login.html
+        // 1) Gera 5 pares aleatórios e guarda na sessão
         List<Par> pares = gerarParesAleatorios();
-
-        // 2) Armazena na sessão para o doPost (ou para o AJAX)
         HttpSession session = request.getSession();
         session.setAttribute("paresAleatorios", pares);
 
-        // 3) Verifica se já existe um cliente logado
+        // 2) Verifica se tem cliente na sessão
         Cliente cliente = (Cliente) session.getAttribute("cliente");
         if (cliente == null) {
-            // Se não tiver cliente na sessão, manda voltar para index.html
             response.sendRedirect(request.getContextPath() + "/index.html");
             return;
         }
 
-        // 4) Encaminha para o login.html (estático)
-        //    (O JS dentro dele vai chamar ?acao=getPares e popular os botões)
+        // 3) Encaminha (forward) para o login.html (NÃO altera a URL)
         request.getRequestDispatcher("/templates/login.html").forward(request, response);
     }
 
@@ -76,51 +84,49 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1) Lê o JSON do array de índices clicados (ex.: "[0,3,1,2,4,0]")
+        // Lê array de índices
         String indicesJson = request.getParameter("indicesClicados");
         if (indicesJson == null || indicesJson.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/templates/login.html?erro=Indices%20não%20recebidos");
+            // Armazena msg de erro e forward de volta pra login.html
+            request.getSession().setAttribute("loginError", "Indices não recebidos");
+            request.getRequestDispatcher("/templates/login.html").forward(request, response);
             return;
         }
 
-        // 2) Converte para um array de int usando Gson
+        // Converte JSON -> int[]
         Gson gson = new Gson();
         int[] arrayIndices = gson.fromJson(indicesJson, int[].class);
 
-        // 3) Recupera o cliente e os pares da sessão
         HttpSession session = request.getSession();
         Cliente cliente = (Cliente) session.getAttribute("cliente");
         @SuppressWarnings("unchecked")
         List<Par> paresAleatorios = (List<Par>) session.getAttribute("paresAleatorios");
 
-        // Se não existir, redireciona para forçar o GET
         if (cliente == null || paresAleatorios == null) {
-            response.sendRedirect(request.getContextPath() + "/index.html?erro=Recarregue%20a%20página");
+            // Manda voltar ao index
+            request.getSession().setAttribute("loginError", "Recarregue a página!");
+            request.getRequestDispatcher("/templates/login.html").forward(request, response);
             return;
         }
 
-        String senhaDoBanco = cliente.getSenha(); // ex.: "124578"
-
-        // 4) Se a senha tem 6 dígitos, esperamos ter 6 cliques
+        String senhaDoBanco = cliente.getSenha();
         if (arrayIndices.length != senhaDoBanco.length()) {
-            response.sendRedirect(request.getContextPath() + "/templates/login.html?erro=Senha%20incompleta");
+            request.getSession().setAttribute("loginError", "Senha incompleta!");
+            request.getRequestDispatcher("/templates/login.html").forward(request, response);
             return;
         }
 
-        // 5) Valida se cada dígito da senha está no Par correspondente
+        // Valida
         boolean senhaValida = true;
         for (int i = 0; i < senhaDoBanco.length(); i++) {
             char digitoCorreto = senhaDoBanco.charAt(i);
-            int indiceBotao = arrayIndices[i]; // qual botão foi clicado nessa posição
+            int indiceBotao = arrayIndices[i];
 
-            // Se o usuário clicou no índice do backspace ou fora do array de pares
             if (indiceBotao < 0 || indiceBotao >= paresAleatorios.size()) {
                 senhaValida = false;
                 break;
             }
-
             Par p = paresAleatorios.get(indiceBotao);
-            // Se o dígito (ex. '1') não está em p.num1 ou p.num2, falha
             String d = String.valueOf(digitoCorreto);
             if (!d.equals(p.getNum1()) && !d.equals(p.getNum2())) {
                 senhaValida = false;
@@ -128,30 +134,29 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        // 6) Redireciona conforme resultado
         if (!senhaValida) {
-            response.sendRedirect(request.getContextPath() + "/templates/login.html?erro=Senha%20incorreta");
+            // Armazena msg erro na sessão e forward
+            request.getSession().setAttribute("loginError", "Senha incorreta!");
+            request.getRequestDispatcher("/templates/login.html").forward(request, response);
         } else {
-            // Logado
+            // Senha correta, manda para home
             response.sendRedirect(request.getContextPath() + "/templates/home.html");
         }
     }
 
-    // Função auxiliar: gerar 5 pares de dígitos aleatórios (sem repetição).
+    // Gera 5 pares aleatórios (0..9 sem repetição)
     private List<Par> gerarParesAleatorios() {
-        // Exemplo: embaralha [0..9] e agrupa 2 a 2
         List<Integer> lista = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             lista.add(i);
         }
         Collections.shuffle(lista);
 
-        // Agora criamos 5 pares
         List<Par> pares = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            int num1 = lista.get(i * 2);
-            int num2 = lista.get(i * 2 + 1);
-            pares.add(new Par(String.valueOf(num1), String.valueOf(num2)));
+            int n1 = lista.get(i * 2);
+            int n2 = lista.get(i * 2 + 1);
+            pares.add(new Par(String.valueOf(n1), String.valueOf(n2)));
         }
         return pares;
     }
