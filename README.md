@@ -39,6 +39,24 @@ Cada área tem a responsabilidade de desenvolver e manter suas respectivas parte
 
 - Cloud: AWS RDS MySQL 
 
+## Configurações Iniciais
+1. Baixe as depêndencias no Maven
+2. Configure a JDK 17 ou 21
+3. Acrescente a pasta resources dentro de main (ao lado de Java) com as credenciais de conexão ao banco:
+   ##### db.url=jdbc:mysql://goi-database.cjsxgdipkurd.us-east-1.rds.amazonaws.com:3306/goi-database
+   ##### db.user=admin
+   ##### db.password=SENAC2005$
+5. Acesse via localhost:8080
+
+### Credenciais
+#### Usuário A
+- CPF: 12345678901
+- Senha: 123456
+
+#### Usuário B
+- CPF: 98765432196
+- Senha: 124578
+
 ## Prototipagem
 
 Nesta seção, apresentamos as imagens das prototipagens do projeto. As imagens foram geradas para auxiliar no desenvolvimento e na validação das interfaces do sistema.
@@ -58,13 +76,22 @@ As imagens a seguir representam as principais telas do sistema e estão armazena
 
 
 ### 3. Tela de Cadastro
-
+![Cadastro](./Prototipagens/casdastro.png)
 
 
 ### 4. Tela Menu Logado
+![Menu](./Prototipagens/menu-logado.png)
 
 
+### 5. Tela de Extrato da Conta
+![Extrato](./Prototipagens/extrato-conta.png)
 
-### 5. Tela de Configurações
+
+### 6. Tela de Cartão Especifico
+![Cadastro](./Prototipagens/cartao-especifico.png)
+
+
+### 7. Tela de Pagamento de Fatura
+![Cadastro](./Prototipagens/pagamento-fatura.png)
 
 
