@@ -1,0 +1,507 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .logo {
+    width: 120px;
+    height: 32px;
+    background-color: #ddd;
+    border-radius: 6px;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+  }
+
+  nav a::after {
+    
+    font-size: 10px;
+    margin-left: 4px;
+    display: inline-block;
+  }
+
+  nav a.no-arrow::after {
+    content: "";
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  input[type="text"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  .btn-login {
+    background: none;
+    border: none;
+    color: #f00;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .btn-cta {
+    padding: 8px 16px;
+    background-color: #ff0040;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .seta img{
+      width: 25px;
+      height: 25px;
+  }
+  .navi img{
+      width: 10px;
+      height: 10px;
+  }
+  /* ... seu CSS existente ... */
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+nav {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-right {
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+}
+}
+
+@media (max-width: 768px) {
+.banner {
+  height: auto;
+  padding: 40px 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+.banner-content h1 {
+  font-size: 28px;
+}
+
+.descricao h2 {
+  font-size: 20px;
+}
+
+.descricao p {
+  font-size: 13px;
+}
+
+.servicos {
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  width: 90%;
+  max-width: 320px;
+}
+}
+
+@media (max-width: 480px) {
+nav {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.header-right {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+.btn-cta {
+  width: 100%;
+  text-align: center;
+}
+}
+main {
+background-color: #f9f9f9;
+padding-bottom: 40px;
+font-family: Arial, sans-serif;
+}
+
+/* Banner com imagem substituída por fundo cinza e texto */
+.banner {
+background-color: #ccc;
+height: 400px;
+display: flex;
+align-items: center;
+justify-content: left;
+padding-left: 60px;
+position: relative;
+}
+
+.banner-content h1 {
+color: white;
+font-size: 36px;
+font-weight: bold;
+line-height: 1.3;
+}
+
+/* Texto abaixo do banner */
+.descricao {
+text-align: center;
+padding: 40px 20px 20px;
+}
+
+.descricao h2 {
+font-size: 22px;
+color: #1c1c1c;
+}
+
+.descricao p {
+font-size: 14px;
+color: #555;
+margin-top: 10px;
+}
+
+/* Cards */
+.servicos {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 16px;
+padding: 20px;
+}
+
+.card {
+background-color: #fff;
+border: 1px solid #eee;
+border-radius: 12px;
+padding: 24px;
+width: 220px;
+text-align: left;
+box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.card .icon {
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.card h3 {
+font-size: 16px;
+color: #1c1c1c;
+margin-bottom: 10px;
+}
+
+.card p {
+font-size: 13px;
+color: #555;
+margin-bottom: 16px;
+}
+
+.card a {
+color: #e4002b;
+text-decoration: none;
+font-weight: bold;
+font-size: 14px;
+}
+
+.container {
+  max-width: 1150px; /* ou outro valor como 960px, 1200px */
+margin: 0 auto;
+padding: 0 20px;
+  }
+
+  .cartao-credito {
+    display: flex;
+    background-color: #f2f2f2;
+    padding: 40px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cartao-texto {
+    max-width: 50%;
+  }
+
+  .cartao-texto h1 {
+    color: #e6007e;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .cartao-texto p {
+    font-size: 16px;
+    color: #000;
+  }
+
+  .cartao-texto a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #e6007e;
+    text-decoration: none;
+  }
+
+  .imagem-fake {
+    width: 300px;
+    height: 200px;
+    background-color: #ccc;
+    border-radius: 10px;
+  }
+
+  .goi-ultra {
+    display: flex;
+    background-color: #ff4b5c;
+    color: white;
+    padding: 40px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .imagem-fake2 {
+    width: 300px;
+    height: 200px;
+    background-color: #999;
+    border-radius: 10px;
+  }
+
+  .goi-texto h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .goi-texto p {
+    font-size: 16px;
+  }
+
+  .goi-texto a {
+    display: inline-block;
+    margin-top: 10px;
+    color: white;
+    text-decoration: underline;
+  }
+  .container-coteire2 {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .banner-coteire2 {
+      height: 480px;
+background-color: #ccc;
+background-size: cover;
+background-position: center;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+position: relative;
+color: white;
+
+max-width: 100%;   /*  largura máxima */
+margin: 0 auto;      /*  centraliza */
+padding: 0 24px;     /*  margens internas menores */
+/* opcional, se quiser cantos arredondados */
+  }
+
+  .banner-coteire2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent 60%);
+  }
+
+  .banner-content-coteire2 {
+    position: relative;
+    max-width: 460px;
+    z-index: 1;
+  }
+
+  .banner-content-coteire2 h1 {
+    font-size: 28px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .banner-content-coteire2 a {
+    color: white;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+
+  .cards-row-coteire2 {
+display: flex;
+flex-wrap: nowrap;
+justify-content: space-between;
+gap: 0px;
+margin-top: 0;
+}
+
+.card-coteire2 {
+flex: 1 1 50%;
+padding: 40px 32px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+color: white;
+}
+
+  .card-coteire2 .img-coteire2 {
+    width: 100%;
+    height: 180px;
+    background-color: #aaa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .card-coteire2 h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .card-coteire2 p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .card-coteire2 a {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    text-decoration: underline;
+    color: white;
+  }
+
+  .green-coteire2 {
+    background-color: #00a86b;
+  }
+
+  .red-coteire2 {
+    background-color: #ee3a4f;
+  }
+
+  @media (max-width: 768px) {
+    .cards-row-coteire2 {
+      flex-direction: column;
+    }
+
+    .card-coteire2 {
+      width: 100%;
+    }
+
+    .banner-coteire2 {
+      padding: 0 20px;
+      height: auto;
+      min-height: 400px;
+    }
+  }
+  .duvidas-coteire3 {
+padding: 60px 20px;
+background-color: #fff;
+}
+
+.duvidas-coteire3-container {
+max-width: 900px;
+margin: 0 auto;
+text-align: center;
+}
+
+.duvidas-coteire3 h5 {
+font-size: 12px;
+letter-spacing: 1px;
+color: #666;
+margin-bottom: 8px;
+}
+
+.duvidas-coteire3 h2 {
+font-size: 32px;
+margin-bottom: 16px;
+}
+
+.duvidas-coteire3 p {
+font-size: 16px;
+color: #666;
+margin-bottom: 40px;
+}
+
+.faq-coteire3 {
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-bottom: 40px;
+}
+
+.faq-item-coteire3 {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-top: 1px solid #ddd;
+padding: 16px 0;
+font-size: 18px;
+}
+
+.faq-item-coteire3:last-child {
+border-bottom: 1px solid #ddd;
+}
+
+.plus-coteire3 {
+font-size: 24px;
+color: #ff4da6;
+}
+
+.botoes-coteire3 {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 16px;
+}
+
+.btn-duvidas-coteire3 {
+background: transparent;
+border: 1px solid #ff4da6;
+color: #000;
+padding: 12px 24px;
+border-radius: 8px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.link-contato-coteire3 {
+color: #ff4da6;
+font-weight: bold;
+font-size: 14px;
+text-decoration: none;
+}
