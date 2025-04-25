@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Transferência</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+<header>
+    <img src="/static/img/goi-icon-header.png" alt="Logo Icone" class="icone-goi">
+    <h1>GOI Bank</h1>
+</header>
+<div class="container-principal">
+    <h3>Transferência entre Contas</h3>
+
+    <!-- Exibe saldo atual dinâmico -->
+    <p>Saldo Atual: R$ <span id="saldoAtual">Carregando...</span></p>
+
+    <!-- Exibe mensagem de retorno caso exista -->
+    <p style="color: red;" id="mensagem"></p>
+
+    <!-- Formulário para transferência -->
+    <form action="transferencia" method="post">
+        <div class="form-group">
+            <label for="cpfDestino">CPF Destino:</label>
+            <input type="text" id="cpfDestino" name="cpfDestino" placeholder="Informe o CPF do destinatário" required>
+        </div>
+        <div class="form-group">
+            <label for="valor">Valor a Transferir:</label>
+            <input type="text" id="valor" name="valor" placeholder="Digite o valor" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Transferir</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    window.addEventListener("load", function() {
+        fetch("/saldo")
+            .then(function(resp) {
+                return resp.json();
+            })
+            .then(function(data) {
+                if(data.error){
+                    document.getElementById("saldoAtual").textContent = data.error;
+                } else {
+                    document.getElementById("saldoAtual").textContent = data.saldo;
+                }
+            })
+            .catch(function(err) {
+                console.error("Erro:", err);
+            });
+    });
+</script>
+</body>
+</html>
