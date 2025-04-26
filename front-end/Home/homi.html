@@ -14,17 +14,18 @@
 
     <nav class="navi">
       <a href="#" class="no-arrow">Página inicial</a>
-      <a href="#">Para você <img src="setabaixo.png" alt=""></a>
-      <a href="#">Para o seu negócio <img src="setabaixo.png" alt=""></a>
+      <a href="#">Para você</a>
+      <a href="#">Para o seu negócio </a>
       <a href="#" class="no-arrow">Perguntas</a>
     </nav>
 
     <div class="header-right">
-      <input type="text" placeholder="CPF">
-      
-      <button class="btn-login">Login </button>
+      <form method="post" action="validarCPF" id="cpfForm">
+        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" maxlength="14" required>
+        <button type="submit" class="btn-login">Login</button>
+      </form>
       <div class="seta">
-        <img src="seta.png" alt="">
+        <img src="../assets/img/seta-entrada.svg" alt="Seta para entrar">
       </div>
       <button class="btn-cta">Quero ser GOI</button>
     </div>
@@ -147,7 +148,6 @@
         </div>
       </section>
   </main>
-  
-
+<script src="script.js"></script>
 </body>
 </html>
