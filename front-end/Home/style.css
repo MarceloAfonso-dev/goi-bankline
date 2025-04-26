@@ -505,22 +505,38 @@ gap: 16px;
 margin-bottom: 40px;
 }
 
-.faq-item-coteire3 {
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-top: 1px solid #ddd;
-padding: 16px 0;
-font-size: 18px;
+.faq-answer {
+  display: none; /* Esconde a resposta inicialmente */
+  padding: 10px 0;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ddd;
 }
 
-.faq-item-coteire3:last-child {
-border-bottom: 1px solid #ddd;
+.faq-answer.active {
+  display: block; /* Exibe a resposta quando ativa */
 }
 
 .plus-coteire3 {
-font-size: 24px;
-color: #ff4da6;
+  align-self: flex-end; /* Move o "+" para o canto direito */
+  font-size: 24px;
+  color: #ff4da6;
+  cursor: pointer;
+  user-select: none;
+}
+
+.faq-item-coteire3 {
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* Alinha os elementos verticalmente */
+  justify-content: flex-start;
+  align-items: flex-start; /* Alinha os elementos à esquerda */
+}
+
+.faq-item-coteire3:hover {
+  background-color: #f9f9f9;
 }
 
 .botoes-coteire3 {
@@ -545,4 +561,44 @@ color: #ff4da6;
 font-weight: bold;
 font-size: 14px;
 text-decoration: none;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px); /* Fundo borrado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup.hidden {
+  display: none; /* Esconde o popup */
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+body.popup-active {
+  overflow: hidden; /* Impede o scroll da página quando o popup está aberto */
 }

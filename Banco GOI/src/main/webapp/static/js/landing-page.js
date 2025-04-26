@@ -42,3 +42,82 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('bannerVideo');
+    const image = document.getElementById('bannerImage');
+    const mediaElements = [video, image];
+    let currentIndex = 0;
+
+    // Função para alternar entre vídeo e imagem
+    function switchMedia() {
+      mediaElements.forEach((media, index) => {
+        media.classList.toggle('active', index === currentIndex);
+      });
+
+      currentIndex = (currentIndex + 1) % mediaElements.length;
+    }
+
+    // Inicia o vídeo e alterna a cada 5 segundos
+    video.play();
+    switchMedia();
+    setInterval(switchMedia, 18000);
+  });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('popup');
+  const popupTitle = document.getElementById('popup-title');
+  const popupDescription = document.getElementById('popup-description');
+  const popupClose = document.querySelector('.popup-close');
+  const popupTriggers = document.querySelectorAll('.popup-trigger');
+
+  // Abre o popup
+  popupTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const title = trigger.getAttribute('data-title');
+      const description = trigger.getAttribute('data-description');
+      popupTitle.textContent = title;
+      popupDescription.textContent = description;
+      popup.classList.remove('hidden');
+      document.body.classList.add('popup-active');
+    });
+  });
+
+  // Fecha o popup
+  popupClose.addEventListener('click', () => {
+    popup.classList.add('hidden');
+    document.body.classList.remove('popup-active');
+  });
+
+  // Fecha o popup ao clicar fora do conteúdo
+  popup.addEventListener('click', (event) => {
+    if (event.target === popup) {
+      popup.classList.add('hidden');
+      document.body.classList.remove('popup-active');
+    }
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item-coteire3');
+
+    faqItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const answer = item.querySelector('.faq-answer');
+        const plusIcon = item.querySelector('.plus-coteire3');
+
+        // Alterna a visibilidade da resposta
+        if (answer.classList.contains('hidden')) {
+          answer.classList.remove('hidden');
+          answer.classList.add('active');
+          plusIcon.textContent = '-'; // Altera o "+" para "-"
+        } else {
+          answer.classList.add('hidden');
+          answer.classList.remove('active');
+          plusIcon.textContent = '+'; // Altera o "-" para "+"
+        }
+      });
+    });
+  });

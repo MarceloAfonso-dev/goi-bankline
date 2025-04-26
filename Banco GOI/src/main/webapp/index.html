@@ -5,18 +5,18 @@
     <link rel="stylesheet" href="/static/css/landing-page.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GOI Bank</title>
-
+    <link rel="icon" type="image/png" href="/static/img/goi-icon-header.png">
 </head>
 <body>
 
 <header>
-    <div class="logo"></div> <!-- Aqui entra a imagem da logo -->
+    <img src="/static/img/goi-icon-header.png" alt="logo" class="logo"> <!-- Aqui entra a imagem da logo -->
 
     <nav class="navi">
         <a href="#" class="no-arrow">Página inicial</a>
-        <a href="#">Para você</a>
-        <a href="#">Para o seu negócio </a>
-        <a href="#" class="no-arrow">Perguntas</a>
+        <a href="#para-voce">Para você</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#FAQ" class="no-arrow">Perguntas</a>
     </nav>
 
     <div class="header-right">
@@ -33,11 +33,12 @@
 <main>
     <section class="banner">
         <div class="banner-content">
-            <h1>Goi bank.<br>Naturalmente melhor<br>para o seu bolso.</h1>
+            <video id="bannerVideo" class="banner-media" src="/static/vid/divulgacao.mp4" muted loop></video>
+            <img id="bannerImage" class="banner-media" src="/static/img/mascote2.png" alt="Banner Image">
         </div>
     </section>
 
-    <section class="descricao">
+    <section class="descricao" id="para-voce">
         <h2>Resolva sua vida financeira em poucos cliques</h2>
         <p>O Goi oferece uma experiência completa com soluções financeiras para facilitar seu dia a dia.</p>
     </section>
@@ -47,75 +48,77 @@
             <div class="icon">💳</div>
             <h3>Empréstimo</h3>
             <p>Transparentes, seguros e do seu jeito. Opções de empréstimos que deixam você no controle do início ao fim.</p>
-            <a href="#">Saiba mais →</a>
+            <a href="#" class="popup-trigger" data-title="Empréstimo" data-description="Opções de empréstimos transparentes e seguros que deixam você no controle.">Saiba mais →</a>
         </div>
         <div class="card">
             <div class="icon">🏦</div>
             <h3>GoiConsignado</h3>
             <p>O empréstimo consignado para servidores públicos federais e para aposentados e pensionistas do INSS.</p>
-            <a href="#">Saiba mais →</a>
+            <a href="#" class="popup-trigger" data-title="GoiConsignado" data-description="Empréstimo consignado para servidores públicos e aposentados do INSS.">Saiba mais →</a>
         </div>
         <div class="card">
             <div class="icon">📈</div>
             <h3>Investimentos</h3>
             <p>Investimentos a partir de R$ 1 e opções para todos os perfis. Uma experiência fácil, segura e transparente.</p>
-            <a href="#">Saiba mais →</a>
+            <a href="#" class="popup-trigger" data-title="Investimentos" data-description="Invista a partir de R$ 1 com opções para todos os perfis.">Saiba mais →</a>
         </div>
         <div class="card">
             <div class="icon">📦</div>
             <h3>Caixinhas</h3>
             <p>Organize e guarde dinheiro para seus planos. Crie Caixinhas personalizadas para cada um de seus objetivos.</p>
-            <a href="#">Saiba mais →</a>
+            <a href="#" class="popup-trigger" data-title="Caixinhas" data-description="Organize e guarde dinheiro para seus planos com Caixinhas personalizadas.">Saiba mais →</a>
         </div>
     </section>
     <div class="container">
         <div class="cartao-credito">
             <div class="cartao-texto">
                 <h1>Conheça nosso Cartão de Crédito</h1>
-                <p>Pode chamar ele de roxinho. Além disso, pode chamar ele de moderno, gratuito e prático também.</p>
-                <a href="#">Saiba mais →</a>
+                <p>Pode chamar ele de goiabinha. Além disso, pode chamar ele de moderno, gratuito e prático também.</p>
+                <a href="#" class="popup-trigger" data-title="Earth Essence" data-description="O cartão mais queridinho da galera!">Saiba mais →</a>
             </div>
-            <div class="imagem-fake"></div>
+            <img src="/static/img/cartaoEarth.png" alt="Cartão Earth" class="imagem-fake">
         </div>
 
         <div class="goi-ultra">
-            <div class="imagem-fake2"></div>
+            <img src="/static/img/cartaoBlack.png" alt="Cartão Black" class="imagem-fake2">
+
             <div class="goi-texto">
-                <h2>Goi ultra</h2>
+                <h2>Goi Black</h2>
                 <p>A experiência exclusiva para clientes de alta renda.</p>
-                <a href="#">Saiba mais →</a>
+                <a href="#" class="popup-trigger" data-title="Goi Black" data-description="A experiência exclusiva para clientes de alta renda.">Saiba mais →</a>
             </div>
         </div>
     </div>
-    <div class="banner-coteire2">
+    <div class="banner-coteire2" id="beneficios">
+        <img src="/static/img/cartaoBlackBanner.png" alt="Banner Cartão Black" class="banner-image-coteire2">
         <div class="banner-content-coteire2">
-            <h1>Nós acreditamos que só uma pessoa pode ter controle sobre sua vida financeira: você.</h1>
-            <a href="#">Saiba mais sobre como fazemos isso →</a>
+            <h1>Descubra o poder do Goi Black: controle total da sua vida financeira com exclusividade.</h1>
+            <a href="#" class="popup-trigger" data-title="Goi Black" data-description="O Goi Black oferece controle total da sua vida financeira com exclusividade e benefícios únicos.">Saiba mais sobre o Goi Black →</a>
         </div>
     </div>
 
     <div class="container-coteire2">
         <div class="cards-row-coteire2">
             <div class="card-coteire2 green-coteire2">
-                <div class="img-coteire2"></div>
+                <img src="/static/img/jovens.jpeg" alt="Jovens" class="img-coteire2">
                 <div>
                     <h2>Conta do Goi</h2>
-                    <p>Manter suas contas em dia nunca foi tão simples com Assistente de Pagamentos.</p>
-                    <a href="#">Saiba mais →</a>
+                    <p>Manter suas contas em dia nunca foi tão simples em nosso banking.</p>
+                    <a href="#" class="popup-trigger" data-title="Conta do Goi" data-description="Manter suas contas em dia nunca foi tão simples em nosso banking.">Saiba mais →</a>
                 </div>
             </div>
 
             <div class="card-coteire2 red-coteire2">
-                <div class="img-coteire2"></div>
+                <img src="/static/img/boletos.webp" alt="Jovens" class="img-coteire2">
                 <div>
-                    <h2>Conta PJ</h2>
-                    <p>Ficou mais fácil organizar o seu negócio com a conta PJ do Nubank.</p>
-                    <a href="#">Saiba mais →</a>
+                    <h2>Cheque Especial</h2>
+                    <p>Tenha acesso rápido a crédito para emergências financeiras com o Cheque Especial do Goi.</p>
+                    <a href="#" class="popup-trigger" data-title="Cheque Especial" data-description="Tenha acesso rápido a crédito para emergências financeiras com o Cheque Especial do Goi.">Saiba mais →</a>
                 </div>
             </div>
         </div>
     </div>
-    <section class="duvidas-coteire3">
+    <section class="duvidas-coteire3" id="FAQ">
         <div class="duvidas-coteire3-container">
             <h5>AJUDA</h5>
             <h2>Ficou alguma dúvida?</h2>
@@ -123,31 +126,49 @@
 
             <div class="faq-coteire3">
                 <div class="faq-item-coteire3">
-                    <span>Como faço para ter o cartão de crédito no next?</span>
+                    <span>Como faço para ter o cartão de crédito no GOI?</span>
                     <span class="plus-coteire3">+</span>
+                    <div class="faq-answer hidden">
+                        <p>Para ter o cartão de crédito GOI, basta abrir uma conta e solicitar o cartão pelo aplicativo.</p>
+                    </div>
                 </div>
                 <div class="faq-item-coteire3">
-                    <span>É necessário ter uma renda mínima para abrir uma conta next?</span>
+                    <span>É necessário ter uma renda mínima para abrir uma conta GOI?</span>
                     <span class="plus-coteire3">+</span>
+                    <div class="faq-answer hidden">
+                        <p>Não, não é necessário ter uma renda mínima para abrir uma conta no GOI.</p>
+                    </div>
                 </div>
                 <div class="faq-item-coteire3">
-                    <span>O next é do Bradesco?</span>
+                    <span>O GOI é do Senac?</span>
                     <span class="plus-coteire3">+</span>
+                    <div class="faq-answer hidden">
+                        <p>Não, o GOI é uma instituição financeira independente, mas com valores alinhados ao Senac.</p>
+                    </div>
                 </div>
                 <div class="faq-item-coteire3">
-                    <span>O next tem agência?</span>
+                    <span>O GOI tem agência?</span>
                     <span class="plus-coteire3">+</span>
+                    <div class="faq-answer hidden">
+                        <p>O GOI é 100% digital e não possui agências físicas. Todo atendimento é feito online.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="botoes-coteire3">
-                <button class="btn-duvidas-coteire3">TODAS AS DÚVIDAS</button>
                 <p>ou</p>
-                <a href="#" class="link-contato-coteire3">ENTRE EM CONTATO →</a>
+                <a href="mailto:contato@goibank.com.br" class="link-contato-coteire3">ENTRE EM CONTATO →</a>
             </div>
         </div>
     </section>
 </main>
+<div id="popup" class="popup hidden">
+    <div class="popup-content">
+        <button class="popup-close">X</button>
+        <h3 id="popup-title"></h3>
+        <p id="popup-description"></p>
+    </div>
+</div>
 <script src="/static/js/landing-page.js"></script>
 </body>
 </html>
