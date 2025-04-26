@@ -9,8 +9,6 @@ Este projeto representa a estrutura e funcionamento do Banco GOI, incluindo serv
 
 🔄 Transferir
 
-🆕 Cadastro Produtos
-
 💳 Cheque Especial
 
 🏦 Cartão de Crédito
