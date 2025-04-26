@@ -10,13 +10,13 @@
 <body>
 
   <header>
-    <div class="logo"></div> <!-- Aqui entra a imagem da logo -->
+    <img src="../assets/img/goi-icon-header.png" alt="logo" class="logo"> <!-- Aqui entra a imagem da logo -->
 
     <nav class="navi">
       <a href="#" class="no-arrow">Página inicial</a>
-      <a href="#">Para você</a>
-      <a href="#">Para o seu negócio </a>
-      <a href="#" class="no-arrow">Perguntas</a>
+      <a href="#para-voce">Para você</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#FAQ" class="no-arrow">Perguntas</a>
     </nav>
 
     <div class="header-right">
@@ -33,11 +33,12 @@
   <main>
     <section class="banner">
       <div class="banner-content">
-        <h1>Goi bank.<br>Naturalmente melhor<br>para o seu bolso.</h1>
+        <video id="bannerVideo" class="banner-media" src="../assets/vid/divulgacao.mp4" muted loop></video>
+        <img id="bannerImage" class="banner-media" src="../assets/img/mascote2.png" alt="Banner Image">
       </div>
     </section>
   
-    <section class="descricao">
+    <section class="descricao" id="para-voce">
       <h2>Resolva sua vida financeira em poucos cliques</h2>
       <p>O Goi oferece uma experiência completa com soluções financeiras para facilitar seu dia a dia.</p>
     </section>
@@ -72,50 +73,52 @@
         <div class="cartao-credito">
           <div class="cartao-texto">
             <h1>Conheça nosso Cartão de Crédito</h1>
-            <p>Pode chamar ele de roxinho. Além disso, pode chamar ele de moderno, gratuito e prático também.</p>
+            <p>Pode chamar ele de goiabinha. Além disso, pode chamar ele de moderno, gratuito e prático também.</p>
             <a href="#">Saiba mais →</a>
           </div>
-          <div class="imagem-fake"></div>
+          <img src="../assets/img/cartaoEarth.png" alt="Cartão Earth" class="imagem-fake">
         </div>
     
         <div class="goi-ultra">
-          <div class="imagem-fake2"></div>
+          <img src="../assets/img/cartaoBlack.png" alt="Cartão Black" class="imagem-fake2">
+
           <div class="goi-texto">
-            <h2>Goi ultra</h2>
+            <h2>Goi Black</h2>
             <p>A experiência exclusiva para clientes de alta renda.</p>
             <a href="#">Saiba mais →</a>
           </div>
         </div>
       </div>
-      <div class="banner-coteire2">
+      <div class="banner-coteire2" id="beneficios">
+        <img src="../assets/img/cartaoBlackBanner.png" alt="Banner Cartão Black" class="banner-image-coteire2">
         <div class="banner-content-coteire2">
-          <h1>Nós acreditamos que só uma pessoa pode ter controle sobre sua vida financeira: você.</h1>
-          <a href="#">Saiba mais sobre como fazemos isso →</a>
+          <h1>Descubra o poder do Goi Black: controle total da sua vida financeira com exclusividade.</h1>
+          <a href="#">Saiba mais sobre o Goi Black →</a>
         </div>
       </div>
     
       <div class="container-coteire2">
         <div class="cards-row-coteire2">
           <div class="card-coteire2 green-coteire2">
-            <div class="img-coteire2"></div>
+            <img src="../assets/img/jovens.jpeg" alt="Jovens" class="img-coteire2">
             <div>
               <h2>Conta do Goi</h2>
-              <p>Manter suas contas em dia nunca foi tão simples com Assistente de Pagamentos.</p>
+              <p>Manter suas contas em dia nunca foi tão simples em nosso banking.</p>
               <a href="#">Saiba mais →</a>
             </div>
           </div>
     
           <div class="card-coteire2 red-coteire2">
-            <div class="img-coteire2"></div>
+            <img src="../assets/img/boletos.webp" alt="Jovens" class="img-coteire2">
             <div>
-              <h2>Conta PJ</h2>
-              <p>Ficou mais fácil organizar o seu negócio com a conta PJ do Nubank.</p>
+              <h2>Cheque Especial</h2>
+                <p>Tenha acesso rápido a crédito para emergências financeiras com o Cheque Especial do Goi.</p>
               <a href="#">Saiba mais →</a>
             </div>
           </div>
         </div>
       </div>
-      <section class="duvidas-coteire3">
+      <section class="duvidas-coteire3" id="FAQ">
         <div class="duvidas-coteire3-container">
           <h5>AJUDA</h5>
           <h2>Ficou alguma dúvida?</h2>
@@ -123,25 +126,24 @@
       
           <div class="faq-coteire3">
             <div class="faq-item-coteire3">
-              <span>Como faço para ter o cartão de crédito no next?</span>
+              <span>Como faço para ter o cartão de crédito no GOI?</span>
               <span class="plus-coteire3">+</span>
             </div>
             <div class="faq-item-coteire3">
-              <span>É necessário ter uma renda mínima para abrir uma conta next?</span>
+              <span>É necessário ter uma renda mínima para abrir uma conta GOI?</span>
               <span class="plus-coteire3">+</span>
             </div>
             <div class="faq-item-coteire3">
-              <span>O next é do Bradesco?</span>
+              <span>O GOI é do Senac?</span>
               <span class="plus-coteire3">+</span>
             </div>
             <div class="faq-item-coteire3">
-              <span>O next tem agência?</span>
+              <span>O GOI tem agência?</span>
               <span class="plus-coteire3">+</span>
             </div>
           </div>
       
           <div class="botoes-coteire3">
-            <button class="btn-duvidas-coteire3">TODAS AS DÚVIDAS</button>
             <p>ou</p>
             <a href="#" class="link-contato-coteire3">ENTRE EM CONTATO →</a>
           </div>

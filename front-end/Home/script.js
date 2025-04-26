@@ -42,3 +42,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('bannerVideo');
+    const image = document.getElementById('bannerImage');
+    const mediaElements = [video, image];
+    let currentIndex = 0;
+  
+    // Função para alternar entre vídeo e imagem
+    function switchMedia() {
+      mediaElements.forEach((media, index) => {
+        media.classList.toggle('active', index === currentIndex);
+      });
+  
+      currentIndex = (currentIndex + 1) % mediaElements.length;
+    }
+  
+    // Inicia o vídeo e alterna a cada 5 segundos
+    video.play();
+    switchMedia();
+    setInterval(switchMedia, 18000);
+  });
