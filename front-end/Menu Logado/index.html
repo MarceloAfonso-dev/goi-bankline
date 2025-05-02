@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>GOI Bankline - 24h</title>
+    <title>GOI Bankline - Menu Inicial</title>
 </head>
 <body>
     <header>
@@ -26,19 +26,92 @@
     <div class="container-principal">
         <h3>Olá Fulano, que bom te ver por aqui!</h3>
         <img src="../assets/img/visibility.png" alt="Visibilidade" class="visibilidade" id="toggle-visibility">        
-        <div class="container-saldo">
-            <h2>Saldo da Conta Corrente</h2>
-            <h1 class="saldo">R$1.234,56</h1>
+        <aside class="sidebar">
+            <ul class="sidebar__list">
+                <li>
+                    <img src="../assets/img/barcode.png" alt="Imagem de código de barras">
+                    <a href="#">pagamentos</a>
+                    <img src="../assets/img/arrow_right.png" alt="Seta para pagamentos" class="seta-sidebar">
+                </li>
+                <li>
+                    <img src="../assets/img/sync_alt.png" alt="Imagem de transferência">
+                    <a href="#">transferências</a>
+                    <img src="../assets/img/arrow_right.png" alt="Seta para transferências" class="seta-sidebar">
+                </li>
+                <li>
+                    <img src="../assets/img/bar_chart_4_bars.png" alt="Imagem de gráfico">
+                    <a href="#">investimentos</a>
+                    <img src="../assets/img/arrow_right.png" alt="Seta para investimentos" class="seta-sidebar">
+                </li>
+                <li>
+                    <img src="../assets/img/price_check.png" alt="Imagem de preço">
+                    <a href="#">solicitar produtos</a>
+                    <img src="../assets/img/arrow_right.png" alt="Seta para solicitar produtos" class="seta-sidebar">
+                </li>
+                <li>
+                    <img src="../assets/img/export_notes.png" alt="Imagem de extrato">
+                    <a href="#">extrato</a>
+                    <img src="../assets/img/arrow_right.png" alt="Seta para extrato" class="seta-sidebar">
+                </li>
+              </ul>
+        </aside>
+        <section class="conteudo-principal">
+
+            <div class="container-saldo">
+                <h2>Saldo da Conta Corrente</h2>
+                <h1 class="saldo">R$1.234,56</h1>
             <hr>
             <div class="limite-txt">
                 <h6 class="limite">Limite disponível</h6>
                 <h6 class="limite-valor">R$300,00</h6>
         
             </div>
-            <img src="../assets/img/arrow_down.png" alt="Estender saldo" class="seta-saldo" id="toggle-card">
-        </div>    
+            <img src="../assets/img/arrow_down.png" alt="Estender saldo" class="seta-saldo" id="toggle-saldo">
+        </div>
+        
+        <div class="container-cartoes">
+            <h2>Cartões</h2>
+            <table class="cartoes__table">
+                <thead>
+                    <tr>
+                        <th>Cartão</th>
+                        <th>Vencimento</th>
+                        <th>Valor (R$)</th>
+                        <th>Fatura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="cartao__info">
+                            <img src="../assets/img/cartaoBlack.png" alt="" class="cartao__icon">
+                      <div>
+                        <a href="#" class="cartao__link">
+                          Goi Black Visa Platinum – final 1234
+                        </a>
+                        <div class="cartao__sub">
+                            Limite disponível: <span class="limite-cartao">R$ 50.000,00</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>17/03/2025</td>
+                    <td class="valor-fatura">R$ 300,00</td>
+                    <td>aberta</td>
+                  </tr>
+                  <!-- repetir <tr> para cada cartão -->
+                </tbody>
+              </table>
+            <img src="../assets/img/arrow_down.png" alt="Estender saldo" class="seta-cartoes" id="toggle-cartoes">
+        </div>
     
+        <div class="container-avisos">
+            <img src="../assets/img/info.png" alt="Icone de aviso">
+            <h3>Movimente sua conta para ganhar mais limite de crédito.</h3>
+        </div>
+        
+        </section>
     </div>
+
+
 
 </body>
 
