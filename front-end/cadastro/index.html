@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Logo" class="logo" />
+
+    <h2 class="titulo">Abra sua conta</h2>
+    <p class="subtitulo">Leva apenas alguns minutos.</p>
+
+    <form id="formCadastro">
+      <div class="campo-info" id="informacoesIniciais">
+        <input type="text" id="nome" name="nome" placeholder="Nome completo" required />
+        <input type="text" id="cpf" name="cpf" placeholder="CPF: 123.456.789-09" required />
+        <input type="email" id="email" name="email" placeholder="E-mail: nome@email.com" required />
+        <input type="tel" id="celular" name="celular" placeholder="Celular: (11) 91234-5678" required />
+        <button type="submit" id="submitBtn">Continuar</button>
+      </div>
+
+      <div class="campo-info hidden" id="informacoesComplementares">
+        <input type="text" id="renda" name="renda" placeholder="Renda mensal aproximada" required />
+        <input type="text" id="profissao" name="profissao" placeholder="Qual sua profissão?" required />
+        <input type="text" id="mae" name="mae" placeholder="Nome da mãe" required />
+        <button type="submit" id="submitComplementar">Continuar</button>
+      </div>
+
+      <div class="campo-info hidden" id="informacoesRG">
+        <input type="file" id="rg" name="rg" placeholder="Foto do RG" required />
+      </div>
+    </form>
+  </div>
+
+  <div class="footer-text">
+    <p>Central de Atendimento Safra: 55 (11) 3253 4455 (Capital e Grande São Paulo) e 0300 105 1234 (Demais localidades). Atendimento 2ª a 6ª feira, das 8h às 21h30, exceto feriados.</p>
+    <p>Serviço de Atendimento ao Consumidor (SAC): 0800 772 5755. Atendimento aos Portadores de Necessidades Especiais Auditivas e de Fala: 0800 772 4136. 24 horas por dia</p>
+    <p>Ouvidoria (caso já tenha recorrido ao SAC e não esteja satisfeito): 0800 770 1236. Atendimento aos Portadores de Necessidades Especiais Auditivas e de Fala: 0800 727 7555 – WhatsApp: (11) 2650-9909 e Chat: <a href="https://www.safra.com.br/atendimento/ouvidoria.htm">safra.com.br/atendimento/ouvidoria.htm</a> De 2ª a 6ª feira, das 9h às 18h, exceto feriados.</p>
+    <p>Toda comunicação através da rede mundial de computadores está sujeita a interrupções ou atrasos...</p>
+    <p>Todos os elementos que compõem este site... Caso tenha interesse em utilizar algum dos elementos contidos neste site, entre em contato com o Banco Safra.</p>
+  </div>
+
+  <div class="footer-logos">
+    <img src="anbima.svg" alt="Anbima" />
+    <img src="b3.svg" alt="Brasil Bolsa Balcão" />
+    <img src="bsm.svg" alt="BSM" />
+  </div>
+
+  <div class="footer-cnpj">
+    <p>GOI BANK - CNPJ: 58.160.789/0001-28</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
