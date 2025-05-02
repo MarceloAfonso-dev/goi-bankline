@@ -1,7 +1,6 @@
 br\com\goibankline\model\Conta.class
 br\com\goibankline\dao\ContaDAO.class
 br\com\goibankline\servlet\ValidarCPFServlet.class
-br\com\goibankline\servlet\CadastroServlet$Par.class
 br\com\goibankline\model\Cliente.class
 br\com\goibankline\dao\ClienteDAO.class
 br\com\goibankline\servlet\TransferenciaServlet.class
