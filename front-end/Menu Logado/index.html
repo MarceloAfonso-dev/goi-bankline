@@ -4,42 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>GOI Bankline - 24h</title>
 </head>
 <body>
     <header>
         <img src="../assets/img/goi-icon-header.png" alt="Logo Icone" class="icone-goi">
         <h1>GOI Bank</h1>
+        <nav class="menu">
+            <img src="../assets/img/person.png" alt="Icone de usuário" class="icone-user">
+            <div class="dados-conta">
+                <h6 class="agencia">ag: 1234</h6><h6 class="conta">c/c: 12345-6</h6>
+            </div>
+            <img src="../assets/img/notifications.png" alt="Sino de notificação" class="notificacao">
+            <div class="sair">
+                <h6 class="sair-txt">Sair</h6>
+                <img src="../assets/img/seta-entrada.svg" alt="Seta de sair">
+            </div>
+        </nav>
     </header>
 
     <div class="container-principal">
-        <h3>olá, Fulano, que bom te ver por aqui!</h3>
+        <h3>Olá Fulano, que bom te ver por aqui!</h3>
+        <img src="../assets/img/visibility.png" alt="Visibilidade" class="visibilidade" id="toggle-visibility">        
+        <div class="container-saldo">
+            <h2>Saldo da Conta Corrente</h2>
+            <h1 class="saldo">R$1.234,56</h1>
+            <hr>
+            <div class="limite-txt">
+                <h6 class="limite">Limite disponível</h6>
+                <h6 class="limite-valor">R$300,00</h6>
+        
+            </div>
+            <img src="../assets/img/arrow_down.png" alt="Estender saldo" class="seta-saldo" id="toggle-card">
+        </div>    
     
-        <!-- <div class="container-login">
-            
-        </div> -->
     </div>
-    
-    <footer>
-       <div class="container-blocos">
-            <div class="bloco1">
-                <h1>Banco GOI</h1>
-                <h2>Rua Casa do Ator, 969, VIla Olimpia Horário de funcionamento: 10h ás 17h</h2>
-            </div>
-            <div class="bloco2">
-                <h2>Atendimento</h2>
-                <h2>Lorem ipsum dolor, sit amet voluptatem aliquid, ex e.</h2>
-            </div>
-            <div class="bloco3">
-                <h2>Atendimento</h2>
-                <h2>Lorem ipsum dolor, sit amet voluptatem aliquid, ex e.</h2>
-            </div>
-            <div class="bloco4">
-                <h2>Atendimento</h2>
-                <h2>Lorem ipsum dolor, sit amet voluptatem aliquid, ex e.</h2>
-            </div>
-        </div>     
-    </footer>
 
 </body>
+
+<script src="script.js"></script>
+
 </html>

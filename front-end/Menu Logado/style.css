@@ -1,7 +1,6 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: 'Outfit', sans-serif;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
@@ -17,16 +16,85 @@ header {
     padding: 0px 30px;
     box-sizing: border-box;
     display: flex;
-    align-items: center; 
-    justify-content: flex-start; 
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: flex-start; /* Centraliza horizontalmente */
 
 }
 
 header > h1 {
+    font-family: 'Outfit', sans-serif;
     font-weight: 500;
     color: #000;
-    margin-top: 10px; 
+    margin-top: 10px; /* Adiciona distância do topo */
     font-size: 26px;
+}
+
+.menu {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: flex-start; /* Mantém os itens alinhados à esquerda dentro do contêiner */
+    margin-left: auto; /* Empurra o elemento para a extrema direita */
+    margin-right: 203px; /* Remove qualquer margem à direita */
+}
+
+.dados-conta {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: flex-start; /* Alinha os itens à esquerda */
+    margin-left: auto; /* Adiciona um pequeno espaço entre o ícone e os dados */
+}
+
+.dados-conta > h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #000;
+    margin-top: 10px; /* Adiciona distância do topo */
+    font-size: 16px;
+}
+
+.icone-user {
+    margin-top: 6px;
+    width: 30px;
+    height: 30px;
+    margin-right: 9px; /* Adiciona distância entre o ícone e o texto */
+}
+
+.agencia {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-right: 15px; /* Adiciona distância entre os itens do menu */
+}
+
+.notificacao {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    margin-top: 5px;
+    margin-left: 36px;
+}
+
+.sair {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-left: 158px; /* Adiciona distância entre os itens do menu */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
+
+.sair > h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #FF4F5A;
+    margin-top: 7px; /* Adiciona distância do topo */
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.sair > img {
+    margin-top: 7px;
+    width: 20px;
+    height: 20px;
 }
 
 .icone-goi {
@@ -35,83 +103,98 @@ header > h1 {
     margin-right: 12px;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #3B3B3B;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    height: 210px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 12px;
-    
+.visibilidade {
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 810px;
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
 }
 
-footer > h1 {
-    font-weight: 500;
-    color: #ffffff;
-    margin-top: 10px; 
-    font-size: 896px;
+.seta-saldo {
+    width: 24px;
+    height: 24px;
+    margin: -130px 0 0 740px; /* Adiciona distância entre o ícone e o texto */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    transition: transform 0.0s ease; /* Animação suave para girar a seta */
 }
 
-.container-blocos {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 35px; 
+.seta-saldo.rotated {
+    transform: rotate(180deg); /* Gira a seta em 180 graus */
+    margin-top: -120px;
 }
-
-.bloco1, .bloco2, .bloco3, .bloco4 {
-
-    height: 120px;
-    width: 400px;
-    border: 2px solid red;
-    color: #ffffff;
-}
-
 
 .container-principal > h3 {
     font-family: 'Outfit', sans-serif;
     font-weight: 500;
     color: #464646;
-    margin: 50px 0 0 65px; 
+    margin: 50px 0 0 65px; /* Adiciona distância do topo */
     font-size: 26px;
 }
 
-.container-login {
+.hidden-value {
+    letter-spacing: 2px; /* Adiciona espaçamento entre os asteriscos */
+}
+
+.container-saldo {
     width: 780px;
-    height: 330px;
+    height: 163px;
     display: flex;
     flex-direction: column; /* Alinha os elementos verticalmente */
     background-color: #ffffff;
     border: #C8C8C8 1px solid;
     border-radius: 10px;
     margin-left: 65px;
-    margin-top: 44px;
+    margin-top: 0px;
+    transition: height 0.3s ease; /* Animação suave para expandir/recolher */
+    overflow: hidden; /* Esconde o conteúdo extra quando recolhido */
 }
 
-.container-login > h2 {
-    font-weight: 500;
-    color: #464646;
-    margin: 45px 0 0 44px; 
-    font-size: 26px;
+.container-saldo.retracted {
+    height: 60px; /* Altura expandida do card */
 }
 
-.container-login > hr {
+.container-saldo > h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #000000;
+    margin: 15px 0 0 20px; /* Adiciona distância do topo */
+    font-size: 22px;
+}
+
+.container-saldo > hr {
     width: 393px;
-    height: 1px;
+    height: 0,5px;
     background-color: hsla(0, 0%, 60%, 0.70);
-    margin: 10px 44px 0 44px; 
+    margin: 7px 44px 12px 20px; /* Adiciona margem para posicionamento */
 }
 
-.container-login > h6 {
+.limite-txt {
+    display: flex;
+    flex-direction: row; /* Alinha os elementos na horizontal */
+}
+
+.limite {
+   font-family: 'Outfit', sans-serif;
     font-weight: 500;
     color: #464646;
-    margin: 11px 0 0 44px; 
+    margin: 0px 0 0 20px; /* Adiciona distância do topo */
     font-size: 16px;
 }
 
+.limite-valor {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    color: #464646;
+    margin: 0px 0 0 205px; /* Adiciona distância do topo */
+    font-size: 16px;
+}
 
-
+.saldo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: #464646;
+    display: flex;
+    font-size: 22px;
+    align-items: center; /* Centraliza verticalmente */
+    margin: 27px 0 0 20px; /* Adiciona distância do topo */
+}
