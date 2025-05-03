@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6fd4d6eb-5eab-4d8b-bfaa-1d5befe914a9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SaldoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SaldoServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front-end/Menu Logado/a.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

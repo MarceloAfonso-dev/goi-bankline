@@ -223,3 +223,14 @@
 0:0:0:0:0:0:0:1 - - [02/May/2025:22:20:30 -0300] "GET /templates/home.html HTTP/1.1" 304 - http-bio-8080-exec-4 2
 0:0:0:0:0:0:0:1 - - [02/May/2025:22:20:32 -0300] "GET /saldo HTTP/1.1" 200 99 http-bio-8080-exec-4 1413
 0:0:0:0:0:0:0:1 - - [02/May/2025:22:21:03 -0300] "GET /static/img/visibility-off.png HTTP/1.1" 304 - http-bio-8080-exec-4 7
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:03:50 -0300] "GET / HTTP/1.1" 200 8892 http-bio-8080-exec-2 317
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:03 -0300] "POST /validarCPF HTTP/1.1" 302 - http-bio-8080-exec-5 5660
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:03 -0300] "GET /login HTTP/1.1" 200 4043 http-bio-8080-exec-6 28
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:04 -0300] "GET /login?acao=verErro HTTP/1.1" 200 13 http-bio-8080-exec-7 4
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:04 -0300] "GET /login?acao=getPares HTTP/1.1" 200 121 http-bio-8080-exec-8 175
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:12 -0300] "POST /login HTTP/1.1" 302 - http-bio-8080-exec-1 11
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:12 -0300] "GET /templates/home.html HTTP/1.1" 304 - http-bio-8080-exec-1 38
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:12 -0300] "GET /static/css/home.css HTTP/1.1" 304 - http-bio-8080-exec-4 5
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:12 -0300] "GET /static/js/home.js HTTP/1.1" 200 4141 http-bio-8080-exec-4 6
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:12 -0300] "GET /static/img/export_notes.png HTTP/1.1" 304 - http-bio-8080-exec-2 6
+0:0:0:0:0:0:0:1 - - [02/May/2025:23:04:14 -0300] "GET /saldo HTTP/1.1" 200 99 http-bio-8080-exec-2 1412

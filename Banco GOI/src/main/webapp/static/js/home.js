@@ -101,12 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // /static/js/home.js
 document.addEventListener("DOMContentLoaded", () => {
-  // ... todo o código que você já tinha (fetch, toggles de visibilidade e cards)
-
-  // 8) Logout: ao clicar em texto ou seta, vai para localhost:8080
   const logoutBtn = document.querySelector(".sair");
-  logoutBtn.style.cursor = "pointer"; // reforça o cursor
+  logoutBtn.style.cursor = "pointer";
   logoutBtn.addEventListener("click", () => {
-    window.location.href = "http://localhost:8080";
+    // força o redirecionamento para a porta 8080
+    window.location.href = `${location.protocol}//${location.hostname}:8080/`;
   });
 });
