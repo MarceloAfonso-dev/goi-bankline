@@ -418,97 +418,37 @@ header > h1 {
     color: #CCC;
   }
   
-.container-nps {
-    display: flex;
-    flex-direction: column; /* Alinha os elementos verticalmente */
-    width: 263px;
-    margin: 0px 0 0 0px;
-    height: auto; /* Ajusta a altura automaticamente */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: flex-start; /* Alinha os itens no topo */
-    gap: 20px; /* Espaçamento entre o header e as faces */
-}
-
-.nps-header {
-    display: flex;
-    flex-direction: column; /* Alinha os elementos horizontalmente */
-    align-items: center; /* Centraliza os elementos verticalmente */
-    width: 100%; /* Ocupa toda a largura do container */
-    gap: 10px; /* Espaçamento entre os elementos */
-}
-
-.nps-header > hr {
-    width: 240px;
-    height: 0,01px;
-    background-color: #999999;
-    margin: 0px 44px 0 44px; /* Adiciona margem para posicionamento */
-}
-
-.nps-header > h5 {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 550;
-    color: #FFFFFF;
-    margin: 0; /* Remove a margem padrão */
+  /* NPS no footer (mantendo o que você já tem) */
+  .footer__nps {
+    flex: 1 1 260px;
+    color: #FFF;
+  }
+  .footer__nps h5 {
     font-size: 14px;
-    align-self: flex-start; /* Alinha o texto à esquerda */
-    margin-left: 14px; /* Adiciona distância à esquerda */
-    margin-top: 10px; /* Adiciona distância do topo */
-}
-
-.faces {
-    display: flex;
-    flex-direction: row; /* Alinha os itens lado a lado */
-    justify-content: space-between; /* Espaçamento uniforme entre os itens */
-    align-items: flex-start; /* Alinha os itens no topo */
-    width: 90%; /* Ocupa toda a largura do container */
-    gap: 1px; /* Espaçamento entre os itens */
-    margin-bottom: 20px;
-}
-
-.face-item {
-    display: flex;
-    flex-direction: column; /* Alinha a imagem e o texto verticalmente */
-    align-items: center; /* Centraliza os itens horizontalmente */
-    text-align: center; /* Centraliza o texto */
-}
-
-.face-item img {
-    width: 50px; /* Define a largura das imagens */
-    height: 50px; /* Define a altura das imagens */
-    margin-bottom: 5px; /* Espaçamento entre a imagem e o texto */
-}
-
-.face-item h6 {
+    font-weight: 550;
+    margin-bottom: 8px;
     font-family: 'Outfit', sans-serif;
-    font-size: 8px;
-    font-weight: 500;
-    color: #FFFFFF;
-    margin: 0; /* Remove margens padrão */
-}
 
-.faces img {
-    display: block;
-    width: 41px; /* Define a largura das imagens */
-    height: 41px; /* Define a altura das imagens */
-    margin: 0 auto; /* Centraliza a imagem horizontalmente */
-}
-
-.faces h6 {
+  }
+  .footer__nps .faces {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    
+  }
+  .footer__nps .face-item h6 {
+    font-size: 12px;
+    margin-top: 4px;
     font-family: 'Outfit', sans-serif;
-    font-size: 8px;
-    font-weight: 500;
-    color: #FFFFFF;
-    text-align: center; /* Centraliza o texto abaixo da imagem */
-    margin-top: 5px; /* Espaçamento entre a imagem e o texto */
-}
 
-.img-24h {
-    margin-left: 163px;
-}
-
-.img-24h > img {
-    margin-top: 20px;
-    width: 20px; /* Define a largura das imagens */
-    height: 25px; /* Define a altura das imagens */
-    margin: 0 auto; /* Centraliza a imagem horizontalmente */
-}
+  }
+  
+  /* “24h” no canto inferior direito */
+  .footer__hours {
+    position: absolute;
+    right: 65px;
+    bottom: 30px;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 14px;
+  }
