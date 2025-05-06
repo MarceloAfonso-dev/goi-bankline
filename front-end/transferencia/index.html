@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>GOI Bankline – Transferências</title>
+</head>
+<body>
+    <header>
+        <img src="../assets/img/goi-icon-header.png" alt="Logo Icone" class="icone-goi">
+        <h1>GOI Bank</h1>
+        <nav class="menu">
+            <img src="../assets/img/person.png" alt="Icone de usuário" class="icone-user">
+            <div class="dados-conta">
+                <h6 class="agencia">ag: 1234</h6><h6 class="conta">c/c: 12345-6</h6>
+            </div>
+            <img src="../assets/img/notifications.png" alt="Sino de notificação" class="notificacao">
+            <div class="sair">
+                <h6 class="sair-txt">Sair</h6>
+                <img src="../assets/img/seta-entrada.svg" alt="Seta de sair">
+            </div>
+        </nav>
+    </header>
+
+  <div class="container-principal">
+    <h3>Transferência</h3>
+
+    <section class="conteudo-principal">
+      <div class="container-transferencias">
+        <h2>Insira os dados de transferência</h2>
+            <form id="transfer-form">
+                <div class="form-field">
+                    <label for="cpf" class="form-label">CPF (chave Gix)</label>
+                    <input type="text" id="cpf" class="form-input" placeholder="000.000.000-00" maxlength="14" required>
+                </div>
+                <div class="form-field">
+                    <label for="amount" class="form-label">Valor (R$)</label>
+                    <input type="text" id="amount" class="form-input" placeholder="0,00" required>
+                </div>
+                <button type="submit" class="btn-transfer">Transferir</button>
+            </form>
+        </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__section">
+      <h4>Banco GOI</h4>
+      <p>
+        Rua Casa da Atriz, 969, Vila Olímpia<br>
+        Horário de funcionamento: 10h às 17h
+      </p>
+    </div>
+    <div class="footer__section">
+      <h4>Atendimento</h4>
+      <p>
+        Central de Relacionamento<br>
+        Ligue no 4004 123456
+      </p>
+    </div>
+    <div class="footer__section">
+      <h4>SAC</h4>
+      <p>
+        Para registrar sugestões,<br>
+        reclamações ou elogios:<br>
+        0800 123 1234
+      </p>
+      <p>
+        Ouvidoria:<br>
+        0800 123 1234
+      </p>
+    </div>
+    <!-- NPS existente -->
+    <div class="container-nps">
+        <div class="nps-header">
+            <h5>Avalie o nosso serviço</h5>
+            <hr>
+        </div>
+        <div class="faces">
+            <div class="face-item">
+                <img src="../assets/img/mau-rosa.png" alt="face1">
+                <h6>Insatisfeito</h6>
+            </div>
+            <div class="face-item">
+                <img src="../assets/img/medio-rosa.png" alt="face2">
+                <h6>Indiferente</h6>
+            </div>
+            <div class="face-item">
+                <img src="../assets/img/ok-rosa.png" alt="face3">
+                <h6>Satisfeito</h6>
+            </div>
+            <div class="face-item">
+                <img src="../assets/img/feliz-rosa.png" alt="face4">
+                <h6>Muito satisfeito</h6>
+            </div>
+        </div>
+    </div>
+    <div class="img-24h">
+        <img src="../assets/img/24h.png" alt="24H">
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
