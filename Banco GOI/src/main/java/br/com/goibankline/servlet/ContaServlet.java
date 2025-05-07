@@ -1,4 +1,3 @@
-// ContaServlet.java
 package br.com.goibankline.servlet;
 
 import br.com.goibankline.dao.ContaDAO;
@@ -10,43 +9,55 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * GET /conta  →  {"agencia":"0001","conta":"0001234567"}
+ * Sempre devolve JSON; nunca quebra o front-end.
+ */
 @WebServlet("/conta")
 public class ContaServlet extends HttpServlet {
 
-    private final ContaDAO contaDAO = new ContaDAO();
+    private final ContaDAO dao = new ContaDAO();
+    private final Gson gson   = new Gson();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        HttpSession session = req.getSession(false);
-        Cliente cliente = session != null ? (Cliente) session.getAttribute("cliente") : null;
+        System.out.println("[SERVLET] /conta  INICIO");
+
+        HttpSession s  = req.getSession(false);
+        Cliente cliente = (s != null) ? (Cliente) s.getAttribute("cliente") : null;
+
         if (cliente == null) {
-            resp.sendError(401, "Usuário não autenticado");
+            System.out.println("[SERVLET] usuário NÃO autenticado");
+            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuário não autenticado");
             return;
         }
+        System.out.println("[SERVLET] cliente.id = " + cliente.getId());
 
-        // reutiliza buscarPorId com o mesmo ID usado no SaldoServlet
-        Conta conta = contaDAO.buscarPorClienteId(cliente.getId());   //  ← aqui
+        Conta conta = dao.buscarPorClienteId(cliente.getId());
 
         resp.setContentType("application/json;charset=UTF-8");
+
+        /* --- monta JSON com HashMap para evitar qualquer serialização nula --- */
+        Map<String, Object> out = new HashMap<>();
         if (conta == null) {
-            resp.getWriter().write("{\"agencia\":null,\"conta\":null}");
-            return;
+            out.put("agencia", null);
+            out.put("conta"  , null);
+            System.out.println("[SERVLET] conta == null  (JSON vazio)");
+        } else {
+            String num = conta.getNumeroConta();                    // 548123
+            String ag  = (num != null && num.length() >= 4) ? num.substring(0,4) : "";
+            out.put("agencia", ag);
+            out.put("conta"  , num);
+            System.out.println("[SERVLET] conta encontrada  Num=" + num + "  Ag=" + ag);
         }
 
-        String num = conta.getNumeroConta();         // p.ex. 0001234567
-        String ag = num != null && num.length() >= 4 ? num.substring(0, 4) : "";
-
-        class Info {
-            String agencia, conta;
-
-            Info(String a, String c) {
-                agencia = a;
-                conta = c;
-            }
-        }
-        resp.getWriter().write(new Gson().toJson(new Info(ag, num)));
+        String json = gson.toJson(out);
+        resp.getWriter().write(json);
+        System.out.println("[SERVLET] JSON enviado = " + json);
     }
 }

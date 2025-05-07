@@ -1,0 +1,730 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+  font-family: 'Outfit', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .logo {
+    width: 52px;
+
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+  }
+
+  .navi{
+    margin-left: -350px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+  }
+
+  nav a::after {
+
+    font-size: 10px;
+    margin-left: 4px;
+    display: inline-block;
+  }
+
+  nav a.no-arrow::after {
+    content: "";
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  input[type="text"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  .btn-login {
+    background: none;
+    border: none;
+    color: #f00;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .btn-cta {
+    padding: 8px 16px;
+    background-color: #ff0040;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .seta img{
+      cursor: pointer;
+      margin-left: -12px;
+      margin-top: 5px;
+      width: 19px;
+      height: 19px;
+  }
+  .navi img{
+      width: 10px;
+      height: 10px;
+  }
+  /* ... seu CSS existente ... */
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+nav {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header-right {
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+}
+}
+
+@media (max-width: 768px) {
+.banner {
+  height: auto;
+  padding: 40px 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+.banner-content h1 {
+  font-size: 28px;
+}
+
+.descricao h2 {
+  font-size: 20px;
+}
+
+.descricao p {
+  font-size: 13px;
+}
+
+.servicos {
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  width: 90%;
+  max-width: 320px;
+}
+}
+
+@media (max-width: 480px) {
+nav {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.header-right {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+.btn-cta {
+  width: 100%;
+  text-align: center;
+}
+}
+main {
+background-color: #f9f9f9;
+padding-bottom: 40px;
+font-family: Arial, sans-serif;
+}
+
+/* Banner com imagem substituída por fundo cinza e texto */
+.banner {
+  background-color: #ccc;
+  height: 400px; /* Ajuste a altura conforme necessário */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* Garante que ocupe toda a largura */
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  width: 100%; /* Garante que o conteúdo ocupe toda a largura */
+  height: 100%; /* Garante que o conteúdo ocupe toda a altura */
+}
+
+.banner-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* O vídeo e a imagem ocuparão toda a largura */
+  height: 100%; /* O vídeo e a imagem ocuparão toda a altura */
+  object-fit: cover; /* Garante que o conteúdo mantenha a proporção */
+  display: none; /* Inicialmente oculto */
+}
+
+.banner-media.active {
+  display: block; /* Exibe o elemento ativo */
+}
+
+.descricao {
+text-align: center;
+padding: 40px 20px 20px;
+}
+
+.descricao h2 {
+font-size: 22px;
+color: #1c1c1c;
+}
+
+.descricao p {
+font-size: 14px;
+color: #555;
+margin-top: 10px;
+}
+
+/* Cards */
+.servicos {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 16px;
+padding: 20px;
+}
+
+.card {
+background-color: #fff;
+border: 1px solid #eee;
+border-radius: 12px;
+padding: 24px;
+width: 220px;
+text-align: left;
+box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.card .icon {
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.card h3 {
+font-size: 16px;
+color: #1c1c1c;
+margin-bottom: 10px;
+}
+
+.card p {
+font-size: 13px;
+color: #555;
+margin-bottom: 16px;
+}
+
+.card a {
+color: #ff4b5c;
+text-decoration: none;
+font-weight: bold;
+font-size: 14px;
+}
+
+.container {
+  max-width: 1150px; /* ou outro valor como 960px, 1200px */
+margin: 0 auto;
+padding: 0 20px;
+  }
+
+  .cartao-credito {
+    display: flex;
+    background-color: #f2f2f2;
+    padding: 40px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cartao-texto {
+    max-width: 50%;
+  }
+
+  .cartao-texto h1 {
+    color: #ff4b5c;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .cartao-texto p {
+    font-size: 16px;
+    color: #000;
+  }
+
+  .cartao-texto a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ff4b5c;
+    text-decoration: none;
+  }
+
+  .imagem-fake {
+    margin-right: 30px;
+    height: 200px;
+    border-radius: 10px;
+  }
+
+  .goi-ultra {
+    display: flex;
+    background-color: #ff4b5c;
+    color: white;
+    padding: 40px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .imagem-fake2 {
+    margin-right: 30px;
+    height: 200px;
+    background-color: #ccc;
+    border-radius: 10px;
+  }
+
+  .goi-texto h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .goi-texto p {
+    font-size: 16px;
+  }
+
+  .goi-texto a {
+    display: inline-block;
+    margin-top: 10px;
+    color: white;
+    text-decoration: underline;
+  }
+  .container-coteire2 {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .banner-coteire2 img {
+    width: 100%; /* Garante que a imagem ocupe toda a largura */
+    height: 100%; /* Garante que a imagem ocupe toda a altura */
+    object-fit: cover; /* Mantém a proporção da imagem enquanto preenche o espaço */
+    border-radius: 0; /* Remove bordas arredondadas, se necessário */
+    margin: 0; /* Remove margens */
+  }
+
+  .banner-coteire2 {
+    height: 480px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative; /* Necessário para posicionar o conteúdo */
+    color: white;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    overflow: hidden; /* Garante que nada ultrapasse os limites */
+  }
+
+  .banner-coteire2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute; /* Faz a imagem ocupar todo o espaço */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Define a imagem como plano de fundo */
+  }
+
+  .banner-content-coteire2 {
+  position: relative; /* Para posicionar o texto */
+  z-index: 2; /* Garante que o texto fique acima da imagem */
+  max-width: 460px; /* Define a largura máxima do conteúdo */
+  color: white;
+  text-align: right; /* Alinha o texto à direita */
+  margin-left: auto; /* Move o conteúdo para a direita */
+  margin-right: 24px; /* Adiciona espaço à direita */
+  padding: 16px; /* Adiciona espaçamento interno */
+}
+
+.banner-content-coteire2 h1 {
+  font-size: 28px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  word-wrap: break-word; /* Garante que o texto não ultrapasse os limites */
+}
+
+.banner-content-coteire2 a {
+  color: white;
+  font-size: 14px;
+  text-decoration: underline;
+  display: inline-block; /* Garante que o link fique em uma nova linha */
+  margin-top: 8px; /* Adiciona espaço entre o texto e o link */
+}
+
+  .cards-row-coteire2 {
+display: flex;
+flex-wrap: nowrap;
+justify-content: space-between;
+gap: 0px;
+margin-top: 0;
+}
+
+.card-coteire2 {
+flex: 1 1 50%;
+padding: 40px 32px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+color: white;
+}
+
+  .card-coteire2 .img-coteire2 {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .card-coteire2 h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .card-coteire2 p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .card-coteire2 a {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    text-decoration: underline;
+    color: white;
+  }
+
+  .green-coteire2 {
+    background-color: #00a86b;
+  }
+
+  .red-coteire2 {
+    background-color: #ee3a4f;
+  }
+
+  @media (max-width: 768px) {
+    .cards-row-coteire2 {
+      flex-direction: column;
+    }
+
+    .card-coteire2 {
+      width: 100%;
+    }
+
+    .banner-coteire2 {
+      padding: 0 20px;
+      height: auto;
+      min-height: 400px;
+    }
+  }
+  .duvidas-coteire3 {
+padding: 60px 20px;
+background-color: #fff;
+}
+
+.duvidas-coteire3-container {
+max-width: 900px;
+margin: 0 auto;
+text-align: center;
+}
+
+.duvidas-coteire3 h5 {
+font-size: 12px;
+letter-spacing: 1px;
+color: #666;
+margin-bottom: 8px;
+}
+
+.duvidas-coteire3 h2 {
+font-size: 32px;
+margin-bottom: 16px;
+}
+
+.duvidas-coteire3 p {
+font-size: 16px;
+color: #666;
+margin-bottom: 40px;
+}
+
+.faq-coteire3 {
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-bottom: 40px;
+}
+
+.faq-answer {
+  display: none; /* Esconde a resposta inicialmente */
+  padding: 10px 0;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ddd;
+}
+
+.faq-answer.active {
+  display: block; /* Exibe a resposta quando ativa */
+}
+
+.plus-coteire3 {
+  align-self: flex-end; /* Move o "+" para o canto direito */
+  font-size: 24px;
+  color: #ff4da6;
+  cursor: pointer;
+  user-select: none;
+}
+
+.faq-item-coteire3 {
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* Alinha os elementos verticalmente */
+  justify-content: flex-start;
+  align-items: flex-start; /* Alinha os elementos à esquerda */
+}
+
+.faq-item-coteire3:hover {
+  background-color: #f9f9f9;
+}
+
+.botoes-coteire3 {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 16px;
+}
+
+.btn-duvidas-coteire3 {
+background: transparent;
+border: 1px solid #ff4da6;
+color: #000;
+padding: 12px 24px;
+border-radius: 8px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.link-contato-coteire3 {
+color: #ff4da6;
+font-weight: bold;
+font-size: 14px;
+text-decoration: none;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px); /* Fundo borrado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup.hidden {
+  display: none; /* Esconde o popup */
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+body.popup-active {
+  overflow: hidden; /* Impede o scroll da página quando o popup está aberto */
+}
+
+/* --- FOOTER --- */
+.footer {
+    margin-top: 126px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: #3B3B3B;
+    padding: 30px 65px;
+    color: #DDD;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .footer__section {
+    flex: 1;
+    min-width: 180px;
+    margin-right: 40px;
+  }
+  .footer__section h4 {
+    color: #FFF;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 550;
+    margin-bottom: 8px;
+  }
+  .footer__section p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    font-family: 'Outfit', sans-serif;
+    color: #CCC;
+  }
+
+.container-nps {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    width: 263px;
+    margin: 0px 0 0 0px;
+    height: auto; /* Ajusta a altura automaticamente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha os itens no topo */
+    gap: 20px; /* Espaçamento entre o header e as faces */
+}
+
+.nps-header {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos horizontalmente */
+    align-items: center; /* Centraliza os elementos verticalmente */
+    width: 100%; /* Ocupa toda a largura do container */
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.nps-header > hr {
+    width: 240px;
+    height: 0,01px;
+    background-color: #999999;
+    margin: 0px 44px 0 44px; /* Adiciona margem para posicionamento */
+}
+
+.nps-header > h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 550;
+    color: #FFFFFF;
+    margin: 0; /* Remove a margem padrão */
+    font-size: 14px;
+    align-self: flex-start; /* Alinha o texto à esquerda */
+    margin-left: 14px; /* Adiciona distância à esquerda */
+    margin-top: 10px; /* Adiciona distância do topo */
+}
+
+.faces {
+    display: flex;
+    flex-direction: row; /* Alinha os itens lado a lado */
+    justify-content: space-between; /* Espaçamento uniforme entre os itens */
+    align-items: flex-start; /* Alinha os itens no topo */
+    width: 90%; /* Ocupa toda a largura do container */
+    gap: 1px; /* Espaçamento entre os itens */
+    margin-bottom: 20px;
+}
+
+.face-item {
+    display: flex;
+    flex-direction: column; /* Alinha a imagem e o texto verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    text-align: center; /* Centraliza o texto */
+}
+
+.face-item img {
+    width: 50px; /* Define a largura das imagens */
+    height: 50px; /* Define a altura das imagens */
+    margin-bottom: 5px; /* Espaçamento entre a imagem e o texto */
+}
+
+.face-item h6 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0; /* Remove margens padrão */
+}
+
+.faces img {
+    display: block;
+    width: 41px; /* Define a largura das imagens */
+    height: 41px; /* Define a altura das imagens */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}
+
+.faces h6 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-align: center; /* Centraliza o texto abaixo da imagem */
+    margin-top: 5px; /* Espaçamento entre a imagem e o texto */
+}
+
+.img-24h {
+    margin-left: 163px;
+}
+
+.img-24h > img {
+    margin-top: 20px;
+    width: 20px; /* Define a largura das imagens */
+    height: 25px; /* Define a altura das imagens */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}

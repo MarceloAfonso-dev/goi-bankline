@@ -28,7 +28,7 @@ public class SaldoServlet extends HttpServlet {
             json.addProperty("error", "Usuário não logado");
         } else {
             ContaDAO contaDAO = new ContaDAO();
-            Conta conta = contaDAO.buscarPorClienteId(cliente.getId());   //  ← aqui
+            Conta conta = contaDAO.buscarPorClienteId(cliente.getId());   // << aqui
 
             if (conta != null) {
                 // SALDO real

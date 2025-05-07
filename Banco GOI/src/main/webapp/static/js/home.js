@@ -1,19 +1,28 @@
+// /static/js/home.js
 document.addEventListener("DOMContentLoaded", () => {
-  // === 0) buscar agência/conta do usuário logado ===
-  fetch("/conta")
-    .then(res => {
-      if (!res.ok) throw new Error("Não autenticado");
-      return res.json();
+
+  /* =========================================================
+     BUSCA AGÊNCIA / CONTA — MESMA LÓGICA DO /saldo
+     ========================================================= */
+  fetch("/conta")                       // igual ao que funciona em /saldo
+    .then(r => {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
     })
     .then(data => {
-      const agEl    = document.getElementById("agencia");
-      const ccEl    = document.getElementById("conta");
-      if (agEl) agEl.textContent = `ag: ${data.agencia}`;
-      if (ccEl) ccEl.textContent = `c/c: ${data.conta}`;
+      console.log("[/conta]:", data);   // deve ver {agencia:"5481", conta:"548123"}
+
+      const ag = document.getElementById("agencia");
+      const cc = document.getElementById("conta");
+
+      if (!ag || !cc) {
+        console.warn("#agencia ou #conta não encontrados");
+        return;
+      }
+      ag.textContent = `ag: ${data.agencia ?? "----"}`;
+      cc.textContent = `c/c: ${data.conta   ?? "------"}`;
     })
-    .catch(err => {
-      console.warn("Não foi possível carregar agência/conta:", err);
-    });
+    .catch(err => console.error("Falha /conta", err));
 
   // === 1) Referências no DOM ===
   const toggleVis        = document.getElementById("toggle-visibility");
