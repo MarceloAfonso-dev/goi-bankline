@@ -1,6 +1,21 @@
-// /static/js/home.js
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) Referências no DOM
+  // === 0) buscar agência/conta do usuário logado ===
+  fetch("/conta")
+    .then(res => {
+      if (!res.ok) throw new Error("Não autenticado");
+      return res.json();
+    })
+    .then(data => {
+      const agEl    = document.getElementById("agencia");
+      const ccEl    = document.getElementById("conta");
+      if (agEl) agEl.textContent = `ag: ${data.agencia}`;
+      if (ccEl) ccEl.textContent = `c/c: ${data.conta}`;
+    })
+    .catch(err => {
+      console.warn("Não foi possível carregar agência/conta:", err);
+    });
+
+  // === 1) Referências no DOM ===
   const toggleVis        = document.getElementById("toggle-visibility");
   const saldoEl          = document.querySelector(".container-saldo .saldo");
   const limiteEl         = document.querySelector(".container-saldo .limite-valor");
@@ -10,46 +25,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const containerSaldo   = document.querySelector(".container-saldo");
   const toggleCartoesBtn = document.getElementById("toggle-cartoes");
   const containerCartoes = document.querySelector(".container-cartoes");
+  const logoutBtn        = document.querySelector(".sair");
+  const sidebarItems     = document.querySelectorAll(".sidebar__list li");
 
-  // 2) Variáveis que vão guardar os valores reais formatados
+  // === 2) Guardar valores originais ===
   let originalSaldo      = "";
   let originalLimite     = "";
   let originalLimiteCart = "";
   let originalValorFat   = "";
 
-  // 3) Função para formatar número em R$ pt-BR
+  // === 3) Função de formatação pt-BR ===
   const fmtBRL = num =>
-    new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    }).format(num);
+    new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(num);
 
-  // 4) Buscar saldo / limites do servidor
+  // === 4) Busca dados de /saldo ===
   fetch("/saldo")
-    .then(res => res.json())
+    .then(r => r.json())
     .then(data => {
       if (data.error) {
-        saldoEl.textContent  = data.error;
-        limiteEl.textContent = "";
+        if (saldoEl) saldoEl.textContent = data.error;
+        if (limiteEl) limiteEl.textContent = "";
         return;
       }
-      // transforma strings em Number
-      const sal  = parseFloat(data.saldo);
-      const lim  = parseFloat(data.limiteDisponivel);
-      originalSaldo      = fmtBRL(sal);
-      originalLimite     = fmtBRL(lim);
+      const sal = parseFloat(data.saldo);
+      const lim = parseFloat(data.limiteDisponivel);
+      originalSaldo  = fmtBRL(sal);
+      originalLimite = fmtBRL(lim);
 
-      // atualiza DOM
-      saldoEl.textContent  = originalSaldo;
-      limiteEl.textContent = originalLimite;
+      if (saldoEl)  saldoEl.textContent  = originalSaldo;
+      if (limiteEl) limiteEl.textContent = originalLimite;
 
-      // cartão (opcional)
-      if (data.limiteCartao) {
+      if (data.limiteCartao && limiteCartaoEl) {
         const limCart = parseFloat(data.limiteCartao);
         originalLimiteCart = fmtBRL(limCart);
         limiteCartaoEl.textContent = originalLimiteCart;
       }
-      if (data.valorFatura) {
+      if (data.valorFatura && valorFaturaEl) {
         const valFat = parseFloat(data.valorFatura);
         originalValorFat = fmtBRL(valFat);
         valorFaturaEl.textContent = originalValorFat;
@@ -57,54 +68,74 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => {
       console.error("Erro ao carregar /saldo:", err);
-      saldoEl.textContent = "Erro ao carregar";
+      if (saldoEl) saldoEl.textContent = "Erro ao carregar";
     });
 
-  // 5) Toggle de visibilidade
-  const visOn  = "/static/img/visibility.png";
-  const visOff = "/static/img/visibility-off.png";
-  toggleVis.addEventListener("click", () => {
-    const mostrando = saldoEl.textContent === originalSaldo;
-    if (mostrando) {
-      // oculta
-      saldoEl.textContent      = "****";
-      limiteEl.textContent     = "****";
-      if (limiteCartaoEl)   limiteCartaoEl.textContent   = "****";
-      if (valorFaturaEl)    valorFaturaEl.textContent    = "****";
-      toggleVis.src = visOff;
-      saldoEl.classList.add("hidden-value");
-      limiteEl.classList.add("hidden-value");
-    } else {
-      // mostra
-      saldoEl.textContent      = originalSaldo;
-      limiteEl.textContent     = originalLimite;
-      if (limiteCartaoEl)   limiteCartaoEl.textContent   = originalLimiteCart;
-      if (valorFaturaEl)    valorFaturaEl.textContent    = originalValorFat;
-      toggleVis.src = visOn;
-      saldoEl.classList.remove("hidden-value");
-      limiteEl.classList.remove("hidden-value");
-    }
-  });
+  // === 5) Toggle visibilidade ===
+  if (toggleVis) {
+    const visOn  = "/static/img/visibility.png";
+    const visOff = "/static/img/visibility-off.png";
+    toggleVis.style.cursor = "pointer";
 
-  // 6) Toggle expandir/recolher SALDO
-  toggleSaldoBtn.addEventListener("click", () => {
-    containerSaldo.classList.toggle("retracted");
-    toggleSaldoBtn.classList.toggle("rotated");
-  });
+    toggleVis.addEventListener("click", () => {
+      const oculto = saldoEl.textContent !== originalSaldo;
+      if (oculto) {
+        // mostrar
+        saldoEl.textContent      = originalSaldo;
+        limiteEl.textContent     = originalLimite;
+        if (limiteCartaoEl)   limiteCartaoEl.textContent   = originalLimiteCart;
+        if (valorFaturaEl)    valorFaturaEl.textContent    = originalValorFat;
+        toggleVis.src = visOn;
+        saldoEl.classList.remove("hidden-value");
+        limiteEl.classList.remove("hidden-value");
+      } else {
+        // ocultar
+        saldoEl.textContent      = "****";
+        limiteEl.textContent     = "****";
+        if (limiteCartaoEl)   limiteCartaoEl.textContent   = "****";
+        if (valorFaturaEl)    valorFaturaEl.textContent    = "****";
+        toggleVis.src = visOff;
+        saldoEl.classList.add("hidden-value");
+        limiteEl.classList.add("hidden-value");
+      }
+    });
+  }
 
-  // 7) Toggle expandir/recolher CARTÕES
-  toggleCartoesBtn.addEventListener("click", () => {
-    containerCartoes.classList.toggle("retracted");
-    toggleCartoesBtn.classList.toggle("rotated");
-  });
-});
+  // === 6) Toggle expandir/recolher SALDO ===
+  if (toggleSaldoBtn && containerSaldo) {
+    toggleSaldoBtn.addEventListener("click", () => {
+      containerSaldo.classList.toggle("retracted");
+      toggleSaldoBtn.classList.toggle("rotated");
+    });
+  }
 
-// /static/js/home.js
-document.addEventListener("DOMContentLoaded", () => {
-  const logoutBtn = document.querySelector(".sair");
-  logoutBtn.style.cursor = "pointer";
-  logoutBtn.addEventListener("click", () => {
-    // força o redirecionamento para a porta 8080
-    window.location.href = `${location.protocol}//${location.hostname}:8080/`;
+  // === 7) Toggle expandir/recolher CARTÕES ===
+  if (toggleCartoesBtn && containerCartoes) {
+    toggleCartoesBtn.addEventListener("click", () => {
+      containerCartoes.classList.toggle("retracted");
+      toggleCartoesBtn.classList.toggle("rotated");
+    });
+  }
+
+  // === 8) Logout ===
+  if (logoutBtn) {
+    logoutBtn.style.cursor = "pointer";
+    logoutBtn.addEventListener("click", () => {
+      window.location.href = `${location.protocol}//${location.hostname}:8080/`;
+    });
+  }
+
+  // === 9) Tornar <li> da sidebar clicável ===
+  sidebarItems.forEach(li => {
+    li.style.cursor = "pointer";
+    li.addEventListener("click", () => {
+      const link = li.querySelector("a");
+      if (link) {
+        const href = link.getAttribute("href");
+        if (href && href !== "#") {
+          window.location.href = `${location.protocol}//${location.host}${href}`;
+        }
+      }
+    });
   });
 });

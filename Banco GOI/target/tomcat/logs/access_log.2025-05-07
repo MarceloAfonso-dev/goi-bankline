@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:00:11 -0300] "GET /conta HTTP/1.1" 200 4 http-bio-8080-exec-2 1401
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:02:44 -0300] "GET /conta HTTP/1.1" 401 1001 http-bio-8080-exec-4 93
+127.0.0.1 - - [07/May/2025:00:02:46 -0300] "POST /validarCPF HTTP/1.1" 302 - http-bio-8080-exec-1 2631
+127.0.0.1 - - [07/May/2025:00:02:46 -0300] "GET /login HTTP/1.1" 200 4043 http-bio-8080-exec-6 18
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:02:47 -0300] "GET /login?acao=verErro HTTP/1.1" 200 13 http-bio-8080-exec-5 3
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:02:47 -0300] "GET /login?acao=getPares HTTP/1.1" 200 121 http-bio-8080-exec-8 188
+127.0.0.1 - - [07/May/2025:00:02:48 -0300] "GET /conta HTTP/1.1" 200 4 http-bio-8080-exec-7 1431
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:02:58 -0300] "POST /login HTTP/1.1" 302 - http-bio-8080-exec-10 22
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:02:58 -0300] "GET /templates/home.html HTTP/1.1" 304 - http-bio-8080-exec-10 6
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:02:59 -0300] "GET /saldo HTTP/1.1" 200 99 http-bio-8080-exec-10 1403
+0:0:0:0:0:0:0:1 - - [07/May/2025:00:03:04 -0300] "GET /conta HTTP/1.1" 200 4 http-bio-8080-exec-10 1382

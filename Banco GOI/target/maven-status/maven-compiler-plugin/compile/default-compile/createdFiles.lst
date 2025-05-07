@@ -3,6 +3,8 @@ br\com\goibankline\dao\ContaDAO.class
 br\com\goibankline\servlet\ValidarCPFServlet.class
 br\com\goibankline\model\Cliente.class
 br\com\goibankline\dao\ClienteDAO.class
+br\com\goibankline\servlet\ContaServlet$1Info.class
+br\com\goibankline\servlet\ContaServlet.class
 br\com\goibankline\servlet\TransferenciaServlet.class
 br\com\goibankline\servlet\SaldoServlet.class
 br\com\goibankline\servlet\LoginServlet.class

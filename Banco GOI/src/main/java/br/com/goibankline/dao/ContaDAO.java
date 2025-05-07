@@ -1,3 +1,4 @@
+// ContaDAO.java
 package br.com.goibankline.dao;
 
 import br.com.goibankline.model.Conta;
@@ -21,7 +22,6 @@ public class ContaDAO {
             stmt.setDate(6, Date.valueOf(conta.getDataCriacao()));
 
             stmt.executeUpdate();
-
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     conta.setIdConta(rs.getInt(1));
@@ -63,23 +63,23 @@ public class ContaDAO {
         }
     }
 
-    public Conta buscarPorId(int idConta) {
-        String sql = "SELECT * FROM Conta WHERE IdConta = ?";
+    // ------------- somente o novo método ------------------
+    public Conta buscarPorClienteId(int idCliente) {
+        String sql = "SELECT * FROM Conta WHERE ID_Cliente = ?";
         Conta conta = null;
+
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
-            stmt.setInt(1, idConta);
+            stmt.setInt(1, idCliente);          // ← usa ID_Cliente
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     conta = new Conta();
                     conta.setIdConta(rs.getInt("IdConta"));
 
-                    // Recupera a referência do Cliente (pelo ID).
-                    // Para obter todos os dados do Cliente, pode ser necessário chamar ClienteDAO.buscarPorId(...)
-                    Cliente cliente = new Cliente();
-                    cliente.setId(rs.getInt("ID_Cliente"));
-                    conta.setCliente(cliente);
+                    Cliente cli = new Cliente();
+                    cli.setId(idCliente);
+                    conta.setCliente(cli);
 
                     conta.setNumeroConta(rs.getString("Numero_Conta"));
                     conta.setSenha(rs.getString("Senha"));
@@ -88,11 +88,11 @@ public class ContaDAO {
                     conta.setDataCriacao(rs.getDate("Data_Criacao").toLocalDate());
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return conta;
+        } catch (SQLException e) { e.printStackTrace(); }
+
+        return conta;     // null se não achou
     }
+
 
     public List<Conta> listarTodos() {
         String sql = "SELECT * FROM Conta";
@@ -105,7 +105,6 @@ public class ContaDAO {
                 Conta conta = new Conta();
                 conta.setIdConta(rs.getInt("IdConta"));
 
-                // Para o Cliente, definindo apenas o ID. Se necessário, recupere todos os dados chamando ClienteDAO.
                 Cliente cliente = new Cliente();
                 cliente.setId(rs.getInt("ID_Cliente"));
                 conta.setCliente(cliente);
@@ -115,7 +114,6 @@ public class ContaDAO {
                 conta.setSaldo(rs.getBigDecimal("Saldo"));
                 conta.setLimiteCredito(rs.getBigDecimal("Limite_Credito"));
                 conta.setDataCriacao(rs.getDate("Data_Criacao").toLocalDate());
-
                 contas.add(conta);
             }
         } catch (SQLException e) {
@@ -124,4 +122,5 @@ public class ContaDAO {
         return contas;
     }
 }
+
 
