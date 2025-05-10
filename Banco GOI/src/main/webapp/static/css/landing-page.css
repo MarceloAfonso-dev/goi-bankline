@@ -728,3 +728,59 @@ body.popup-active {
     height: 25px; /* Define a altura das imagens */
     margin: 0 auto; /* Centraliza a imagem horizontalmente */
 }
+
+
+
+
+.simulador {
+  background-color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+}
+
+.simulador h2 {
+  font-size: 24px;
+  color: #1c1c1c;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.simulador p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.simulador input {
+  padding: 12px 16px;
+  width: 260px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Outfit', sans-serif;
+  margin-bottom: 12px;
+}
+
+.simulador button {
+  padding: 12px 24px;
+  background-color: #ff0040; /* vermelho vibrante */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.simulador button:hover {
+  background-color: #cc0033; /* tom mais escuro ao passar o mouse */
+}
+
+.resultado-simulador {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}

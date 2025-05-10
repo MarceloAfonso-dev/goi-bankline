@@ -121,3 +121,64 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnSimular = document.getElementById('btnSimularCheque');
+  const inputRenda = document.getElementById('rendaMensal');
+  const resultadoDiv = document.getElementById('resultadoSimulacao');
+
+  // Função para formatar como R$ ao exibir
+  const formatarParaReais = (valor) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(valor);
+  };
+
+  // Máscara dinâmica no input (formata enquanto digita)
+  if (inputRenda) {
+    inputRenda.addEventListener('input', () => {
+      let valor = inputRenda.value.replace(/\D/g, '');
+      if (valor === '') {
+        inputRenda.value = '';
+        return;
+      }
+      valor = (parseFloat(valor) / 100).toFixed(2);
+      inputRenda.value = formatarParaReais(valor);
+    });
+  }
+
+  if (btnSimular && inputRenda && resultadoDiv) {
+    btnSimular.addEventListener('click', () => {
+      // Remove R$, pontos e substitui vírgula por ponto
+      const valorNumerico = parseFloat(
+        inputRenda.value.replace(/\D/g, '')
+      ) / 100;
+
+      if (isNaN(valorNumerico) || valorNumerico <= 0) {
+        resultadoDiv.innerText = "Por favor, insira uma renda válida.";
+        return;
+      }
+
+      fetch("/api/simulador/cheque", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ rendaMensal: valorNumerico })
+      })
+      .then(response => response.json())
+      .then(data => {
+        resultadoDiv.innerHTML = `
+          <p>Com uma renda de <strong>${formatarParaReais(data.rendaMensal)}</strong>,</p>
+          <p>Seu limite estimado é <strong>${formatarParaReais(data.limite)}</strong>.</p>
+        `;
+      })
+      .catch(error => {
+        console.error("Erro na simulação:", error);
+        resultadoDiv.innerText = "Não foi possível realizar a simulação. Tente novamente.";
+      });
+    });
+  }
+});

@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd4d6eb-5eab-4d8b-bfaa-1d5befe914a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Banco GOI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Banco GOI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/dao/ContaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/dao/ContaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/ContaServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/ContaServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SaldoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SaldoServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/transferencia.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/transferencia.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/logs/access_log.2025-05-07" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/logs/access_log.2025-05-07" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/landing-page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/landing-page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/landing-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/landing-page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
