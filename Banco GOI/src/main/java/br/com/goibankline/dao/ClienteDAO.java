@@ -32,4 +32,20 @@ public class ClienteDAO {
         }
         return cliente;
     }
+
+    public void salvar(Cliente cliente) throws SQLException {
+        String sql = "INSERT INTO Cliente (Nome, Sobrenome, CPF, Data_Nascimento, Email, Telefone, CEP) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection con = ConnectionFactory.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getSobrenome());
+            stmt.setString(3, cliente.getCpf());
+            stmt.setDate(4, Date.valueOf(cliente.getDataNascimento()));
+            stmt.setString(5, cliente.getEmail());
+            stmt.setString(6, cliente.getCelular());
+            stmt.setString(7, cliente.getCep());
+            stmt.executeUpdate();
+        }
+    }
 }
