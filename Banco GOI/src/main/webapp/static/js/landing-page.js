@@ -182,3 +182,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnSimular = document.getElementById('btnSimularCheque');
+  const inputRenda = document.getElementById('rendaMensal');
+  const inputCpf = document.getElementById('cpfSimulador');
+  const resultadoDiv = document.getElementById('resultadoSimulacao');
+
+  const formatarParaReais = (valor) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(valor);
+  };
+
+  // Máscara de CPF
+  inputCpf.addEventListener('input', () => {
+    let value = inputCpf.value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+    inputCpf.value = value
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+  });
+
+  // Máscara de R$ ao digitar
+  inputRenda.addEventListener('input', () => {
+    let valor = inputRenda.value.replace(/\D/g, '');
+    if (!valor) {
+      inputRenda.value = '';
+      return;
+    }
+    valor = (parseFloat(valor) / 100).toFixed(2);
+    inputRenda.value = formatarParaReais(valor);
+  });
+
+  btnSimular.addEventListener('click', () => {
+    const cpf = inputCpf.value.replace(/\D/g, '');
+    const renda = parseFloat(inputRenda.value.replace(/\D/g, '')) / 100;
+
+    if (cpf.length !== 11) {
+      resultadoDiv.innerText = 'CPF inválido. Digite os 11 números.';
+      return;
+    }
+
+    if (isNaN(renda) || renda <= 0) {
+      resultadoDiv.innerText = 'Renda inválida.';
+      return;
+    }
+
+    fetch("/api/simulador/cheque", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cpf, rendaMensal: renda })
+    })
+    .then(response => {
+      if (response.status === 403) {
+        return response.json().then(data => {
+          throw new Error(data.erro || 'CPF não autorizado.');
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
+      resultadoDiv.innerHTML = `
+        <p>CPF <strong>${cpf}</strong> autorizado!</p>
+        <p>Com uma renda de <strong>${formatarParaReais(data.rendaMensal)}</strong>,</p>
+        <p>Seu limite estimado é <strong>${formatarParaReais(data.limite)}</strong>.</p>
+      `;
+    })
+    .catch(error => {
+      resultadoDiv.innerText = error.message;
+    });
+  });
+});
