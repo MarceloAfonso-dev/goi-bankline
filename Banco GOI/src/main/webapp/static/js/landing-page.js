@@ -183,76 +183,74 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+/* bloco do simulador ----------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
-  const btnSimular = document.getElementById('btnSimularCheque');
-  const inputRenda = document.getElementById('rendaMensal');
-  const inputCpf = document.getElementById('cpfSimulador');
-  const resultadoDiv = document.getElementById('resultadoSimulacao');
 
-  const formatarParaReais = (valor) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(valor);
-  };
+  /* ------------------------------------------------ utilidades */
+  const reais = v => Number(v)
+        .toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 
-  // Máscara de CPF
-  inputCpf.addEventListener('input', () => {
-    let value = inputCpf.value.replace(/\D/g, '');
-    if (value.length > 11) value = value.slice(0, 11);
-    inputCpf.value = value
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+  const mascaraCPF = valor => valor
+        .replace(/\D/g,'')          // só dígitos
+        .slice(0,11)                // até 11
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+  /* ------------------------------------------------ elementos */
+  const cpf      = document.getElementById('cpfSimulador');
+  const renda    = document.getElementById('rendaMensal');
+  const btn      = document.getElementById('btnSimularCheque');
+  const saida    = document.getElementById('resultadoSimulacao');
+
+  /* ------------------------------------------------ máscaras */
+  cpf.addEventListener('input', e => { e.target.value = mascaraCPF(e.target.value); });
+
+  renda.addEventListener('input', e => {
+     const num = e.target.value.replace(/\D/g,'');
+     if (!num){ e.target.value=''; return; }
+     e.target.value = reais((num/100).toFixed(2));
   });
 
-  // Máscara de R$ ao digitar
-  inputRenda.addEventListener('input', () => {
-    let valor = inputRenda.value.replace(/\D/g, '');
-    if (!valor) {
-      inputRenda.value = '';
-      return;
-    }
-    valor = (parseFloat(valor) / 100).toFixed(2);
-    inputRenda.value = formatarParaReais(valor);
-  });
+  /* ------------------------------------------------ botão Simular */
+  btn.addEventListener('click', () => {
 
-  btnSimular.addEventListener('click', () => {
-    const cpf = inputCpf.value.replace(/\D/g, '');
-    const renda = parseFloat(inputRenda.value.replace(/\D/g, '')) / 100;
+     const cpfLimpo   = cpf.value.replace(/\D/g,'');
+     const rendaLimpa = renda.value.replace(/\D/g,'');
 
-    if (cpf.length !== 11) {
-      resultadoDiv.innerText = 'CPF inválido. Digite os 11 números.';
-      return;
-    }
+     if (cpfLimpo.length !== 11){
+        saida.className = 'resultado-simulador erro';
+        saida.textContent = 'CPF inválido';
+        return;
+     }
+     if (!rendaLimpa){
+        saida.className = 'resultado-simulador erro';
+        saida.textContent = 'Renda inválida';
+        return;
+     }
 
-    if (isNaN(renda) || renda <= 0) {
-      resultadoDiv.innerText = 'Renda inválida.';
-      return;
-    }
+     const rendaNumero = parseInt(rendaLimpa,10)/100;
 
-    fetch("/api/simulador/cheque", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cpf, rendaMensal: renda })
-    })
-    .then(response => {
-      if (response.status === 403) {
-        return response.json().then(data => {
-          throw new Error(data.erro || 'CPF não autorizado.');
-        });
-      }
-      return response.json();
-    })
-    .then(data => {
-      resultadoDiv.innerHTML = `
-        <p>CPF <strong>${cpf}</strong> autorizado!</p>
-        <p>Com uma renda de <strong>${formatarParaReais(data.rendaMensal)}</strong>,</p>
-        <p>Seu limite estimado é <strong>${formatarParaReais(data.limite)}</strong>.</p>
-      `;
-    })
-    .catch(error => {
-      resultadoDiv.innerText = error.message;
-    });
+     fetch('/api/simulador/cheque',{
+        method :'POST',
+        headers:{'Content-Type':'application/json'},
+        body   : JSON.stringify({
+                   cpf        : cpfLimpo,
+                   rendaMensal: rendaNumero })
+     })
+     .then(r => {
+         if (r.status === 200) return r.json();        // liberado
+         return r.json().then(j => Promise.reject(j.erro)); // 403 etc.
+     })
+     .then(d => {                                      // sucesso (verde)
+         saida.className = 'resultado-simulador sucesso';
+         saida.innerHTML = `
+            <p>CPF <strong>${mascaraCPF(cpfLimpo)}</strong> autorizado!</p>
+            <p>Limite liberado: <strong>${reais(d.limite)}</strong></p>`;
+     })
+     .catch(msg => {                                   // erro (vermelho)
+         saida.className = 'resultado-simulador erro';
+         saida.textContent = msg;
+     });
   });
 });

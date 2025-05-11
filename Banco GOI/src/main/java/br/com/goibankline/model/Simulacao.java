@@ -1,31 +1,19 @@
 package br.com.goibankline.model;
 
 public class Simulacao {
+
+    private String cpf;          // 11 dígitos, só números
     private double rendaMensal;
-    private double limite;
+    private double limite;       // calculado pelo servlet
 
-    public Simulacao() {}
+    public Simulacao() {}        // preciso para o Gson
 
-    public Simulacao(double rendaMensal) {
-        this.rendaMensal = rendaMensal;
-        this.limite = rendaMensal * 0.2;
-    }
+    public String  getCpf()                 { return cpf;          }
+    public void    setCpf(String cpf)       { this.cpf = cpf;      }
 
-    public double getRendaMensal() {
-        return rendaMensal;
-    }
+    public double  getRendaMensal()         { return rendaMensal;  }
+    public void    setRendaMensal(double r) { this.rendaMensal = r;}
 
-    public void setRendaMensal(double rendaMensal) {
-        this.rendaMensal = rendaMensal;
-        this.limite = rendaMensal * 0.2;
-    }
-
-    public double getLimite() {
-        return limite;
-    }
-
-    public void setLimite(double limite) {
-        this.limite = limite;
-    }
-
+    public double  getLimite()              { return limite;       }
+    public void    setLimite(double limite) { this.limite = limite;}
 }

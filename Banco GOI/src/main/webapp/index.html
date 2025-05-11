@@ -47,9 +47,12 @@
         <h2>Simule seu Limite de Cheque Especial</h2>
         <p>Informe seu CPF e sua renda mensal para ver o limite estimado.</p>
 
-        <input type="text" id="cpfSimulador" placeholder="Digite seu CPF" maxlength="14">
-        <input type="text" id="rendaMensal" placeholder="Sua renda mensal (R$)">
-        <button id="btnSimularCheque">Simular</button>
+        <div class="simulador-form">
+            <input id="cpfSimulador"   type="text" maxlength="14" placeholder="Digite seu CPF">
+            <input id="rendaMensal"    type="text"              placeholder="Sua renda mensal (R$)">
+            <button id="btnSimularCheque" type="button">Simular</button>
+        </div>
+
         <div id="resultadoSimulacao" class="resultado-simulador"></div>
     </section>
 
