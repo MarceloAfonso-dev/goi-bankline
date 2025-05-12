@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6fd4d6eb-5eab-4d8b-bfaa-1d5befe914a9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/model/Simulacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/model/Simulacao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SimuladorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SimuladorServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/landing-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/landing-page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/goibankline/dao/ClienteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/goibankline/dao/ClienteDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
