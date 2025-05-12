@@ -1,47 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
     const tbody = document.getElementById("extratoBody");
   
-    // Helper para formatar R$
     const formatarReais = (valor) => {
       return parseFloat(valor).toLocaleString("pt-BR", {
         style: "currency",
-        currency: "BRL",
+        currency: "BRL"
       });
     };
   
-    // Helper para formatar data (yyyy-mm-dd → dd/mm/yyyy)
     const formatarData = (dataStr) => {
       const [ano, mes, dia] = dataStr.split("-");
       return `${dia}/${mes}/${ano}`;
     };
   
-    // JSON simulado de movimentações financeiras
-    const lancamentos = [
-      { data: "2025-05-11", descricao: "Pix recebido - Maria", tipo: "Crédito", valor: 200 },
-      { data: "2025-05-10", descricao: "Transferência TED - João", tipo: "Débito", valor: -350 },
-      { data: "2025-05-09", descricao: "Pagamento boleto", tipo: "Débito", valor: -120.50 },
-      { data: "2025-05-08", descricao: "Salário", tipo: "Crédito", valor: 3450 },
-      { data: "2025-05-07", descricao: "Transferência GOI Rewards", tipo: "Crédito", valor: 50 },
-      { data: "2025-05-06", descricao: "Assinatura Spotify", tipo: "Débito", valor: -19.90 },
-      { data: "2025-05-06", descricao: "Assinatura Netflix", tipo: "Débito", valor: -39.90 },
-      { data: "2025-05-05", descricao: "Pix enviado - Farmácia", tipo: "Débito", valor: -89.75 },
-      { data: "2025-05-04", descricao: "PIX - Cliente Ana", tipo: "Crédito", valor: 1_200 },
-      { data: "2025-05-04", descricao: "Depósito via boleto", tipo: "Crédito", valor: 500 },
-      { data: "2025-05-03", descricao: "Transferência entre contas", tipo: "Débito", valor: -1000 },
-      { data: "2025-05-03", descricao: "Pix recebido - Pedro", tipo: "Crédito", valor: 620 },
-      { data: "2025-05-02", descricao: "Compra Mercado Livre", tipo: "Débito", valor: -230.99 },
-      { data: "2025-05-01", descricao: "Compra Amazon", tipo: "Débito", valor: -139.50 },
-      { data: "2025-04-30", descricao: "Rendimento CDB", tipo: "Crédito", valor: 45.88 },
-      { data: "2025-04-29", descricao: "Pix recebido - Tio Paulo", tipo: "Crédito", valor: 300 },
-      { data: "2025-04-28", descricao: "Recarga celular", tipo: "Débito", valor: -15 },
-      { data: "2025-04-27", descricao: "Seguro auto", tipo: "Débito", valor: -189.99 },
-      { data: "2025-04-26", descricao: "Pagamento energia", tipo: "Débito", valor: -210.70 },
-      { data: "2025-04-25", descricao: "Pagamento água", tipo: "Débito", valor: -84.22 },
-      // ... adicione mais se quiser testar scroll longo
+    // JSON fictício extenso
+    const movimentacoes = [
+      { data: "2025-05-12", descricao: "PIX recebido - Cliente A", tipo: "Crédito", valor: 1250 },
+      { data: "2025-05-12", descricao: "PIX enviado - Oficina", tipo: "Débito", valor: -299.90 },
+      { data: "2025-05-11", descricao: "Spotify", tipo: "Débito", valor: -19.90 },
+      { data: "2025-05-10", descricao: "Rendimento CDB", tipo: "Crédito", valor: 12.34 },
+      { data: "2025-05-09", descricao: "Supermercado", tipo: "Débito", valor: -237.49 },
+      { data: "2025-05-08", descricao: "PIX recebido - Amigo B", tipo: "Crédito", valor: 500 },
+      { data: "2025-05-07", descricao: "Saque 24h", tipo: "Débito", valor: -300 },
+      { data: "2025-05-06", descricao: "Pagamento Boleto", tipo: "Débito", valor: -789.00 },
+      { data: "2025-05-05", descricao: "PIX recebido - Cliente C", tipo: "Crédito", valor: 1000 },
+      { data: "2025-05-04", descricao: "Restaurante", tipo: "Débito", valor: -129.90 },
+      { data: "2025-05-03", descricao: "Netflix", tipo: "Débito", valor: -39.90 },
+      { data: "2025-05-02", descricao: "Transferência GOI Rewards", tipo: "Crédito", valor: 35 },
+      { data: "2025-05-01", descricao: "Salário", tipo: "Crédito", valor: 3850 },
+      { data: "2025-04-30", descricao: "Compra online - Magazine", tipo: "Débito", valor: -450 },
+      { data: "2025-04-29", descricao: "Depósito via boleto", tipo: "Crédito", valor: 600 },
+      { data: "2025-04-28", descricao: "Pagamento de energia", tipo: "Débito", valor: -220.70 },
+      { data: "2025-04-27", descricao: "Pagamento de água", tipo: "Débito", valor: -80.22 },
+      { data: "2025-04-26", descricao: "PIX recebido - Irmão", tipo: "Crédito", valor: 300 },
+      { data: "2025-04-25", descricao: "Transferência entre contas", tipo: "Débito", valor: -750 },
+      { data: "2025-04-24", descricao: "Cheque especial contratado", tipo: "Crédito", valor: 1000 }
+      // adicione mais se quiser testar scroll
     ];
   
-    // Preenche a tabela com os lançamentos
-    lancamentos.forEach((item) => {
+    movimentacoes.forEach(item => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${formatarData(item.data)}</td>
