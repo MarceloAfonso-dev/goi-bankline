@@ -30,6 +30,18 @@ CREATE TABLE Conta (
     FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID) ON DELETE CASCADE  
 );
 
+CREATE TABLE Pagamento (
+    Id_Pagamento INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Id_Conta INTEGER NOT NULL,
+    Tipo_Pagamento ENUM('Boleto', 'Fatura Cartão', 'Tributo', 'Transferência', 'Aporte', 'Outro') NOT NULL,
+    Id_Referencia INTEGER, 
+    Valor DECIMAL(14,2) NOT NULL,
+    Data_Pagamento DATE NOT NULL,
+    Status ENUM('pendente', 'concluído', 'cancelado') DEFAULT 'concluído',
+    Descricao VARCHAR(200),
+    FOREIGN KEY (Id_Conta) REFERENCES Conta(IdConta) ON DELETE CASCADE
+);
+
 CREATE TABLE Produtos (
     ID_Produto INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Id_Conta INTEGER NOT NULL,
