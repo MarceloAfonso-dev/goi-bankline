@@ -1,3 +1,11 @@
+<a href="#">
+  <img 
+    width="100%" 
+    src="https://capsule-render.vercel.app/api?type=waving&color=ff69b4&height=120&section=header&text=&fontSize=30&fontColor=000000&animation=twinkling"
+  />
+</a>
+
+
 # Banco GOI
 Este projeto representa a estrutura e funcionamento do Banco GOI, incluindo serviços financeiros e produtos bancários. Além disso, descrevemos a organização do time (Squad) responsável pelo desenvolvimento.
 
@@ -92,4 +100,9 @@ As imagens a seguir representam as principais telas do sistema e estão armazena
 ### 7. Tela de Pagamento de Fatura
 ![Cadastro](./Prototipagens/pagamento-fatura.png)
 
-
+<p align="center">
+  <img 
+    src="https://capsule-render.vercel.app/api?type=waving&color=ff69b4&height=80&section=footer"
+    width="100%" 
+  />
+</p>
