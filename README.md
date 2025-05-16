@@ -29,7 +29,7 @@ Este projeto representa a estrutura e funcionamento do Banco GOI, incluindo serv
 
 - Frontend 🎨 (Maycon Daynor, Gustavo)
 
-- Banco de Dados 🗄️ (Marcelo Afonso, Italo Silva)
+- Banco de Dados 🗄️ (Marcelo Afonso, Italo Silva, Gustavo Mendes)
 
 - Infraestrutura 🛠️ (Marcelo Afonso)
 
