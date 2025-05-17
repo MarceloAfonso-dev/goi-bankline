@@ -44,16 +44,21 @@ public class ContaServlet extends HttpServlet {
 
         /* --- monta JSON com HashMap para evitar qualquer serialização nula --- */
         Map<String, Object> out = new HashMap<>();
+
         if (conta == null) {
             out.put("agencia", null);
             out.put("conta"  , null);
-            System.out.println("[SERVLET] conta == null  (JSON vazio)");
+            /* novo campo */
+            out.put("nome"   , null);
         } else {
-            String num = conta.getNumeroConta();                    // 548123
-            String ag  = (num != null && num.length() >= 4) ? num.substring(0,4) : "";
+            String num = conta.getNumeroConta();      // 548123
+            String ag  = (num != null && num.length() >= 4) ? num.substring(0, 4) : "";
             out.put("agencia", ag);
             out.put("conta"  , num);
-            System.out.println("[SERVLET] conta encontrada  Num=" + num + "  Ag=" + ag);
+
+            /* ===== novo campo “nome” ===== */
+            Cliente cli = cliente;                    // já temos o cliente logado
+            out.put("nome", cli != null ? cli.getNome() : null);
         }
 
         String json = gson.toJson(out);

@@ -4,25 +4,31 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================================================
      BUSCA AGÊNCIA / CONTA — MESMA LÓGICA DO /saldo
      ========================================================= */
-  fetch("/conta")                       // igual ao que funciona em /saldo
+  /* =========================================================
+     BUSCA AGÊNCIA / CONTA + nome do cliente
+     ========================================================= */
+  fetch("/conta")
     .then(r => {
       if (!r.ok) throw new Error(r.status);
       return r.json();
     })
     .then(data => {
-      console.log("[/conta]:", data);   // deve ver {agencia:"5481", conta:"548123"}
+      console.log("[/conta]:", data);   // {agencia:"5481", conta:"548123", nome:"Marcelo"}
 
+      // 1) agencia / conta
       const ag = document.getElementById("agencia");
       const cc = document.getElementById("conta");
+      if (ag) ag.textContent = `ag: ${data.agencia ?? "----"}`;
+      if (cc) cc.textContent = `c/c: ${data.conta   ?? "------"}`;
 
-      if (!ag || !cc) {
-        console.warn("#agencia ou #conta não encontrados");
-        return;
+      // 2) saudação
+      const h3 = document.getElementById("boasVindas");
+      if (h3 && data.nome) {
+        h3.textContent = `Olá ${data.nome}, que bom te ver por aqui!`;
       }
-      ag.textContent = `ag: ${data.agencia ?? "----"}`;
-      cc.textContent = `c/c: ${data.conta   ?? "------"}`;
     })
     .catch(err => console.error("Falha /conta", err));
+
 
   // === 1) Referências no DOM ===
   const toggleVis        = document.getElementById("toggle-visibility");
