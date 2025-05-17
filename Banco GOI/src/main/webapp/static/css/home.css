@@ -3,11 +3,33 @@
     margin: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* herda reset + fontes + header/footer do home.css */
+/* Só o que é exclusivo da página de extrato abaixo */
+
+/* vale para TODAS as telas — coloque em home.css ou num reset global */
+html, body {
+  height: 100%;                  /* 100 vh reais */
+}
 
 body {
-    background-color: #F1F2F4;
+  display: flex;                 /* empilha header / main / footer */
+  flex-direction: column;
+      background-color: #F1F2F4;
+
 }
+
+/* o bloco que contém o conteúdo deve crescer */
+.container-principal {
+  flex: 1 0 auto;                /* ocupa o “miolo” e empurra o footer */
+}
+
+/* o footer agora não precisa de margin-top grande */
+.footer {
+  margin-top: auto;              /* cola no fim do body-flex */
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 header {
     height: 56px;

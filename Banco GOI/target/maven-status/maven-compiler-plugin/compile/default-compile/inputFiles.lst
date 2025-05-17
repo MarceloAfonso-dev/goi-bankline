@@ -5,12 +5,16 @@ C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goi
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\model\Cliente.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\SimuladorServlet.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\model\Conta.java
+C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\ExtratoServlet.java
+C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\model\Movimentacao.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\SaldoServlet.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\LoginServlet.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\ValidarCPFServlet.java
+C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\ExtratoDadosServlet.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\TransferenciaServlet.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\model\CpfLiberado.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\dao\ConnectionFactory.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\dao\ContaDAO.java
+C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\dao\MovimentacaoDAO.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\servlet\ContaServlet.java
 C:\Users\marcelo.acoelho\Desktop\goi-bankline\Banco GOI\src\main\java\br\com\goibankline\model\Simulacao.java

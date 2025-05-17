@@ -1,0 +1,153 @@
+/* herda reset + fontes + header/footer do home.css */
+/* Só o que é exclusivo da página de extrato abaixo */
+
+/* vale para TODAS as telas — coloque em home.css ou num reset global */
+html, body {
+  height: 100%;                  /* 100 vh reais */
+}
+
+body {
+  display: flex;                 /* empilha header / main / footer */
+  flex-direction: column;
+}
+
+/* o bloco que contém o conteúdo deve crescer */
+.container-principal {
+  flex: 1 0 auto;                /* ocupa o “miolo” e empurra o footer */
+}
+
+/* o footer agora não precisa de margin-top grande */
+.footer {
+  margin-top: auto;              /* cola no fim do body-flex */
+}
+
+
+/* alinhamento genérico da página */
+.container-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-principal > h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  color: #464646;
+  font-size: 26px;
+  margin: 50px 0 0 -900px;
+}
+
+/* “card” do extrato */
+.extrato-container {
+  width: 780px;
+  background: #FFF;
+  border: 1px solid #C8C8C8;
+  border-radius: 10px;
+  margin: 20px 0 0 65px;
+  max-height: 500px;
+
+}
+
+
+/* cabeçalho dentro do card */
+.extrato-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.extrato-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #000;
+}
+
+/* área rolável das movimentações */
+.movimentacoes-wrapper {
+  max-height: 403px;
+  overflow-y: auto;
+  border-top: 1px solid #E0E0E0;
+}
+
+/* separador de dias (18 de abril, 16 de abril…) */
+.date-group {
+  padding: 18px 20px 6px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #464646;
+}
+
+/* cada lançamento */
+.mov-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 20px;
+  border-bottom: 1px solid #EEE;
+}
+
+.item-left {
+  display: flex;
+  gap: 12px;
+}
+
+.item-left img {
+  width: 24px;
+  height: 24px;
+}
+
+.desc-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.desc-wrapper .titulo {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #000;
+}
+
+.desc-wrapper .sub {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #666;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+}
+
+.valor {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.valor.positivo { color: #007E33; }
+.valor.negativo { color: #D90000; }
+
+@media (max-width: 800px) {
+  .extrato-container { width: calc(100% - 40px); margin-left: 20px; }
+}
+
+/* saldo atual exibido no cabeçalho do card */
+.saldo-atual {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.saldo-atual .label  {
+  font-weight: 500;
+  font-size: 14px;
+  color: #464646;
+}
+
+.saldo-atual .valor  {
+  font-weight: 700;
+  font-size: 14px;
+  color: #001FBD;      /* mesmo tom de azul dos links */
+}
