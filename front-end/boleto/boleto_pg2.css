@@ -1,0 +1,246 @@
+body {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    background-color: #f2f3f5;
+  }
+
+  header {
+    height: 56px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  header h1 {
+    font-weight: 500;
+    color: #000;
+    font-size: 26px;
+    margin: 0;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 130px;
+    padding: 32px 24px;
+  }
+
+  .header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    margin-top: 24px;
+  }
+
+  .back-button {
+    font-size: 24px;
+    color: #f36b6b;
+    text-decoration: none;
+  }
+
+  .header-title h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+  }
+
+  .payment-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  .payment-box-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .payment-box-header img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .payment-box-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .payment-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .payment-option:last-child {
+    border-bottom: none;
+  }
+
+  .payment-option-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .payment-option-left input[type="radio"] {
+    margin-top: 4px;
+    accent-color: #f36b6b;
+  }
+
+  .payment-option-label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .payment-option-label strong {
+    font-size: 14px;
+    color: #000;
+  }
+
+  .payment-option-label span {
+    font-size: 13px;
+    color: #666;
+  }
+
+  .payment-option-right {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .pay-button {
+    padding: 10px 24px;
+    background-color: #f36b6b;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    float: right;
+    margin-top: 24px;
+    transition: background-color 0.2s ease;
+  }
+
+  .pay-button:hover {
+    background-color: #e45858;
+  }
+
+  .footer {
+    margin-top: 205px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: #3B3B3B;
+    padding: 30px 65px;
+    color: #DDD;
+    flex-wrap: wrap;
+  }
+
+  .footer__section {
+    flex: 1;
+    min-width: 180px;
+    margin-right: 40px;
+  }
+
+  .footer__section h4 {
+    color: #FFF;
+    font-weight: 550;
+    margin-bottom: 8px;
+  }
+
+  .footer__section p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    color: #CCC;
+  }
+
+  .container-nps {
+    display: flex;
+    flex-direction: column;
+    width: 263px;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nps-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .nps-header > hr {
+    width: 240px;
+    height: 0.5px;
+    background-color: #999999;
+  }
+
+  .nps-header > h5 {
+    font-weight: 550;
+    color: #FFFFFF;
+    font-size: 14px;
+    align-self: flex-start;
+    margin-left: 14px;
+    margin-top: 10px;
+  }
+
+  .faces {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    gap: 1px;
+    margin-bottom: 20px;
+  }
+
+  .face-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .face-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+  }
+
+  .face-item h6 {
+    font-size: 8px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .img-24h {
+    margin-left: 163px;
+  }
+
+  .img-24h > img {
+    margin-top: 20px;
+    width: 20px;
+    height: 25px;
+  }
