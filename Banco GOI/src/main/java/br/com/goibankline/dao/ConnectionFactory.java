@@ -1,42 +1,42 @@
 package br.com.goibankline.dao;
 
-import java.io.InputStream;
-import java.io.IOException;
-import java.sql.*;
+import br.com.goibankline.util.PropertiesLoader;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.*;
+import java.util.logging.Logger;
 
 public class ConnectionFactory {
-    private static final Logger LOGGER = Logger.getLogger(ConnectionFactory.class.getName());
 
-    private static String URL;
-    private static String USER;
-    private static String PASSWORD;
+    private static final Logger LOG = Logger.getLogger(ConnectionFactory.class.getName());
+    private static final HikariDataSource ds;
 
+    /*  pool criado uma única vez */
     static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        Properties p = PropertiesLoader.load("db.properties");
 
-            Properties props = new Properties();
-            InputStream is = ConnectionFactory.class.getClassLoader().getResourceAsStream("db.properties");
-            if (is == null) {
-                LOGGER.severe("Arquivo db.properties não encontrado na classpath.");
-            } else {
-                props.load(is);
-            }
-            URL = props.getProperty("db.url");
-            USER = props.getProperty("db.user");
-            PASSWORD = props.getProperty("db.password");
-        } catch (ClassNotFoundException e) {
-            LOGGER.log(Level.SEVERE, "MySQL JDBC Driver não encontrado", e);
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Não foi possível carregar o arquivo de propriedades do banco", e);
-        }
+        HikariConfig cfg = new HikariConfig();
+        cfg.setJdbcUrl (p.getProperty("db.url"));
+        cfg.setUsername(p.getProperty("db.user"));
+        cfg.setPassword(p.getProperty("db.password"));
+        cfg.setDriverClassName("com.mysql.cj.jdbc.Driver");
+
+        /* --------- ajustes principais --------- */
+        cfg.setMaximumPoolSize(15);     // (~10-20 para ±30 usuários)
+        cfg.setMinimumIdle(3);
+        cfg.setConnectionTimeout(10000);   // 10 s
+        cfg.setIdleTimeout(300000);        // 5 min
+
+        ds = new HikariDataSource(cfg);
+        LOG.info("HikariCP inicializado com maxPoolSize=" + cfg.getMaximumPoolSize());
     }
 
+    private ConnectionFactory() {}  // utilitário
+
     public static Connection getConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        LOGGER.info("Conexão estabelecida.");
-        return connection;
+        return ds.getConnection();   // vem do pool; rápido!
     }
 }
