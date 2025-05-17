@@ -103,3 +103,24 @@ document.addEventListener("DOMContentLoaded", () => {
       wrapper.innerHTML = "<p style='padding:20px;'>Erro ao carregar extrato.</p>";
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // botão de “Sair”
+  const logoutBtn = document.querySelector(".sair");
+  logoutBtn.style.cursor = "pointer";
+  logoutBtn.addEventListener("click", () => {
+    window.location.href = `${location.protocol}//${location.hostname}:8080/`;
+  });
+
+  // clicável no logo (img) e no título (h1) dentro do header
+  const logoImg  = document.querySelector("header .icone-goi");
+  const logoText = document.querySelector("header h1");
+
+  [logoImg, logoText].forEach(el => {
+    if (!el) return;
+    el.style.cursor = "pointer";
+    el.addEventListener("click", () => {
+      window.location.href = `${location.protocol}//${location.hostname}:8080/templates/home.html`;
+    });
+  });
+});

@@ -42,61 +42,64 @@ public class TransferenciaDAO {
 
     // Realiza a transferência entre as contas associadas aos CPFs informados.
     public boolean transferir(String cpfOrigem, String cpfDestino, BigDecimal valor) {
-        Connection con = null;
-        try {
-            con = ConnectionFactory.getConnection();
+
+        try (Connection con = ConnectionFactory.getConnection()) {
             con.setAutoCommit(false);
 
-            Conta contaOrigem = buscarContaPorCPF(con, cpfOrigem);
+            Conta contaOrigem  = buscarContaPorCPF(con, cpfOrigem);
             Conta contaDestino = buscarContaPorCPF(con, cpfDestino);
 
-            if (contaOrigem == null || contaDestino == null) {
-                con.rollback();
-                return false;
+            if (contaOrigem == null || contaDestino == null) { con.rollback(); return false; }
+            if (contaOrigem.getSaldo().compareTo(valor) < 0)   { con.rollback(); return false; }
+
+            /* --------- 1) atualiza saldos --------- */
+            String upd = "UPDATE Conta SET Saldo = ? WHERE IdConta = ?";
+            try (PreparedStatement st = con.prepareStatement(upd)) {
+                st.setBigDecimal(1, contaOrigem.getSaldo().subtract(valor));
+                st.setInt       (2, contaOrigem.getIdConta());
+                st.executeUpdate();
+
+                st.setBigDecimal(1, contaDestino.getSaldo().add(valor));
+                st.setInt       (2, contaDestino.getIdConta());
+                st.executeUpdate();
             }
 
-            // Verifica se a conta de origem possui saldo suficiente.
-            if (contaOrigem.getSaldo().compareTo(valor) < 0) {
-                con.rollback();
-                return false;
-            }
+            /* --------- 2) grava os DOIS lançamentos --------- */
+            String ins =
+                    "INSERT INTO Transferencia " +
+                            "(Id_Conta_Origem, Id_Conta_Destino, Valor, Data_Transferencia, " +
+                            " Tipo_Transferencia, Status) " +
+                            "VALUES (?,?,?,?,?,?)";
 
-            BigDecimal novoSaldoOrigem = contaOrigem.getSaldo().subtract(valor);
-            BigDecimal novoSaldoDestino = contaDestino.getSaldo().add(valor);
+            java.sql.Date hoje = new java.sql.Date(System.currentTimeMillis());
 
-            String sql = "UPDATE Conta SET Saldo = ? WHERE IdConta = ?";
-            try (PreparedStatement stmtOrigem = con.prepareStatement(sql);
-                 PreparedStatement stmtDestino = con.prepareStatement(sql)) {
+            try (PreparedStatement st = con.prepareStatement(ins)) {
+                /* lançamento NEGATIVO na origem */
+                st.setInt       (1, contaOrigem.getIdConta());
+                st.setInt       (2, contaDestino.getIdConta());
+                st.setBigDecimal(3, valor.negate());               // -X
+                st.setDate      (4, hoje);
+                st.setString    (5, "dinheiro");
+                st.setString    (6, "concluído");
+                st.executeUpdate();
 
-                stmtOrigem.setBigDecimal(1, novoSaldoOrigem);
-                stmtOrigem.setInt(2, contaOrigem.getIdConta());
-                stmtOrigem.executeUpdate();
-
-                stmtDestino.setBigDecimal(1, novoSaldoDestino);
-                stmtDestino.setInt(2, contaDestino.getIdConta());
-                stmtDestino.executeUpdate();
+                /* lançamento POSITIVO na destinação */
+                st.setInt       (1, contaOrigem.getIdConta());
+                st.setInt       (2, contaDestino.getIdConta());
+                st.setBigDecimal(3, valor);                        // +X
+                st.setDate      (4, hoje);
+                st.setString    (5, "dinheiro");
+                st.setString    (6, "concluído");
+                st.executeUpdate();
             }
 
             con.commit();
             return true;
+
         } catch (SQLException e) {
-            if (con != null) {
-                try {
-                    con.rollback();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
             e.printStackTrace();
             return false;
-        } finally {
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
+
 }
