@@ -524,6 +524,18 @@ header > h1 {
     margin-top: 5px; /* Espaçamento entre a imagem e o texto */
 }
 
+.face-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.face-item:hover {
+  transform: scale(1.05);
+}
+.face-item.selected {
+  transform: scale(1.2);
+}
+
 .img-24h {
     margin-left: 163px;
 }

@@ -254,3 +254,47 @@ document.addEventListener('DOMContentLoaded', () => {
      });
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const faces = document.querySelectorAll('.face-item');
+
+  const mensagens = {
+    1: {
+      title: "Banco GOI informa:",
+      text: "😞 Sentimos muito por não ter atendido às suas expectativas. Estamos ouvindo você e trabalhando para melhorar!",
+      icon: "warning"
+    },
+    2: {
+      title: "Banco GOI informa:",
+      text: "😐 Obrigado pelo seu retorno! Vamos buscar tornar sua experiência ainda melhor.",
+      icon: "info"
+    },
+    3: {
+      title: "Banco GOI informa:",
+      text: "😊 Que bom que você está satisfeito! Seguimos comprometidos com você.",
+      icon: "success"
+    },
+    4: {
+      title: "Banco GOI informa:",
+      text: "😍 Uau! Ficamos muito felizes em saber que você está muito satisfeito. Obrigado pela confiança!",
+      icon: "success"
+    }
+  };
+
+  faces.forEach(face => {
+    face.style.cursor = "pointer";
+    face.addEventListener('click', () => {
+      const nota = parseInt(face.dataset.feedback);
+      const msg = mensagens[nota];
+      if (msg) {
+        Swal.fire({
+          title: msg.title,
+          text: msg.text,
+          icon: msg.icon,
+          confirmButtonText: 'Fechar'
+        });
+      }
+    });
+  });
+});
+

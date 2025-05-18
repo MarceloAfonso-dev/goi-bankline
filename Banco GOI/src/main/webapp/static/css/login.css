@@ -341,3 +341,15 @@ header > h1 {
     text-align: center; /* Centraliza o texto abaixo da imagem */
     margin-top: 5px; /* Espaçamento entre a imagem e o texto */
 }
+
+.face-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.face-item:hover {
+  transform: scale(1.05);
+}
+.face-item.selected {
+  transform: scale(1.2);
+}

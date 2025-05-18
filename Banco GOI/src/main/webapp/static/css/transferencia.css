@@ -359,3 +359,15 @@ header > h1 {
 #loaderPercent{
   display:block;margin-top:12px;font-weight:600;font-size:18px;color:#464646;
 }
+
+.face-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.face-item:hover {
+  transform: scale(1.05);
+}
+.face-item.selected {
+  transform: scale(1.2);
+}

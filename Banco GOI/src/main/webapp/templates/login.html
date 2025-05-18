@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/login.css">
     <title>GOI Bankline - 24h</title>
     <link rel="icon" type="image/png" href="/static/img/goi-icon-header.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header>
@@ -48,14 +49,14 @@
                 <!-- (Se quiser, pode remover senhaReal se não for mais usado) -->
                 <input type="hidden" id="senhaReal" name="senhaReal">
 
-                <a href="recuperar-senha.html" class="recuperar-senha">esqueceu sua senha?</a>
+                <a href="mailto:contato@goibank.com.br?subject=Esqueci%20minha%20senha&body=Olá, sou cliente do Banco GOI e esqueci minha senha.%0AMeu CPF é: " target="_blank" class="recuperar-senha">esqueceu sua senha?</a>
             </div>
         </div>
     </form>
 
     <div class="container-alerta">
         <img src="/static/img/warning.png" alt="">
-        <h4>Se o nome acima não estiver correto, não continue a operação e mande um <a href="www.google.com">e-mail</a></h4>
+        <h4>Se o nome acima não estiver correto, não continue a operação e mande um <a href="mailto:contato@goibank.com.br">e-mail</a></h4>
     </div>
 
     <div class="container-aviso">
@@ -79,23 +80,24 @@
             <hr>
         </div>
         <div class="faces">
-            <div class="face-item">
-                <img src="/static/img/mau-cinza.png" alt="face1">
+            <div class="face-item" data-feedback="1">
+                <img src="/static/img/mau-cinza.png" alt="Insatisfeito">
                 <h6>Insatisfeito</h6>
             </div>
-            <div class="face-item">
-                <img src="/static/img/medio-cinza.png" alt="face2">
+            <div class="face-item" data-feedback="2">
+                <img src="/static/img/medio-cinza.png" alt="Indiferente">
                 <h6>Indiferente</h6>
             </div>
-            <div class="face-item">
-                <img src="/static/img/ok-cinza.png" alt="face3">
+            <div class="face-item" data-feedback="3">
+                <img src="/static/img/ok-cinza.png" alt="Satisfeito">
                 <h6>Satisfeito</h6>
             </div>
-            <div class="face-item">
-                <img src="/static/img/feliz-cinza.png" alt="face4">
+            <div class="face-item" data-feedback="4">
+                <img src="/static/img/feliz-cinza.png" alt="Muito satisfeito">
                 <h6>Muito satisfeito</h6>
             </div>
         </div>
+
     </div>
 </div>
 

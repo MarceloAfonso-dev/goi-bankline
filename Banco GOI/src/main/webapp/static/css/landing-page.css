@@ -784,3 +784,15 @@ body.popup-active {
   color: #333;
   font-weight: 500;
 }
+
+.face-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.face-item:hover {
+  transform: scale(1.05);
+}
+.face-item.selected {
+  transform: scale(1.2);
+}

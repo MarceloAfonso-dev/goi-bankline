@@ -151,3 +151,15 @@ body {
   font-size: 14px;
   color: #001FBD;      /* mesmo tom de azul dos links */
 }
+
+.face-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.face-item:hover {
+  transform: scale(1.05);
+}
+.face-item.selected {
+  transform: scale(1.2);
+}
