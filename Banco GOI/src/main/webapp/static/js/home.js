@@ -154,3 +154,61 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const itensSidebar = document.querySelectorAll('.sidebar__list li');
+  const popups = {
+    investimentos: document.getElementById('popup-investimentos'),
+    produtos: document.getElementById('popup-produtos')
+  };
+
+  // Abrir popups ao clicar nos itens da sidebar
+  itensSidebar[2].addEventListener('click', () => {
+    popups.investimentos.classList.remove('hidden');
+    document.body.classList.add('popup-active');
+  });
+  itensSidebar[3].addEventListener('click', () => {
+    popups.produtos.classList.remove('hidden');
+    document.body.classList.add('popup-active');
+  });
+
+  // Fechar popups
+  document.querySelectorAll('.popup-close').forEach(button => {
+    button.addEventListener('click', () => {
+      const targetId = button.getAttribute('data-target');
+      popups[targetId].classList.add('hidden');
+      document.body.classList.remove('popup-active');
+    });
+  });
+
+  // Fechar ao clicar fora do conteúdo
+  Object.values(popups).forEach(popup => {
+    popup.addEventListener('click', event => {
+      if (event.target === popup) {
+        popup.classList.add('hidden');
+        document.body.classList.remove('popup-active');
+      }
+    });
+  });
+
+  // Seletor de imagens no popup de produtos
+  const produtosDots = document.querySelectorAll('#popup-produtos .selector-dot');
+  const produtosImage = document.getElementById('produtos-image');
+  produtosDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      produtosDots.forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+      produtosImage.src = dot.dataset.src;
+    });
+  });
+});
+
+document.querySelectorAll('.popup-close').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.dataset.target;
+    const popup = document.getElementById(targetId);
+    popup.classList.add('hidden');
+    document.body.classList.remove('popup-active');
+  });
+});

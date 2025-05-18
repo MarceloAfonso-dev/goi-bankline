@@ -534,3 +534,90 @@ header > h1 {
     height: 25px; /* Define a altura das imagens */
     margin: 0 auto; /* Centraliza a imagem horizontalmente */
 }
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.popup-active {
+  overflow: hidden;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.popup-content, p {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+
+.popup-content, h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+/* Container das bolinhas */
+.image-selector {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* As bolinhas em si */
+.selector-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ccc;             /* cor padrão cinza */
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Bolinha ativa */
+.selector-dot.active {
+  background: #ff4da6;         /* rosa, igual ao seu tema */
+}

@@ -170,8 +170,35 @@
     </div>
 </footer>
 
-</body>
+<div id="popup-investimentos" class="popup hidden">
+    <div class="popup-content">
+        <button class="popup-close" data-target="popup-investimentos">X</button>
+        <img src="/static/img/investimentos.png" alt="Investimentos" style="width:100%; border-radius:8px;">
+        <h3>Área de Investimentos</h3>
+        <p>Opere uma seleção premium de ativos, com foco em alta rentabilidade e segurança.<br><strong>Serviço em desenvolvimento, disponível a partir de 26/05/2026.</strong></p>
+    </div>
+</div>
+
+<!-- Popup para Solicitar Produtos -->
+<div id="popup-produtos" class="popup hidden">
+    <div class="popup-content">
+        <button class="popup-close" data-target="popup-produtos">X</button>
+        <div class="popup-image-container">
+            <img id="produtos-image" src="/static/img/cartao-especifico.png" alt="Solicitar Produtos" style="width:100%; border-radius:8px;">
+            <div class="image-selector">
+                <span class="selector-dot active" data-src="/static/img/pagamento-fatura.png"></span>
+                <span class="selector-dot" data-src="/static/img/cartao-especifico.png"></span>
+            </div>
+        </div>
+        <h3>Solicitação de Produtos</h3>
+        <p>Conheça e solicite novos produtos financeiros, como seguros, consórcios e investimentos personalizados.<br><strong>Em desenvolvimento, disponível a partir de 26/05/2026.</strong></p>
+    </div>
+</div>
 
 <script src="/static/js/home.js"></script>
+
+</body>
+
+
 
 </html>
