@@ -329,3 +329,33 @@ header > h1 {
     font-size: 16px;
     margin-top: 10px; /* Adiciona distância do topo */
     text-align: center; /* Centraliza o texto */
+
+}
+
+/* ===== overlay de loading ===== */
+.overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.15);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9999;
+}
+.overlay.hidden{display:none}
+
+.loader{font-family:'Outfit',sans-serif;text-align:center}
+
+.ring{width:80px;height:80px;transform:rotate(-90deg)}
+
+.ring .track{
+  fill:none; stroke:#eee; stroke-width:10;
+}
+.ring .progress{
+  fill:none; stroke:#FF5593; stroke-width:10; stroke-linecap:round;
+  stroke-dasharray:220;          /* 2πr ≈ 220  */
+  stroke-dashoffset:220;         /* começa vazia */
+}
+
+@keyframes donut{to{stroke-dashoffset:0}}
+
+#loaderPercent{
+  display:block;margin-top:12px;font-weight:600;font-size:18px;color:#464646;
+}
