@@ -256,3 +256,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn   = document.getElementById("goibot-toggle");
+  const chatFrame   = document.getElementById("goibot-frame");
+  const closeBtn    = document.getElementById("goibot-close");
+
+  toggleBtn.addEventListener("click", () => {
+    const opened = chatFrame.classList.toggle("visible");
+    toggleBtn.classList.toggle("rotated", opened);
+    chatFrame.hidden = !opened;            // acessibilidade
+  });
+
+  closeBtn.addEventListener("click", () => {
+    chatFrame.classList.remove("visible");
+    chatFrame.hidden = true;
+    toggleBtn.classList.remove("rotated");
+  });
+});
+

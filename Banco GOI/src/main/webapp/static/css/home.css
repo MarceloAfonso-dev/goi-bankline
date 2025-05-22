@@ -633,3 +633,76 @@ body.popup-active {
 .selector-dot.active {
   background: #ff4da6;         /* rosa, igual ao seu tema */
 }
+
+/* --- BOTÃO/BOLINHA ------------------------------------------------- */
+.goibot-toggler{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: #DBC440;                     /* amarelo da sua paleta */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  cursor: pointer;
+  z-index: 1100;                           /* acima de quase tudo */
+  transition: transform .25s;
+}
+.goibot-toggler.rotated{
+  transform: rotate(360deg);                /* efeito de “X” quando aberto */
+}
+
+/* --- JANELA --------------------------------------------------------- */
+.goibot-frame{
+  position: fixed;
+  right: 24px;
+  bottom: 90px;                            /* sobe 66 px para não cobrir a bolinha */
+  width: 420px;
+  height: 520px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(.5);
+  transform-origin: bottom right;
+  pointer-events: none;                    /* desativa cliques enquanto oculto */
+  transition: opacity .25s, transform .25s;
+  z-index: 1099;
+}
+.goibot-frame.visible{
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* cabeçalho interno */
+.goibot-header{
+  height: 40px;
+  background: #FF4F5A;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+}
+.goibot-header button{
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* iframe ocupa o resto */
+.goibot-frame iframe{
+  width: 100%;
+  height: calc(100% - 40px);
+  border: 0;
+}

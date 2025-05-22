@@ -200,6 +200,28 @@
 
 <script src="/static/js/home.js"></script>
 
+<!-- BOTÃO/BOLINHA -->
+<button id="goibot-toggle" class="goibot-toggler" aria-label="Abrir chat">
+    <img src="/static/img/bussines.png" alt="" width="30">
+</button>
+
+<!-- FRAME DO CHAT -->
+<div id="goibot-frame" class="goibot-frame" hidden>
+    <header class="goibot-header">
+        <span>Gerente Goizinha - 1.0</span>
+        <button id="goibot-close" aria-label="Fechar chat">✕</button>
+    </header>
+
+    <!-- Streamlit embutido -->
+    <iframe
+            src="https://jshdodfodjshfdsfopiduio.streamlit.app/?embed=true"
+            style="width:420px;height:520px;border:0;"
+            loading="lazy"
+            allow="clipboard-write"
+    ></iframe>
+</div>
+
+
 </body>
 
 
