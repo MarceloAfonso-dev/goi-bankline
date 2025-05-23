@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Cadastro • GOI Bank</title>
     <link rel="stylesheet" href="/static/css/cadastro.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" type="image/png" href="/static/img/goi-icon-header.png">
 </head>
 <body>
 
@@ -16,13 +18,13 @@
 <main class="container-principal">
     <div class="wizard-wrapper">
         <img src="/static/img/goi-icon-header.png" alt="Logo" class="logo-center">
-
         <h2 class="titulo">Abra sua conta</h2>
         <p  class="subtitulo">Leva apenas alguns minutos.</p>
 
         <form id="wizard" action="/cadastro" method="post" novalidate>
             <progress id="progress" value="1" max="4"></progress>
 
+            <!-- PASSO 1 -->
             <!-- PASSO 1 -->
             <fieldset data-step="1" class="active">
                 <legend>Seus dados</legend>
@@ -32,9 +34,15 @@
 
                 <label for="cpf">CPF</label>
                 <input id="cpf" name="cpf" type="text" maxlength="14" required placeholder="Somente números">
+                <span id="cpf-msg" class="msg-erro">CPF já cadastrado.</span>
 
                 <label for="dataNascimento">Data de nascimento</label>
-                <input id="dataNascimento" name="dataNascimento" type="date" required>
+                <!-- limite até 31 dez 2025 -->
+                <input id="dataNascimento"
+                       name="dataNascimento"
+                       type="date"
+                       required
+                       max="2025-12-31">
             </fieldset>
 
             <!-- PASSO 2 -->
@@ -45,12 +53,12 @@
                 <input id="email" name="email" type="email" required placeholder="voce@email.com">
 
                 <label for="celular">Celular (11 dígitos)</label>
-                <input id="celular" name="celular" type="tel" pattern="\d{11}" maxlength="11"
-                       required placeholder="11987654321">
+                <input id="celular" name="celular" type="tel"
+                       pattern="\d{11}" maxlength="11" required placeholder="11987654321">
 
                 <label for="cep">CEP</label>
-                <input id="cep" name="cep" type="text" pattern="\d{8}" maxlength="8"
-                       required placeholder="00000000">
+                <input id="cep" name="cep" type="text"
+                       pattern="\d{8}" maxlength="8" required placeholder="00000000">
             </fieldset>
 
             <!-- PASSO 3 -->
@@ -66,11 +74,11 @@
                        pattern="\d{6}" minlength="6" maxlength="6" required>
             </fieldset>
 
+
             <!-- PASSO 4 -->
             <fieldset data-step="4">
                 <legend>Revise seus dados</legend>
                 <div id="resumo"></div>
-
                 <button type="submit" class="btn-principal">Criar conta</button>
             </fieldset>
 
@@ -85,17 +93,70 @@
 <footer class="footer">
     <div class="footer__section">
         <h4>Banco GOI</h4>
-        <p>Rua Casa da Atriz, 969 – Vila Olímpia<br>Horário: 10h às 17h</p>
+        <p>
+            Rua Casa da Atriz, 969, Vila Olímpia<br>
+            Horário de funcionamento: 10h às 17h
+        </p>
     </div>
     <div class="footer__section">
         <h4>Atendimento</h4>
-        <p>Central 4004 123456</p>
+        <p>
+            Central de Relacionamento<br>
+            Ligue no 4004 123456
+        </p>
     </div>
     <div class="footer__section">
         <h4>SAC</h4>
-        <p>0800 123 1234 &nbsp;|&nbsp; Ouvidoria 0800 123 1234</p>
+        <p>
+            Para registrar sugestões,<br>
+            reclamações ou elogios:<br>
+            0800 123 1234
+        </p>
+        <p>
+            Ouvidoria:<br>
+            0800 123 1234
+        </p>
+    </div>
+    <!-- NPS existente -->
+    <div class="container-nps">
+        <div class="nps-header">
+            <h5>Avalie o nosso serviço</h5>
+            <hr>
+        </div>
+        <div class="faces">
+            <div class="face-item" data-feedback="1">
+                <img src="/static/img/mau-rosa.png" alt="Insatisfeito">
+                <h6>Insatisfeito</h6>
+            </div>
+            <div class="face-item" data-feedback="2">
+                <img src="/static/img/medio-rosa.png" alt="Indiferente">
+                <h6>Indiferente</h6>
+            </div>
+            <div class="face-item" data-feedback="3">
+                <img src="/static/img/ok-rosa.png" alt="Satisfeito">
+                <h6>Satisfeito</h6>
+            </div>
+            <div class="face-item" data-feedback="4">
+                <img src="/static/img/feliz-rosa.png" alt="Muito satisfeito">
+                <h6>Muito satisfeito</h6>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="img-24h">
+        <img src="/static/img/24h.png" alt="24H">
     </div>
 </footer>
+
+<!-- ---------- POP-UP de sucesso ---------- -->
+<div id="popupSucesso" class="popup-mask">
+    <div class="popup-box">
+        <h3>Conta criada!</h3>
+        <p>Seu cadastro foi concluído com sucesso.</p>
+        <button id="btnOk">OK</button>
+    </div>
+</div>
 
 <script src="/static/js/cadastro.js"></script>
 </body>

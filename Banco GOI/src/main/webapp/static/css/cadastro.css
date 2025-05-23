@@ -1,86 +1,228 @@
-/* ------------------  RESET + TIPOGRAFIA  ------------------ */
+/* ───────── RESET & TIPOGRAFIA ───────── */
 *{margin:0;padding:0;box-sizing:border-box}
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 
 html,body{height:100%}
 body{
   font-family:'Outfit',sans-serif;
-  display:flex;flex-direction:column;           /* header / main / footer */
+  display:flex;flex-direction:column;
   background:#F1F2F4;
 }
 
-/* ------------------  HEADER  ------------------ */
+/* ───────── HEADER ───────── */
 header{
-  height:56px;background:#fff;
-  display:flex;align-items:center;
+  height:56px;background:#fff;display:flex;align-items:center;
   padding:0 30px;box-shadow:0 1px 3px rgba(0,0,0,.05);
 }
 .icone-goi{height:52px;width:52px}
 header h1{margin-left:12px;font-size:26px;font-weight:500;color:#000}
 
-/* ------------------  MAIN: centra o wizard  ------------------ */
+/* ───────── MAIN & CARD ───────── */
 .container-principal{
-  flex:1;                                        /* ocupa “miolo” */
-  display:flex;align-items:center;justify-content:center;
-  padding:40px 20px;
+  flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px;
 }
-
-/* ------------------  WIZARD CARD  ------------------ */
 .wizard-wrapper{
-  width:100%;max-width:440px;
-  background:#fff;border-radius:12px;
-  padding:40px 32px;             /* +laterais p/ mobile */
-  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  width:100%;max-width:440px;background:#fff;border-radius:12px;
+  padding:40px 32px;box-shadow:0 4px 12px rgba(0,0,0,.1);
 }
 .logo-center{display:block;height:60px;margin:0 auto 24px}
+.titulo{text-align:center;font-size:24px;font-weight:600;margin-bottom:6px}
+.subtitulo{text-align:center;font-size:14px;color:#666;margin-bottom:24px}
 
-.titulo   {font-size:24px;font-weight:600;text-align:center;margin-bottom:6px}
-.subtitulo{font-size:14px;color:#666;text-align:center;margin-bottom:24px}
+/* progress */
+progress{width:100%;height:6px;margin-bottom:24px;appearance:none}
+progress::-webkit-progress-bar{background:#e0e0e0;border-radius:4px}
+progress::-webkit-progress-value{background:#FF4F5A;border-radius:4px}
 
-/* ----- barra de progresso ----- */
-progress{
-  width:100%;height:6px;margin-bottom:24px;appearance:none
+/* fieldsets uniformes */
+fieldset{
+  display:flex;flex-direction:column;gap:20px;border:0;
+  animation:fade .25s;
 }
-progress::-webkit-progress-bar   {background:#e0e0e0;border-radius:4px}
-progress::-webkit-progress-value {background:#FF4F5A;border-radius:4px}
-
-/* ----- fieldsets ----- */
-fieldset{border:0;display:none;animation:fade .25s}
-fieldset.active{display:block}
+fieldset.active{display:flex}
 @keyframes fade{from{opacity:.35}to{opacity:1}}
+legend{font-size:18px;font-weight:600;margin-bottom:6px}
 
-legend{font-weight:600;font-size:18px;margin-bottom:18px}
-
-/* ----- inputs ----- */
-label{display:block;margin-bottom:6px;font-weight:500}
+/* inputs */
+label{font-weight:500}
 input{
-  width:100%;padding:13px 14px;margin-bottom:20px;
+  width:100%;padding:13px 14px;
   border:1px solid #c4c4c4;border-radius:6px;font-size:15px;
 }
 input:focus{outline:none;border-color:#001FBD;box-shadow:0 0 0 2px #001fbd22}
 
-/* ----- botões ----- */
+/* erro individual */
+.input-erro{border-color:#FF4F5A!important;box-shadow:0 0 0 2px #ff4f5a33!important}
+.msg-erro{display:none;font-size:13px;color:#FF4F5A;margin-top:-16px}
+.msg-erro.visivel{display:block}
+
+/* navegação */
+.wizard-nav{display:flex;justify-content:space-between;gap:14px;margin-top:6px}
 button{
-  padding:11px 26px;font-size:16px;font-weight:500;
-  border:0;border-radius:6px;cursor:pointer;transition:opacity .2s
+  padding:11px 26px;font-size:16px;font-weight:500;border:0;border-radius:6px;
+  cursor:pointer;transition:opacity .2s;
 }
 .btn-principal,#next{background:#FF4F5A;color:#fff}
 #prev{background:#ddd;color:#333}
-button:hover{opacity:.9}
-#prev:disabled{opacity:.5;cursor:not-allowed}
+button:hover{opacity:.9} #prev:disabled{opacity:.55;cursor:not-allowed}
 
-.wizard-nav{display:flex;justify-content:space-between;gap:14px;margin-top:6px}
+/* footer */
+/* --- FOOTER --- */
+.footer {
+    margin-top: 126px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: #3B3B3B;
+    padding: 30px 65px;
+    color: #DDD;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .footer__section {
+    flex: 1;
+    min-width: 180px;
+    margin-right: 40px;
+  }
+  .footer__section h4 {
+    color: #FFF;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 550;
+    margin-bottom: 8px;
+  }
+  .footer__section p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    font-family: 'Outfit', sans-serif;
+    color: #CCC;
+  }
 
-/* ------------------  FOOTER  ------------------ */
-.footer{
-  background:#3B3B3B;color:#DDD;
-  display:flex;flex-wrap:wrap;gap:40px;
-  padding:32px 65px;font-size:14px
+.container-nps {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    width: 263px;
+    margin: 0px 0 0 0px;
+    height: auto; /* Ajusta a altura automaticamente */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha os itens no topo */
+    gap: 20px; /* Espaçamento entre o header e as faces */
 }
-.footer__section h4{color:#fff;font-weight:550;margin-bottom:8px}
-.footer__section p{line-height:1.4;color:#CCC}
 
-/* ------------------  RESPONSIVO  ------------------ */
+.nps-header {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos horizontalmente */
+    align-items: center; /* Centraliza os elementos verticalmente */
+    width: 100%; /* Ocupa toda a largura do container */
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.nps-header > hr {
+    width: 240px;
+    height: 0,01px;
+    background-color: #999999;
+    margin: 0px 44px 0 44px; /* Adiciona margem para posicionamento */
+}
+
+.nps-header > h5 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 550;
+    color: #FFFFFF;
+    margin: 0; /* Remove a margem padrão */
+    font-size: 14px;
+    align-self: flex-start; /* Alinha o texto à esquerda */
+    margin-left: 14px; /* Adiciona distância à esquerda */
+    margin-top: 10px; /* Adiciona distância do topo */
+}
+
+.faces {
+    display: flex;
+    flex-direction: row; /* Alinha os itens lado a lado */
+    justify-content: space-between; /* Espaçamento uniforme entre os itens */
+    align-items: flex-start; /* Alinha os itens no topo */
+    width: 90%; /* Ocupa toda a largura do container */
+    gap: 1px; /* Espaçamento entre os itens */
+    margin-bottom: 20px;
+}
+
+.face-item {
+    display: flex;
+    flex-direction: column; /* Alinha a imagem e o texto verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    text-align: center; /* Centraliza o texto */
+}
+
+.face-item img {
+    width: 50px; /* Define a largura das imagens */
+    height: 50px; /* Define a altura das imagens */
+    margin-bottom: 5px; /* Espaçamento entre a imagem e o texto */
+}
+
+.face-item h6 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin: 0; /* Remove margens padrão */
+}
+
+.faces img {
+    display: block;
+    width: 41px; /* Define a largura das imagens */
+    height: 41px; /* Define a altura das imagens */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}
+
+.faces h6 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-align: center; /* Centraliza o texto abaixo da imagem */
+    margin-top: 5px; /* Espaçamento entre a imagem e o texto */
+}
+
+.face-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.face-item:hover {
+  transform: scale(1.05);
+}
+.face-item.selected {
+  transform: scale(1.2);
+}
+
+.img-24h {
+    margin-left: 163px;
+}
+
+.img-24h > img {
+    margin-top: 20px;
+    width: 20px; /* Define a largura das imagens */
+    height: 25px; /* Define a altura das imagens */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+}
+/* pop-up sucesso */
+.popup-mask{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(3px);
+  visibility:hidden;opacity:0;transition:.25s;z-index:1200;
+}
+.popup-mask.show{visibility:visible;opacity:1}
+.popup-box{
+  background:#fff;border-radius:12px;padding:36px 32px;width:90%;max-width:350px;
+  text-align:center;box-shadow:0 6px 22px rgba(0,0,0,.25);
+}
+.popup-box h3{font-size:24px;font-weight:600;margin-bottom:12px;color:#001FBD}
+.popup-box p {font-size:16px;margin-bottom:26px}
+.popup-box button{
+  background:#FF4F5A;color:#fff;border:0;border-radius:6px;font-weight:500;
+  padding:11px 32px;font-size:16px;cursor:pointer
+}
+
+/* responsivo */
 @media(max-width:480px){
   .wizard-wrapper{padding:32px 22px}
   .footer{gap:24px;padding:28px}
