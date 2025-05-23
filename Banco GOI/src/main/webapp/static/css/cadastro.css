@@ -1,82 +1,87 @@
-* {
-    box-sizing: border-box;
-  }
+/* ------------------  RESET + TIPOGRAFIA  ------------------ */
+*{margin:0;padding:0;box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 
-  body {
-    font-family: 'Roboto Slab', serif;
-    background-color: #f3f3f3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+html,body{height:100%}
+body{
+  font-family:'Outfit',sans-serif;
+  display:flex;flex-direction:column;           /* header / main / footer */
+  background:#F1F2F4;
+}
 
+/* ------------------  HEADER  ------------------ */
+header{
+  height:56px;background:#fff;
+  display:flex;align-items:center;
+  padding:0 30px;box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.icone-goi{height:52px;width:52px}
+header h1{margin-left:12px;font-size:26px;font-weight:500;color:#000}
 
-  .container {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
+/* ------------------  MAIN: centra o wizard  ------------------ */
+.container-principal{
+  flex:1;                                        /* ocupa “miolo” */
+  display:flex;align-items:center;justify-content:center;
+  padding:40px 20px;
+}
 
-  .logo {
-    display: block;
-    margin: 0 auto 20px;
-    max-width: 200px;
-    height: auto;
-  }
+/* ------------------  WIZARD CARD  ------------------ */
+.wizard-wrapper{
+  width:100%;max-width:440px;
+  background:#fff;border-radius:12px;
+  padding:40px 32px;             /* +laterais p/ mobile */
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+.logo-center{display:block;height:60px;margin:0 auto 24px}
 
-  .titulo {
-    text-align: left;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
+.titulo   {font-size:24px;font-weight:600;text-align:center;margin-bottom:6px}
+.subtitulo{font-size:14px;color:#666;text-align:center;margin-bottom:24px}
 
-  .subtitulo {
-    text-align: left;
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 24px;
-  }
+/* ----- barra de progresso ----- */
+progress{
+  width:100%;height:6px;margin-bottom:24px;appearance:none
+}
+progress::-webkit-progress-bar   {background:#e0e0e0;border-radius:4px}
+progress::-webkit-progress-value {background:#FF4F5A;border-radius:4px}
 
-  label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
+/* ----- fieldsets ----- */
+fieldset{border:0;display:none;animation:fade .25s}
+fieldset.active{display:block}
+@keyframes fade{from{opacity:.35}to{opacity:1}}
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="date"],s
-  button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 18px;
-    border-radius: 4px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+legend{font-weight:600;font-size:18px;margin-bottom:18px}
 
-  }
+/* ----- inputs ----- */
+label{display:block;margin-bottom:6px;font-weight:500}
+input{
+  width:100%;padding:13px 14px;margin-bottom:20px;
+  border:1px solid #c4c4c4;border-radius:6px;font-size:15px;
+}
+input:focus{outline:none;border-color:#001FBD;box-shadow:0 0 0 2px #001fbd22}
 
-  /* Inputs */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"] {
-    border: 1px solid #ccc;
-  }
+/* ----- botões ----- */
+button{
+  padding:11px 26px;font-size:16px;font-weight:500;
+  border:0;border-radius:6px;cursor:pointer;transition:opacity .2s
+}
+.btn-principal,#next{background:#FF4F5A;color:#fff}
+#prev{background:#ddd;color:#333}
+button:hover{opacity:.9}
+#prev:disabled{opacity:.5;cursor:not-allowed}
 
-  button {
-    background-color: #FF4F5A;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
+.wizard-nav{display:flex;justify-content:space-between;gap:14px;margin-top:6px}
 
-  button:hover {
-    background-color: #7c272d;
-  }
+/* ------------------  FOOTER  ------------------ */
+.footer{
+  background:#3B3B3B;color:#DDD;
+  display:flex;flex-wrap:wrap;gap:40px;
+  padding:32px 65px;font-size:14px
+}
+.footer__section h4{color:#fff;font-weight:550;margin-bottom:8px}
+.footer__section p{line-height:1.4;color:#CCC}
+
+/* ------------------  RESPONSIVO  ------------------ */
+@media(max-width:480px){
+  .wizard-wrapper{padding:32px 22px}
+  .footer{gap:24px;padding:28px}
+}

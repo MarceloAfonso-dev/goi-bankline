@@ -1,42 +1,102 @@
 <!DOCTYPE html>
-<<html lang="pt-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cadastro • GOI Bank</title>
     <link rel="stylesheet" href="/static/css/cadastro.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-<div class="container">
-    <img src="logo.png" alt="Logo" class="logo">
 
-    <h2 class="titulo">Abra sua conta</h2>
-    <p class="subtitulo">Leva apenas alguns minutos.</p>
+<header>
+    <img src="/static/img/goi-icon-header.png" alt="Logo GOI" class="icone-goi">
+    <h1>GOI Bank</h1>
+</header>
 
-    <form action="/cadastro" method="post">
-        <label for="nome">Nome completo</label>
-        <input type="text" id="nome" name="nome" required>
+<main class="container-principal">
+    <div class="wizard-wrapper">
+        <img src="/static/img/goi-icon-header.png" alt="Logo" class="logo-center">
 
-        <label for="cpf">CPF</label>
-        <input type="text" id="cpf" name="cpf" required>
+        <h2 class="titulo">Abra sua conta</h2>
+        <p  class="subtitulo">Leva apenas alguns minutos.</p>
 
-        <label for="dataNascimento">Data de Nascimento</label>
-        <input type="date" id="dataNascimento" name="dataNascimento" required>
+        <form id="wizard" action="/cadastro" method="post" novalidate>
+            <progress id="progress" value="1" max="4"></progress>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+            <!-- PASSO 1 -->
+            <fieldset data-step="1" class="active">
+                <legend>Seus dados</legend>
 
-        <label for="celular">Celular</label>
-        <input type="tel" id="celular" name="celular" required>
+                <label for="nome">Nome completo</label>
+                <input id="nome" name="nome" type="text" required placeholder="Ex.: Ana Silva">
 
-        <label for="cep">CEP</label>
-        <input type="text" id="cep" name="cep" required>
+                <label for="cpf">CPF</label>
+                <input id="cpf" name="cpf" type="text" maxlength="14" required placeholder="Somente números">
 
-        <button type="submit">Continuar</button>
-    </form>
-</div>
-</body>
+                <label for="dataNascimento">Data de nascimento</label>
+                <input id="dataNascimento" name="dataNascimento" type="date" required>
+            </fieldset>
+
+            <!-- PASSO 2 -->
+            <fieldset data-step="2">
+                <legend>Contato</legend>
+
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" required placeholder="voce@email.com">
+
+                <label for="celular">Celular (11 dígitos)</label>
+                <input id="celular" name="celular" type="tel" pattern="\d{11}" maxlength="11"
+                       required placeholder="11987654321">
+
+                <label for="cep">CEP</label>
+                <input id="cep" name="cep" type="text" pattern="\d{8}" maxlength="8"
+                       required placeholder="00000000">
+            </fieldset>
+
+            <!-- PASSO 3 -->
+            <fieldset data-step="3">
+                <legend>Segurança</legend>
+
+                <label for="senha">Senha (6 dígitos)</label>
+                <input id="senha" name="senha" type="password"
+                       pattern="\d{6}" minlength="6" maxlength="6" required placeholder="******">
+
+                <label for="confirma">Confirmar senha</label>
+                <input id="confirma" type="password"
+                       pattern="\d{6}" minlength="6" maxlength="6" required>
+            </fieldset>
+
+            <!-- PASSO 4 -->
+            <fieldset data-step="4">
+                <legend>Revise seus dados</legend>
+                <div id="resumo"></div>
+
+                <button type="submit" class="btn-principal">Criar conta</button>
+            </fieldset>
+
+            <div class="wizard-nav">
+                <button type="button" id="prev">Voltar</button>
+                <button type="button" id="next">Próximo</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer__section">
+        <h4>Banco GOI</h4>
+        <p>Rua Casa da Atriz, 969 – Vila Olímpia<br>Horário: 10h às 17h</p>
+    </div>
+    <div class="footer__section">
+        <h4>Atendimento</h4>
+        <p>Central 4004 123456</p>
+    </div>
+    <div class="footer__section">
+        <h4>SAC</h4>
+        <p>0800 123 1234 &nbsp;|&nbsp; Ouvidoria 0800 123 1234</p>
+    </div>
+</footer>
+
 <script src="/static/js/cadastro.js"></script>
+</body>
 </html>

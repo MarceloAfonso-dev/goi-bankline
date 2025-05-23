@@ -104,7 +104,7 @@
         <version>${compiler.plugin.version}</version>
         <configuration>
           <!-- release cobre source/target em JDK 9+ -->
-          <release>${maven.compiler.release}</release>
+          <release>${maven.compiler.release}</release><source>8</source><target>8</target>
         </configuration>
       </plugin>
 

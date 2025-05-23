@@ -1,79 +1,103 @@
 package br.com.goibankline.servlet;
 
-import br.com.goibankline.dao.ClienteDAO;
-import br.com.goibankline.model.Cliente;
+import br.com.goibankline.dao.*;
+import br.com.goibankline.model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Random;
 
 @WebServlet("/cadastro")
 public class CadastroServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getRequestDispatcher("/templates/cadastro.html").forward(request, response);
+    private final ClienteDAO clienteDAO         = new ClienteDAO();
+    private final ContaDAO   contaDAO           = new ContaDAO();
+    private final TransferenciaDAO transfDAO    = new TransferenciaDAO();
+
+    /** utilitário simples p/ gerar conta numérica de 10 dígitos */
+    private String gerarNumeroConta() {
+        Random r = new Random();
+        StringBuilder sb = new StringBuilder(10);
+        for (int i = 0; i < 10; i++) sb.append(r.nextInt(10));
+        return sb.toString();
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String nomeCompleto = request.getParameter("nome");
-        String cpf = request.getParameter("cpf");
-        String dataNascimentoStr = request.getParameter("dataNascimento");
-        String email = request.getParameter("email");
-        String celular = request.getParameter("celular");
-        String cep = request.getParameter("cep");
+        req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
+    }
 
-        if (dataNascimentoStr == null || dataNascimentoStr.isEmpty()) {
-            request.setAttribute("errorMessage", "Todos os campos são obrigatórios!");
-            request.getRequestDispatcher("/templates/cadastro.html").forward(request, response);
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        /* ---------- 1) validação básica ---------- */
+        String nomeCompleto       = req.getParameter("nome");
+        String cpf                = req.getParameter("cpf");
+        String dataNascStr        = req.getParameter("dataNascimento");
+        String email              = req.getParameter("email");
+        String celular            = req.getParameter("celular");
+        String cep                = req.getParameter("cep");
+        String senha              = req.getParameter("senha");     // novo campo
+
+        if (nomeCompleto.trim().isEmpty() || cpf.trim().isEmpty() || dataNascStr.trim().isEmpty() ||
+                email.trim().isEmpty() || celular.trim().isEmpty() || cep.trim().isEmpty() || senha.trim().isEmpty()) {
+
+            req.setAttribute("errorMessage", "Todos os campos são obrigatórios.");
+            req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
             return;
         }
 
-        if (cep == null || cep.isEmpty()) {
-            request.setAttribute("errorMessage", "Todos os campos são obrigatórios!");
-            request.getRequestDispatcher("/templates/cadastro.html").forward(request, response);
-            return;
-        }
-
-        if (nomeCompleto == null || nomeCompleto.isEmpty() ||
-                cpf == null || cpf.isEmpty() ||
-                email == null || email.isEmpty() ||
-                celular == null || celular.isEmpty()) {
-            request.setAttribute("errorMessage", "Todos os campos são obrigatórios!");
-            request.getRequestDispatcher("/templates/cadastro.html").forward(request, response);
-            return;
-        }
-
-        String[] partesNome = nomeCompleto.trim().split("\\s+", 2);
-        String nome = partesNome[0];
-        String sobrenome = partesNome.length > 1 ? partesNome[1] : "";
-
-        LocalDate dataNascimento = LocalDate.parse(dataNascimentoStr);
-
-
-        Cliente cliente = new Cliente();
-        cliente.setNome(nome);
-        cliente.setSobrenome(sobrenome);
-        cliente.setCpf(cpf);
-        cliente.setDataNascimento(dataNascimento);
-        cliente.setEmail(email);
-        cliente.setCelular(celular);
-        cliente.setCep(cep);
+        /* ---------- 2) quebra nome / cria Cliente ---------- */
+        String[] partes = nomeCompleto.trim().split("\\s+", 2);
+        Cliente cli = new Cliente();
+        cli.setNome(partes[0]);
+        cli.setSobrenome(partes.length > 1 ? partes[1] : "");
+        cli.setCpf(cpf);
+        cli.setDataNascimento(LocalDate.parse(dataNascStr));
+        cli.setEmail(email);
+        cli.setCelular(celular);
+        cli.setCep(cep);
 
         try {
-            ClienteDAO clienteDAO = new ClienteDAO();
-            clienteDAO.salvar(cliente); // Salva o cliente no banco de dados
-            request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
+            int idGerado = clienteDAO.salvarRetornandoId(cli);   // ⬅ altera ClienteDAO p/ devolver a PK
+            cli.setId(idGerado);
+
+            /* ---------- 3) cria Conta associada ---------- */
+            Conta conta = new Conta();
+            conta.setCliente(cli);
+            conta.setNumeroConta(gerarNumeroConta());
+            conta.setSenha(senha);                               // avalie criptografar
+            conta.setSaldo(BigDecimal.ZERO);                     // saldo inicial 0
+            conta.setLimiteCredito(BigDecimal.ZERO);
+            conta.setDataCriacao(LocalDate.now());
+
+            contaDAO.inserir(conta);
+
+            /* ---------- 4) crédito-bônus ---------- */
+            boolean ok = transfDAO.transferir(
+                    "66666666666",   // CPF (ou crie um CONST) da conta-origem
+                    cpf,
+                    new BigDecimal("500")
+            );
+
+            if (!ok) {
+                req.setAttribute("errorMessage",
+                        "Conta criada, mas houve falha ao creditar o bônus. Contate o suporte.");
+            } else {
+                req.setAttribute("successMessage", "Conta criada com sucesso! R$ 500 já foram creditados.");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Erro ao salvar os dados no banco de dados.");
+            req.setAttribute("errorMessage", "Erro inesperado no cadastro. Tente novamente.");
         }
 
-        request.getRequestDispatcher("/templates/cadastro.html").forward(request, response);
+        req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
     }
 }
