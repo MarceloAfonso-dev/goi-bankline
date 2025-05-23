@@ -156,61 +156,72 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/* =========================================================
+   POP-UPS DA SIDEBAR  —  PAGAMENTOS, INVESTIMENTOS, PRODUTOS
+   ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   const itensSidebar = document.querySelectorAll('.sidebar__list li');
+
+  // mapeia id do popup ⇢ elemento
   const popups = {
+    pagamentos:    document.getElementById('popup-pagamentos'),
     investimentos: document.getElementById('popup-investimentos'),
-    produtos: document.getElementById('popup-produtos')
+    produtos:      document.getElementById('popup-produtos')
   };
 
-  // Abrir popups ao clicar nos itens da sidebar
-  itensSidebar[2].addEventListener('click', () => {
+  /* -------- Abrir pop-ups -------- */
+  // 0 = pagamentos  |  2 = investimentos  |  3 = produtos
+  itensSidebar[0].addEventListener('click', e => {
+    e.stopPropagation();                             // impede cliques “duplos”
+    popups.pagamentos.classList.remove('hidden');
+    document.body.classList.add('popup-active');
+  });
+
+  itensSidebar[2].addEventListener('click', e => {
+    e.stopPropagation();
     popups.investimentos.classList.remove('hidden');
     document.body.classList.add('popup-active');
   });
-  itensSidebar[3].addEventListener('click', () => {
+
+  itensSidebar[3].addEventListener('click', e => {
+    e.stopPropagation();
     popups.produtos.classList.remove('hidden');
     document.body.classList.add('popup-active');
   });
 
-  // Fechar popups
-  document.querySelectorAll('.popup-close').forEach(button => {
-    button.addEventListener('click', () => {
-      const targetId = button.getAttribute('data-target');
-      popups[targetId].classList.add('hidden');
+  /* -------- Fechar pop-ups (mesmo código, mas agora vale para todos) -------- */
+  document.querySelectorAll('.popup-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const alvo = btn.dataset.target;               // ex.: "popup-pagamentos"
+      popups[alvo.replace('popup-','')].classList.add('hidden');
       document.body.classList.remove('popup-active');
     });
   });
 
-  // Fechar ao clicar fora do conteúdo
+  /* -------- Clicar fora fecha -------- */
   Object.values(popups).forEach(popup => {
-    popup.addEventListener('click', event => {
-      if (event.target === popup) {
+    popup.addEventListener('click', ev => {
+      if (ev.target === popup) {
         popup.classList.add('hidden');
         document.body.classList.remove('popup-active');
       }
     });
   });
 
-  // Seletor de imagens no popup de produtos
-  const produtosDots = document.querySelectorAll('#popup-produtos .selector-dot');
-  const produtosImage = document.getElementById('produtos-image');
-  produtosDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      produtosDots.forEach(d => d.classList.remove('active'));
-      dot.classList.add('active');
-      produtosImage.src = dot.dataset.src;
+  /* -------- Seletores de imagem (produtos & pagamentos) -------- */
+  const ativaSeletor = (popupId, imgId) => {
+    const dots  = document.querySelectorAll(`#${popupId} .selector-dot`);
+    const imgEl = document.getElementById(imgId);
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        dots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        imgEl.src = dot.dataset.src;
+      });
     });
-  });
-});
-
-document.querySelectorAll('.popup-close').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const targetId = btn.dataset.target;
-    const popup = document.getElementById(targetId);
-    popup.classList.add('hidden');
-    document.body.classList.remove('popup-active');
-  });
+  };
+  ativaSeletor('popup-produtos',   'produtos-image');
+  ativaSeletor('popup-pagamentos', 'pagamentos-image');
 });
 
 document.addEventListener('DOMContentLoaded', () => {
