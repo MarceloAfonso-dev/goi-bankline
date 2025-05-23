@@ -2,6 +2,7 @@ package br.com.goibankline.servlet;
 
 import br.com.goibankline.dao.CpfLiberadoDAO;
 import br.com.goibankline.dao.ConnectionFactory;
+import br.com.goibankline.model.Simulacao;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -18,18 +19,27 @@ public class SimuladorServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req,
-                          HttpServletResponse resp)
-            throws ServletException, IOException {
+                          HttpServletResponse resp) throws ServletException, IOException {
 
-        /* ----- JSON recebido do front-end ----- */
-        br.com.goibankline.model.Simulacao in =
-                gson.fromJson(req.getReader(),
-                        br.com.goibankline.model.Simulacao.class);
+        /* ────── 1) Lê e valida o JSON recebido ────── */
+        Simulacao in = gson.fromJson(req.getReader(), Simulacao.class);
 
-        String  cpf   = in.getCpf();          // só números
-        double  renda = in.getRendaMensal();  // já vem como número
+        if (in == null) {
+            enviarErro(resp, HttpServletResponse.SC_BAD_REQUEST, "JSON mal-formado");
+            return;
+        }
 
-        /* ----- consulta a tabela cpfs_liberados ----- */
+        String cpfBruto = in.getCpf() == null ? "" : in.getCpf();
+        String cpf      = cpfBruto.replaceAll("\\D", "");   // só números
+        double renda    = in.getRendaMensal();
+
+        if (cpf.length() != 11 || renda <= 0) {
+            enviarErro(resp, HttpServletResponse.SC_BAD_REQUEST,
+                    "CPF ou renda inválidos");
+            return;
+        }
+
+        /* ────── 2) Verifica se o CPF está liberado ────── */
         boolean liberado;
         try (Connection conn = ConnectionFactory.getConnection()) {
             liberado = new CpfLiberadoDAO(conn).cpfTemNomeLimpo(cpf);
@@ -37,18 +47,30 @@ public class SimuladorServlet extends HttpServlet {
             throw new ServletException("Erro de banco", e);
         }
 
-        if (!liberado) {                      // 403 – CPF sem limite
-            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            resp.setContentType("application/json;charset=UTF-8");
-            resp.getWriter().write("{\"erro\":\"CPF sem limite disponível\"}");
+        if (!liberado) {
+            enviarErro(resp, HttpServletResponse.SC_FORBIDDEN,
+                    "CPF sem limite disponível");
             return;
         }
 
-        /* ----- CPF OK – calcula limite e devolve 200 OK ----- */
-        double limite = renda * 0.20;         // 20 % da renda
-        in.setLimite(limite);
+        /* ────── 3) Calcula o limite (20 % da renda) ────── */
+        double limite = Math.round(renda * 0.20 * 100) / 100.0; // 2 casas decimais
 
+        /* monta a resposta */
+        Simulacao out = new Simulacao();
+        out.setCpf(cpf);               // devolve já “limpo”
+        out.setRendaMensal(renda);
+        out.setLimite(limite);
+
+        resp.setStatus(HttpServletResponse.SC_OK);
         resp.setContentType("application/json;charset=UTF-8");
-        resp.getWriter().write(gson.toJson(in));
+        resp.getWriter().write(gson.toJson(out));
+    }
+
+    /* utilitário para enviar JSON {"erro": "..."} */
+    private void enviarErro(HttpServletResponse resp, int status, String msg) throws IOException {
+        resp.setStatus(status);
+        resp.setContentType("application/json;charset=UTF-8");
+        resp.getWriter().write("{\"erro\":\"" + msg + "\"}");
     }
 }

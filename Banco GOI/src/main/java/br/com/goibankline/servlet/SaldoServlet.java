@@ -39,7 +39,7 @@ public class SaldoServlet extends HttpServlet {
                 //BigDecimal limiteDisp = conta.getLimiteDisponivel() != null
                 //        ? conta.getLimiteDisponivel()
                 //        : new BigDecimal("300.00"); // valor simulado
-                BigDecimal limiteDisp = new BigDecimal("300.00"); // valor simulado
+                BigDecimal limiteDisp = new BigDecimal("00.00"); // valor simulado
                 json.addProperty("limiteDisponivel", limiteDisp.toPlainString());
 
                 // LIMITE no cartão (simulado caso não exista no seu model)
@@ -53,7 +53,7 @@ public class SaldoServlet extends HttpServlet {
                 //BigDecimal valorFatura = conta.getValorFatura() != null
                 //        ? conta.getValorFatura()
                 //        : new BigDecimal("300.00");
-                BigDecimal valorFatura = new BigDecimal("300.00");
+                BigDecimal valorFatura = new BigDecimal("00.00");
                 json.addProperty("valorFatura", valorFatura.toPlainString());
 
             } else {
