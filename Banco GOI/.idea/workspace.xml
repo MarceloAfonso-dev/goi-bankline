@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd4d6eb-5eab-4d8b-bfaa-1d5befe914a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Banco GOI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Banco GOI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SaldoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SaldoServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SimuladorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/SimuladorServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/landing-page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/landing-page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/logs/access_log.2025-05-22" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/logs/access_log.2025-05-22" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/cadastro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/cadastro.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

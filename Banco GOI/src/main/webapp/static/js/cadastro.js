@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
       confirmButtonText:'Ir para login',
       confirmButtonColor:'#FF4F5A',
       backdrop:'rgba(0,0,0,.55)'
-    }).then(()=> location.href='/login');   // ajusta rota conforme projeto
+    }).then(()=> location.href='/');   // ajusta rota conforme projeto
   }
 
   if(new URLSearchParams(location.search).get('sucesso')==='1'){
