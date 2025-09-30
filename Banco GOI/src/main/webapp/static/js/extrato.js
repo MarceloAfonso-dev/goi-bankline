@@ -23,9 +23,32 @@ document.addEventListener("DOMContentLoaded", () => {
     Math.abs(v).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
 
   const fmtDia = iso => {
-    const [y,m,d] = iso.split("-");
-    return new Date(y, m-1, d).toLocaleDateString(
-             "pt-BR", { day:"numeric", month:"long" });
+    if (!iso || typeof iso !== 'string') {
+      return 'Data inválida';
+    }
+
+    const parts = iso.split("-");
+    if (parts.length !== 3) {
+      return 'Data inválida';
+    }
+
+    const [y, m, d] = parts;
+    const year = parseInt(y, 10);
+    const month = parseInt(m, 10);
+    const day = parseInt(d, 10);
+
+    // Verifica se os valores são números válidos
+    if (isNaN(year) || isNaN(month) || isNaN(day)) {
+      return 'Data inválida';
+    }
+
+    // Verifica se a data é válida
+    const date = new Date(year, month - 1, day);
+    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+      return 'Data inválida';
+    }
+
+    return date.toLocaleDateString("pt-BR", { day:"numeric", month:"long" });
   };
 
   /* ======================================================
@@ -119,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // clicável no logo (img) e no título (h1) dentro do header
-  const logoImg  = document.querySelector("header .icone-goi");
+  const logoImg  = document.querySelector("header .icone-goia");
   const logoText = document.querySelector("header h1");
 
   [logoImg, logoText].forEach(el => {
@@ -136,22 +159,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mensagens = {
     1: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😞 Sentimos muito por não ter atendido às suas expectativas. Estamos ouvindo você e trabalhando para melhorar!",
       icon: "warning"
     },
     2: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😐 Obrigado pelo seu retorno! Vamos buscar tornar sua experiência ainda melhor.",
       icon: "info"
     },
     3: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😊 Que bom que você está satisfeito! Seguimos comprometidos com você.",
       icon: "success"
     },
     4: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😍 Uau! Ficamos muito felizes em saber que você está muito satisfeito. Obrigado pela confiança!",
       icon: "success"
     }

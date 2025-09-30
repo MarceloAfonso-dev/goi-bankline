@@ -104,37 +104,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ───────── POP-UP SUCESSO ───────── */
   function popupSucesso(){
-    Swal.fire({
-      title: 'Conta criada com sucesso!',
-      html : `<img src="/static/img/mascote-feliz.png"
-                    style="width:120px;height:120px;border-radius:50%;margin-bottom:12px">
-              <p>Bem-vindo(a) ao <strong>GOI Bank</strong>!<br>Agora é só fazer o login e aproveitar.</p>`,
-      confirmButtonText:'Ir para login',
-      confirmButtonColor:'#FF4F5A',
-      backdrop:'rgba(0,0,0,.55)'
-    }).then(()=> {
-      // Redireciona para a página de login/index da aplicação
-      window.location.href = window.location.origin + '/index.html';
-    });
+    console.log('✅ Função popupSucesso chamada!');
+
+    // Aplica blur no body
+    document.body.classList.add('popup-blur');
+
+    // Mostra o popup customizado
+    const popup = document.getElementById('popupSucesso');
+    if (popup) {
+      console.log('✅ Popup encontrado, exibindo...');
+      popup.classList.add('show');
+
+      // Adiciona evento ao botão OK
+      const btnOk = document.getElementById('btnOk');
+      if (btnOk) {
+        btnOk.onclick = function() {
+          console.log('✅ Botão OK clicado, redirecionando...');
+          // Remove o blur e popup
+          document.body.classList.remove('popup-blur');
+          popup.classList.remove('show');
+
+          // Redireciona para a página inicial (index)
+          setTimeout(() => {
+            window.location.href = window.location.origin + '/';
+          }, 200);
+        };
+        console.log('✅ Event listener do botão OK configurado');
+      } else {
+        console.error('❌ Botão OK não encontrado!');
+      }
+    } else {
+      console.error('❌ Popup não encontrado!');
+    }
   }
 
-  if(new URLSearchParams(location.search).get('sucesso')==='1'){
-    popupSucesso();
-  }
+  // Verifica parâmetro de sucesso na URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const sucessoParam = urlParams.get('sucesso');
 
-  /* ───────── NPS (SweetAlert) ───────── */
-  document.querySelectorAll('.face-item').forEach(face=>{
-    face.addEventListener('click',()=>{
-      const nota=+face.dataset.feedback;
-      const map={
-        1:['😞','Sentimos muito por não atender às suas expectativas.'],
-        2:['😐','Obrigado pelo retorno! Vamos melhorar.'],
-        3:['😊','Que bom que está satisfeito!'],
-        4:['😍','Uau! Muito obrigado pela confiança!']
-      };
-      const [emoji,msg]=map[nota];
-      Swal.fire({title:'Banco GOI informa',text:`${emoji} ${msg}`,icon:'info',confirmButtonText:'Fechar'});
-    });
-  });
+  if(sucessoParam === '1'){
+    setTimeout(popupSucesso, 300);
+  }
 
 });

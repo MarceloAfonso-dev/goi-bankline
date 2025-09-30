@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const logoImg  = document.querySelector('header .icone-goi');
+  const logoImg  = document.querySelector('header .icone-goia');
   const logoText = document.querySelector('header h1');
   [logoImg, logoText].forEach(el => {
     if (!el) return;
@@ -133,22 +133,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mensagens = {
     1: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😞 Sentimos muito por não ter atendido às suas expectativas. Estamos ouvindo você e trabalhando para melhorar!",
       icon: "warning"
     },
     2: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😐 Obrigado pelo seu retorno! Vamos buscar tornar sua experiência ainda melhor.",
       icon: "info"
     },
     3: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😊 Que bom que você está satisfeito! Seguimos comprometidos com você.",
       icon: "success"
     },
     4: {
-      title: "Banco GOI informa:",
+      title: "Banco GOIA informa:",
       text: "😍 Uau! Ficamos muito felizes em saber que você está muito satisfeito. Obrigado pela confiança!",
       icon: "success"
     }

@@ -46,7 +46,7 @@ public class ExtratoDadosServlet extends HttpServlet {
         List<Map<String,Object>> out = new ArrayList<>();
         for (Movimentacao m : lista) {
             Map<String,Object> o = new HashMap<>();
-            o.put("dataMovimento", m.getData().format(ISO));  // mudei de "data" para "dataMovimento"
+            o.put("data", m.getData().format(ISO));  // corrigido de "dataMovimento" para "data"
             o.put("descricao", m.getDescricao());
             o.put("valor"    , m.getValor());      // BigDecimal vira número
             o.put("tipo"     , m.getTipo());       // opcional no front

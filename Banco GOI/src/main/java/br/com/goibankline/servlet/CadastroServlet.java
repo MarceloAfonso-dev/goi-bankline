@@ -82,25 +82,12 @@ public class CadastroServlet extends HttpServlet {
             conta.setCliente(cli);
             conta.setNumeroConta(gerarNumeroConta());
             conta.setSenha(senha);                    // considere hashear
-            conta.setSaldo(BigDecimal.ZERO);
+            conta.setSaldo(new BigDecimal("1500"));   // SALDO INICIAL DE R$ 1.500 (BÔNUS ÚNICO)
             conta.setLimiteCredito(BigDecimal.ZERO);
             conta.setDataCriacao(LocalDate.now());
 
             contaDAO.inserir(conta);
-
-            /* ---------- 4) bônus de R$ 500 ---------- */
-            boolean bonusOK = transfDAO.transferir(
-                    "66666666666",      // CPF da conta de origem (ex.: conta interna)
-                    cpf,
-                    new BigDecimal("500")
-            );
-
-            if (bonusOK) {
-                okCadastro = true;      // TUDO CERTO!
-            } else {
-                req.setAttribute("errorMessage",
-                        "Conta criada, mas houve falha ao creditar o bônus. Contate o suporte.");
-            }
+            okCadastro = true;  // Conta criada com sucesso com bônus de R$ 1.500
 
         } catch (Exception e) {        // SQL ou validações
             e.printStackTrace();

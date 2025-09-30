@@ -309,7 +309,7 @@ padding: 0 20px;
     border-radius: 10px;
   }
 
-  .goi-ultra {
+  .goia-ultra {
     display: flex;
     background-color: #ff4b5c;
     color: white;
@@ -325,16 +325,16 @@ padding: 0 20px;
     border-radius: 10px;
   }
 
-  .goi-texto h2 {
+  .goia-texto h2 {
     font-size: 26px;
     margin-bottom: 10px;
   }
 
-  .goi-texto p {
+  .goia-texto p {
     font-size: 16px;
   }
 
-  .goi-texto a {
+  .goia-texto a {
     display: inline-block;
     margin-top: 10px;
     color: white;

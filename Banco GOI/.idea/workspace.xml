@@ -5,29 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd4d6eb-5eab-4d8b-bfaa-1d5befe914a9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/production.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/dao/MovimentacaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/dao/MovimentacaoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/dao/TransferenciaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/dao/TransferenciaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insert/Clientes.sql" beforeDir="false" afterPath="$PROJECT_DIR$/insert/Clientes.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/CadastroServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/CadastroServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/ExtratoDadosServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/goibankline/servlet/ExtratoDadosServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/production.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/production.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/img/goi-icon-header.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/img/goi-icon-header.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/cadastro.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/cadastro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/landing-page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/landing-page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/transferencia.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/transferencia.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/img/goi-icon-header.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/img/goia-icon-header.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/cadastro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/cadastro.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/extrato.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/extrato.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/transferencia.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/transferencia.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/cadastro.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/extrato.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/extrato.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/transferencia.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/transferencia.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/goibankline/dao/MovimentacaoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/goibankline/dao/MovimentacaoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/goibankline/dao/TransferenciaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/goibankline/dao/TransferenciaDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/goibankline/servlet/CadastroServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/goibankline/servlet/CadastroServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/br/com/goibankline/servlet/ExtratoDadosServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/goibankline/servlet/ExtratoDadosServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/production.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/production.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/logs/access_log.2025-09-29" beforeDir="false" afterPath="$PROJECT_DIR$/target/tomcat/logs/access_log.2025-09-29" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/tomcat/work/Tomcat/localhost/_/SESSIONS.ser" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

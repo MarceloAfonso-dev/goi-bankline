@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/insert/Clientes.sql">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/insert/Clientes.sql" />
+              <option name="originalContent" value="-- Insert Query com meu nome e dados ficticios&#10;INSERT INTO Cliente (Nome, Sobrenome, CPF, Telefone, CEP, Data_Nascimento, Email)&#10;VALUES ('Gustavo', 'Mendes dos Santos', '5075263818', '11987654321', '01167219', '2005-01-01', 'gustavo@gmail.com');&#10;&#10;-- Conta do banco para transferências de bônus&#10;INSERT INTO Cliente (Nome, Sobrenome, CPF, Telefone, CEP, Data_Nascimento, Email)&#10;VALUES ('GOI', 'Bank Sistema', '66666666666', '08001234567', '01310100', '2000-01-01', 'sistema@goibank.com');&#10;&#10;-- Update Query&#10;UPDATE Cliente&#10;SET Sobrenome = 'Mendes'&#10;WHERE Nome = 'Gustavo' AND id = 9;&#10;" />
+              <option name="updatedContent" value="-- Insert Query com meu nome e dados ficticios&#13;&#10;INSERT INTO Cliente (Nome, Sobrenome, CPF, Telefone, CEP, Data_Nascimento, Email)&#13;&#10;VALUES ('Gustavo', 'Mendes dos Santos', '5075263818', '11987654321', '01167219', '2005-01-01', 'gustavo@gmail.com');&#13;&#10;&#13;&#10;-- Conta do banco para transferências de bônus&#13;&#10;INSERT INTO Cliente (Nome, Sobrenome, CPF, Telefone, CEP, Data_Nascimento, Email)&#13;&#10;VALUES ('GOI', 'Bank Sistema', '66666666666', '08001234567', '01310100', '2000-01-01', 'sistema@goibank.com');&#13;&#10;&#13;&#10;-- Update Query&#13;&#10;UPDATE Cliente&#13;&#10;SET Sobrenome = 'Mendes'&#13;&#10;WHERE Nome = 'Gustavo' AND id = 9;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

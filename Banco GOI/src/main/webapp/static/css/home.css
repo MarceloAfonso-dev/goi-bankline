@@ -119,7 +119,7 @@ header > h1 {
     height: 20px;
 }
 
-.icone-goi {
+.icone-goia {
     height: 52px;
     width: 52px;
     margin-right: 12px;
@@ -653,7 +653,7 @@ body.popup-active {
   transition: transform .25s;
 }
 .goibot-toggler.rotated{
-  transform: rotate(360deg);                /* efeito de “X” quando aberto */
+  transform: rotate(360deg);                /* efeito de "X" quando aberto */
 }
 
 /* --- JANELA --------------------------------------------------------- */
