@@ -67,8 +67,8 @@ public class TransferenciaDAO {
             /* --------- 2) grava os DOIS lançamentos --------- */
             String ins =
                     "INSERT INTO Transferencia " +
-                            "(Id_Conta_Origem, Id_Conta_Destino, Valor, Data_Transferencia, " +
-                            " Tipo_Transferencia, Status) " +
+                            "(IdContaOrigem, IdContaDestino, Valor, DataTransferencia, " +
+                            " TipoTransferencia, Status) " +
                             "VALUES (?,?,?,?,?,?)";
 
             java.sql.Date hoje = new java.sql.Date(System.currentTimeMillis());
@@ -79,8 +79,8 @@ public class TransferenciaDAO {
                 st.setInt       (2, contaDestino.getIdConta());
                 st.setBigDecimal(3, valor.negate());               // -X
                 st.setDate      (4, hoje);
-                st.setString    (5, "dinheiro");
-                st.setString    (6, "concluído");
+                st.setString    (5, "PIX");
+                st.setString    (6, "CONCLUIDA");
                 st.executeUpdate();
 
                 /* lançamento POSITIVO na destinação */
@@ -88,8 +88,8 @@ public class TransferenciaDAO {
                 st.setInt       (2, contaDestino.getIdConta());
                 st.setBigDecimal(3, valor);                        // +X
                 st.setDate      (4, hoje);
-                st.setString    (5, "dinheiro");
-                st.setString    (6, "concluído");
+                st.setString    (5, "PIX");
+                st.setString    (6, "CONCLUIDA");
                 st.executeUpdate();
             }
 

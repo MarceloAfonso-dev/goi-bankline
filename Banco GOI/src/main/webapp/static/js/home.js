@@ -2,9 +2,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
-     BUSCA AGÊNCIA / CONTA — MESMA LÓGICA DO /saldo
-     ========================================================= */
-  /* =========================================================
      BUSCA AGÊNCIA / CONTA + nome do cliente
      ========================================================= */
   fetch("/conta")
@@ -28,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch(err => console.error("Falha /conta", err));
-
 
   // === 1) Referências no DOM ===
   const toggleVis        = document.getElementById("toggle-visibility");
@@ -284,4 +280,3 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleBtn.classList.remove("rotated");
   });
 });
-

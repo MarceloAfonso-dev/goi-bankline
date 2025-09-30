@@ -32,20 +32,20 @@ public class MovimentacaoDAO {
                         "                                                                            " +
                         "  /* ---------------- Transferências ---------------- */                   " +
                         "  SELECT                                                                   " +
-                        "     t.Data_Transferencia          AS data,                                " +
+                        "     t.DataTransferencia           AS data,                                " +
                         "     NULL                          AS descricao_raw,                       " +
                         "     t.Valor                       AS valor,                               " +
                         "     'Transferencia'               AS categoria,                           " +
                         "     cliOrig.Nome                  AS nome_origem,                         " +
                         "     cliDest.Nome                  AS nome_destino,                        " +
-                        "     t.Tipo_Transferencia          AS tipo_pix                             " +
+                        "     t.TipoTransferencia           AS tipo_pix                             " +
                         "  FROM Transferencia t                                                      " +
-                        "  JOIN Conta   cOrig  ON cOrig.IdConta = t.Id_Conta_Origem                  " +
+                        "  JOIN Conta   cOrig  ON cOrig.IdConta = t.IdContaOrigem                   " +
                         "  JOIN Cliente cliOrig ON cliOrig.ID   = cOrig.ID_Cliente                  " +
-                        "  JOIN Conta   cDest  ON cDest.IdConta = t.Id_Conta_Destino                " +
+                        "  JOIN Conta   cDest  ON cDest.IdConta = t.IdContaDestino                  " +
                         "  JOIN Cliente cliDest ON cliDest.ID   = cDest.ID_Cliente                  " +
-                        "  WHERE (t.Id_Conta_Origem  = ? AND t.Valor < 0)                            " +
-                        "     OR (t.Id_Conta_Destino = ? AND t.Valor > 0)                            " +
+                        "  WHERE (t.IdContaOrigem  = ? AND t.Valor < 0)                             " +
+                        "     OR (t.IdContaDestino = ? AND t.Valor > 0)                             " +
                         ") AS m                                                                     " +
                         "ORDER BY m.data DESC, m.categoria;";
 
@@ -74,17 +74,19 @@ public class MovimentacaoDAO {
                     } else { // Transferência
                         String nomeOrig = rs.getString("nome_origem");
                         String nomeDest = rs.getString("nome_destino");
-                        String tipoPix  = rs.getString("tipo_pix");          // dinheiro / Cartão de Crédito
+                        String tipoPix  = rs.getString("tipo_pix");          // PIX / TED / DOC
 
                         boolean euSouOrigem = m.getValor().signum() < 0;     // negativo = saiu $$
 
                         String desc;
                         if (euSouOrigem) {
-                            desc = "Pix " + tipoPix + " para " + nomeDest;
+                            // Transferência enviada - remover redundância "Pix PIX"
+                            desc = tipoPix + " enviado para " + nomeDest;
                             m.setTipo("Débito");
                             m.setIcone("bag.png");
                         } else {
-                            desc = "Pix " + tipoPix + " recebido de " + nomeOrig;
+                            // Transferência recebida - remover redundância "Pix PIX"
+                            desc = tipoPix + " recebido de " + nomeOrig;
                             m.setTipo("Crédito");
                             m.setIcone("pix-in.png");
                         }

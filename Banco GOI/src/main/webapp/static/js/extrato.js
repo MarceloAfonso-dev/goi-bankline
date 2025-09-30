@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   /* ======================================================
      1) SALDO ATUAL
      ====================================================== */
@@ -35,6 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderMovimentacoes(movs) {
     wrapper.innerHTML = "";           // limpa antes de renderizar
+
+    if (!movs || movs.length === 0) {
+      wrapper.innerHTML = "<p style='padding:20px; text-align:center;'>Nenhuma movimentação encontrada.</p>";
+      return;
+    }
 
     /* --- agrupa por data (yyyy-mm-dd) --- */
     const grupos = {};
@@ -167,4 +173,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
