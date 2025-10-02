@@ -76,8 +76,8 @@ public class LoginServlet extends HttpServlet {
         // Verifica se cliente está na sessão
         Cliente cliente = (Cliente) session.getAttribute("cliente");
         if (cliente == null) {
-            // Se não houver cliente, redireciona para index.html
-            response.sendRedirect(request.getContextPath() + "/index.html");
+            // Se não houver cliente, forward para index.html (mantém domínio)
+            request.getRequestDispatcher("/index.html").forward(request, response);
             return;
         }
 
@@ -145,8 +145,8 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("loginError", "Senha incorreta!");
             request.getRequestDispatcher("/templates/login.html").forward(request, response);
         } else {
-            // Senha correta: redireciona para home
-            response.sendRedirect(request.getContextPath() + "/templates/home.html");
+            // Senha correta: forward para home (mantém o domínio atual)
+            request.getRequestDispatcher("/templates/home.html").forward(request, response);
         }
     }
 

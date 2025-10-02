@@ -30,9 +30,9 @@ public class ValidarCPFServlet extends HttpServlet {
         Cliente cliente = clienteDAO.buscarPorCPF(cpf);
         if (cliente != null) {
             request.getSession().setAttribute("cliente", cliente);
-            response.sendRedirect(request.getContextPath() + "/login");
+            request.getRequestDispatcher("/login").forward(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/index.html?erro=CPF não encontrado.");
+            request.getRequestDispatcher("/index.html?erro=CPF não encontrado.").forward(request, response);
         }
     }
 }

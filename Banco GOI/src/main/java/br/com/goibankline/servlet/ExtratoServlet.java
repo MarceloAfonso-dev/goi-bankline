@@ -23,7 +23,7 @@ public class ExtratoServlet extends HttpServlet {
         Cliente cli   = (Cliente) s.getAttribute("cliente");
 
         if (cli == null) {                 // não logado → index
-            resp.sendRedirect(req.getContextPath() + "/index.html");
+            req.getRequestDispatcher("/index.html").forward(req, resp);
             return;
         }
 

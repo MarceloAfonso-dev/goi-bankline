@@ -28,7 +28,7 @@
         <div class="seta">
             <img src="/static/img/seta-entrada.svg" alt="Seta para entrar">
         </div>
-        <button class="btn-cta" onclick="window.location.href= '/cadastro'">Quero ser GOIA</button>
+        <button class="btn-cta" onclick="if(window.urlManager) { window.urlManager.navigateTo('cadastro'); } else { window.location.href='/cadastro'; }">Quero ser GOIA</button>
     </div>
 </header>
 <main>

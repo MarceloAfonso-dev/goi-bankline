@@ -27,7 +27,7 @@ public class TransferenciaServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Cliente c = (Cliente) session.getAttribute("cliente");
         if (c == null) {
-            response.sendRedirect(request.getContextPath() + "/index.html");
+            request.getRequestDispatcher("/index.html").forward(request, response);
             return;
         }
         // encaminha para o HTML estático
@@ -42,7 +42,7 @@ public class TransferenciaServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Cliente clienteOrigem = (Cliente) session.getAttribute("cliente");
         if (clienteOrigem == null) {
-            response.sendRedirect(request.getContextPath() + "/index.html");
+            request.getRequestDispatcher("/index.html").forward(request, response);
             return;
         }
 
@@ -110,10 +110,10 @@ public class TransferenciaServlet extends HttpServlet {
 
     private void redirectWithMsg(HttpServletRequest req,
                                  HttpServletResponse resp,
-                                 String msg) throws IOException {
-        String ctx = req.getContextPath();
-        String qs  = "?msg=" + URLEncoder.encode(msg, "UTF-8");
-        resp.sendRedirect(ctx + "/transferencia" + qs);
+                                 String msg) throws IOException, ServletException {
+        // Forward para a página com mensagem como query parameter
+        String qs = "?msg=" + URLEncoder.encode(msg, "UTF-8");
+        req.getRequestDispatcher("/transferencia" + qs).forward(req, resp);
     }
 
     private Conta findContaPorCliente(int idCliente) {

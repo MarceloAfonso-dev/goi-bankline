@@ -130,6 +130,24 @@
 <script src="/static/js/url-manager.js"></script>  <!-- Gerenciador de URLs dinâmicas -->
 <script src="/static/js/transferencia.js"></script>
 
+<!-- Script para mostrar mensagens do servidor -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Verifica se há mensagem via URL parameter (mantendo compatibilidade)
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+    
+    if (msg) {
+        Swal.fire({
+            title: 'Transferência',
+            text: decodeURIComponent(msg),
+            icon: msg.toLowerCase().includes('sucesso') ? 'success' : 'error',
+            confirmButtonText: 'OK'
+        });
+    }
+});
+</script>
+
 <!-- overlay de loading (fica escondido) -->
 <div id="loadingOverlay" class="overlay hidden">
     <div class="loader">

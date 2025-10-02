@@ -97,9 +97,9 @@ public class CadastroServlet extends HttpServlet {
 
         /* ---------- 5) decide resposta ---------- */
         if (okCadastro) {
-            /* redireciona p/ GET /cadastro?sucesso=1  –
+            /* forward p/ GET /cadastro?sucesso=1 para manter o domínio –
                o JS do front lê esse parâmetro e exibe o pop-up */
-            resp.sendRedirect(req.getContextPath() + "/cadastro?sucesso=1");
+            req.getRequestDispatcher("/cadastro?sucesso=1").forward(req, resp);
         } else {
             /* houve algum erro → volta para o formulário exibindo mensagens */
             req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
