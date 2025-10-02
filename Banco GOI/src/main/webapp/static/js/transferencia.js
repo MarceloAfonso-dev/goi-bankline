@@ -110,8 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (logoutBtn) {
     logoutBtn.style.cursor = 'pointer';
     logoutBtn.addEventListener('click', () => {
-      window.location.href =
-        `${location.protocol}//${location.hostname}:8080/`;
+      if (window.urlManager) {
+        window.urlManager.logout();
+      } else {
+        window.location.href = '/';
+      }
     });
   }
 
@@ -121,8 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!el) return;
     el.style.cursor = 'pointer';
     el.addEventListener('click', () => {
-      window.location.href =
-        `${location.protocol}//${location.hostname}:8080/templates/home.html`;
+      if (window.urlManager) {
+        window.urlManager.goHome();
+      } else {
+        window.location.href = '/templates/home.html';
+      }
     });
   });
 

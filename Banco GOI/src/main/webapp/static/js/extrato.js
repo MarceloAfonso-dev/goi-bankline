@@ -1,7 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ======================================================
-     1) SALDO ATUAL
+     1) SALDO ATUdocument.addEventListener("DOMContentLoaded", () => {
+  // botão de "Sair"
+  const logoutBtn = document.querySelector(".sair");
+  logoutBtn.style.cursor = "pointer";
+  logoutBtn.addEventListener("click", () => {
+    if (window.urlManager) {
+      window.urlManager.logout();
+    } else {
+      window.location.href = '/';
+    }
+  });
+
+  // clicável no logo (img) e no título (h1) dentro do header
+  const logoImg  = document.querySelector("header .icone-goia");
+  const logoText = document.querySelector("header h1");
+
+  [logoImg, logoText].forEach(el => {
+    if (!el) return;
+    el.style.cursor = "pointer";
+    el.addEventListener("click", () => {
+      if (window.urlManager) {
+        window.urlManager.goHome();
+      } else {
+        window.location.href = '/templates/home.html';
+      }
+    });
+  });
+});alho do extrato)
      ====================================================== */
   const saldoSpan = document.getElementById("saldoAtualExtrato");
   fetch("/saldo")
@@ -138,7 +165,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.querySelector(".sair");
   logoutBtn.style.cursor = "pointer";
   logoutBtn.addEventListener("click", () => {
-    window.location.href = `${location.protocol}//${location.hostname}:8080/`;
+    if (window.urlManager) {
+      window.urlManager.logout();
+    } else {
+      window.location.href = '/';
+    }
   });
 
   // clicável no logo (img) e no título (h1) dentro do header
@@ -149,7 +180,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!el) return;
     el.style.cursor = "pointer";
     el.addEventListener("click", () => {
-      window.location.href = `${location.protocol}//${location.hostname}:8080/templates/home.html`;
+      if (window.urlManager) {
+        window.urlManager.goHome();
+      } else {
+        window.location.href = '/templates/home.html';
+      }
     });
   });
 });
