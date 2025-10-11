@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <title>GOIA Bankline - Menu Inicial</title>
+    <link rel="icon" type="image/png" href="/static/img/goia-icon-header.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<header>
+    <img src="/static/img/goia-icon-header.png" alt="Logo Icone" class="icone-goia" style="width: 52px;">
+    <h1 style="font-family: 'Outfit', sans-serif; font-weight: 600; color: #ff4f5a; margin-top: 10px; font-size: 26px;">GOIA Bank</h1>
+    <nav class="menu">
+        <img src="/static/img/person.png" alt="Icone de usuário" class="icone-user">
+        <div class="dados-conta">
+            <h6 class="agencia" id="agencia">ag: 0000</h6><h6 class="conta" id="conta">c/c: 00000-0</h6>
+        </div>
+        <img src="/static/img/notifications.png" alt="Sino de notificação" class="notificacao">
+        <div class="sair">
+            <h6 class="sair-txt">Sair</h6>
+            <img src="/static/img/seta-entrada.svg" alt="Seta de sair">
+        </div>
+    </nav>
+</header>
+
+<div class="container-principal">
+    <h3 id="boasVindas">Olá Fulano, que bom te ver por aqui!</h3>
+    <img src="/static/img/visibility.png" alt="Visibilidade" class="visibilidade" id="toggle-visibility">
+    <aside class="sidebar">
+        <ul class="sidebar__list">
+            <li>
+                <img src="/static/img/barcode.png" alt="Imagem de código de barras">
+                <a href="#">pagamentos</a>
+                <img src="/static/img/arrow_right.png" alt="Seta para pagamentos" class="seta-sidebar">
+            </li>
+            <li>
+                <img src="/static/img/sync_alt.png" alt="Imagem de transferência">
+                <a href="/transferencia">transferências</a>
+                <img src="/static/img/arrow_right.png" alt="Seta para transferências" class="seta-sidebar">
+            </li>
+            <li>
+                <img src="/static/img/bar_chart_4_bars.png" alt="Imagem de gráfico">
+                <a href="#">investimentos</a>
+                <img src="/static/img/arrow_right.png" alt="Seta para investimentos" class="seta-sidebar">
+            </li>
+            <li>
+                <img src="/static/img/price_check.png" alt="Imagem de preço">
+                <a href="#">solicitar produtos</a>
+                <img src="/static/img/arrow_right.png" alt="Seta para solicitar produtos" class="seta-sidebar">
+            </li>
+            <li>
+                <img src="/static/img/export_notes.png" alt="Imagem de extrato">
+                <a href="/extrato">extrato</a>
+                <img src="/static/img/arrow_right.png" alt="Seta para extrato" class="seta-sidebar">
+            </li>
+        </ul>
+    </aside>
+    <section class="conteudo-principal">
+
+        <div class="container-saldo">
+            <h2>Saldo da Conta Corrente</h2>
+            <h1 class="saldo">R$00,00</h1>
+            <hr>
+            <div class="limite-txt">
+                <h6 class="limite">Limite disponível</h6>
+                <h6 class="limite-valor">R$00,00</h6>
+
+            </div>
+            <img src="/static/img/arrow_down.png" alt="Estender saldo" class="seta-saldo" id="toggle-saldo">
+        </div>
+
+        <div class="container-cartoes">
+            <h2>Cartões</h2>
+            <table class="cartoes__table">
+                <thead>
+                <tr>
+                    <th>Cartão</th>
+                    <th>Vencimento</th>
+                    <th>Valor (R$)</th>
+                    <th>Fatura</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="cartao__info">
+                        <img src="/static/img/cartaoBlack.png" alt="" class="cartao__icon">
+                        <div>
+                            <a href="#" class="cartao__link">
+                                Goia Black Visa Platinum – final 1234
+                            </a>
+                            <div class="cartao__sub">
+                                Limite disponível: <span class="limite-cartao">R$ 00,00</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>23/05/2025</td>
+                    <td class="valor-fatura">R$ 00,00</td>
+                    <td>aberta</td>
+                </tr>
+                <!-- repetir <tr> para cada cartão -->
+                </tbody>
+            </table>
+            <img src="/static/img/arrow_down.png" alt="Estender saldo" class="seta-cartoes" id="toggle-cartoes">
+        </div>
+
+        <div class="container-avisos">
+            <img src="/static/img/info.png" alt="Icone de aviso">
+            <h3>Movimente sua conta para ganhar mais limite de crédito.</h3>
+        </div>
+
+    </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer__section">
+        <h4>Banco GOIA</h4>
+        <p>
+            Rua Casa da Atriz, 969, Vila Olímpia<br>
+            Horário de funcionamento: 10h às 17h
+        </p>
+    </div>
+    <div class="footer__section">
+        <h4>Atendimento</h4>
+        <p>
+            Central de Relacionamento<br>
+            Ligue no 4004 123456
+        </p>
+    </div>
+    <div class="footer__section">
+        <h4>SAC</h4>
+        <p>
+            Para registrar sugestões,<br>
+            reclamações ou elogios:<br>
+            0800 123 1234
+        </p>
+        <p>
+            Ouvidoria:<br>
+            0800 123 1234
+        </p>
+    </div>
+    <!-- NPS existente -->
+    <div class="container-nps">
+        <div class="nps-header">
+            <h5>Avalie o nosso serviço</h5>
+            <hr>
+        </div>
+        <div class="faces">
+            <div class="face-item" data-feedback="1">
+                <img src="/static/img/mau-rosa.png" alt="Insatisfeito">
+                <h6>Insatisfeito</h6>
+            </div>
+            <div class="face-item" data-feedback="2">
+                <img src="/static/img/medio-rosa.png" alt="Indiferente">
+                <h6>Indiferente</h6>
+            </div>
+            <div class="face-item" data-feedback="3">
+                <img src="/static/img/ok-rosa.png" alt="Satisfeito">
+                <h6>Satisfeito</h6>
+            </div>
+            <div class="face-item" data-feedback="4">
+                <img src="/static/img/feliz-rosa.png" alt="Muito satisfeito">
+                <h6>Muito satisfeito</h6>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="img-24h">
+        <img src="/static/img/24h.png" alt="24H">
+    </div>
+</footer>
+
+<div id="popup-investimentos" class="popup hidden">
+    <div class="popup-content">
+        <button class="popup-close" data-target="popup-investimentos">X</button>
+        <img src="/static/img/investimentos.png" alt="Investimentos" style="width:100%; border-radius:8px;">
+        <h3>Área de Investimentos</h3>
+        <p>Opere uma seleção premium de ativos, com foco em alta rentabilidade e segurança.<br><strong>Serviço em desenvolvimento, disponível a partir de 26/05/2026.</strong></p>
+    </div>
+</div>
+
+<!-- Popup para Solicitar Produtos -->
+<div id="popup-produtos" class="popup hidden">
+    <div class="popup-content">
+        <button class="popup-close" data-target="popup-produtos">X</button>
+        <div class="popup-image-container">
+            <img id="produtos-image" src="/static/img/cartao-especifico.png" alt="Solicitar Produtos" style="width:100%; border-radius:8px;">
+            <div class="image-selector">
+                <span class="selector-dot active" data-src="/static/img/pagamento-fatura.png"></span>
+                <span class="selector-dot" data-src="/static/img/cartao-especifico.png"></span>
+            </div>
+        </div>
+        <h3>Solicitação de Produtos</h3>
+        <p>Conheça e solicite novos produtos financeiros, como seguros, consórcios e investimentos personalizados.<br><strong>Em desenvolvimento, disponível a partir de 26/05/2026.</strong></p>
+    </div>
+</div>
+
+<div id="popup-pagamentos" class="popup hidden">
+    <div class="popup-content">
+        <button class="popup-close" data-target="popup-pagamentos">X</button>
+        <div class="popup-image-container">
+            <img id="pagamentos-image" src="/static/img/pgto1.png" alt="Solicitar Produtos" style="width:100%; border-radius:8px;">
+            <div class="image-selector">
+                <span class="selector-dot active" data-src="/static/img/pgto1.png"></span>
+                <span class="selector-dot" data-src="/static/img/pgto2.png"></span>
+                <span class="selector-dot" data-src="/static/img/pgto3.png"></span>
+                <span class="selector-dot" data-src="/static/img/pgto4.png"></span>
+                <span class="selector-dot" data-src="/static/img/pgto5.png"></span>
+                <span class="selector-dot" data-src="/static/img/pgto6.png"></span>
+            </div>
+        </div>
+        <h3>Área de Pagamentos</h3>
+        <p>Pague suas contas com saldo em conta ou com limite do cartão.<br><strong>Em desenvolvimento, disponível a partir de 26/05/2026.</strong></p>
+    </div>
+</div>
+
+<script src="/static/js/url-manager.js"></script>  <!-- Gerenciador de URLs dinâmicas -->
+<script src="/static/js/home.js"></script>
+
+<!-- BOTÃO/BOLINHA -->
+<button id="goibot-toggle" class="goibot-toggler" aria-label="Abrir chat">
+    <img src="/static/img/bussines.png" alt="" width="30">
+</button>
+
+<!-- FRAME DO CHAT -->
+<div id="goibot-frame" class="goibot-frame" hidden>
+    <header class="goibot-header">
+        <span>Gerente Goizinha - 1.0</span>
+        <button id="goibot-close" aria-label="Fechar chat">✕</button>
+    </header>
+
+    <!-- Streamlit embutido -->
+    <iframe
+            src="https://jshdodfodjshfdsfopiduio.streamlit.app/?embed=true"
+            style="width:420px;height:520px;border:0;"
+            loading="lazy"
+            allow="clipboard-write"
+    ></iframe>
+</div>
+
+
+</body>
+
+
+
+</html>
