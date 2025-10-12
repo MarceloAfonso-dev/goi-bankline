@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.urlManager) {
         window.urlManager.logout();
       } else {
-        window.location.href = '/';
+        window.location.href = '../index.html';
       }
     });
   }
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.urlManager) {
         window.urlManager.goHome();
       } else {
-        window.location.href = '/templates/home.html';
+        window.location.href = 'home.html';
       }
     });
   });

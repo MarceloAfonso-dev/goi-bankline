@@ -280,9 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
             console.log('🏠 Redirecionando para home...');
             if (window.urlManager) {
-              window.urlManager.navigateTo('/');
+              window.urlManager.navigateTo('index.html');
             } else {
-              window.location.href = '/';
+              window.location.href = '../index.html';
             }
           }, 300);
         };
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Fallback - usa alert simples
       alert('🎉 Conta criada com sucesso!\nSeu bônus de R$ 1.500 foi creditado.\nRedirecionando para o início...');
       setTimeout(() => {
-        window.location.href = '/';
+        window.location.href = '../index.html';
       }, 1000);
     }
   }

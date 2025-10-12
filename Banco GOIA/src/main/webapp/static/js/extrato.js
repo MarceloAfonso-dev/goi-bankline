@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.urlManager) {
       window.urlManager.logout();
     } else {
-      window.location.href = '/';
+      window.location.href = '../index.html';
     }
   });
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.urlManager) {
         window.urlManager.goHome();
       } else {
-        window.location.href = '/templates/home.html';
+        window.location.href = 'home.html';
       }
     });
   });
@@ -161,14 +161,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // botão de “Sair”
+  // === botão de "Sair" ===
   const logoutBtn = document.querySelector(".sair");
   logoutBtn.style.cursor = "pointer";
   logoutBtn.addEventListener("click", () => {
     if (window.urlManager) {
       window.urlManager.logout();
     } else {
-      window.location.href = '/';
+      window.location.href = '../index.html';
     }
   });
 
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.urlManager) {
         window.urlManager.goHome();
       } else {
-        window.location.href = '/templates/home.html';
+        window.location.href = 'home.html';
       }
     });
   });
