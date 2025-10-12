@@ -198,6 +198,26 @@ console.log('Domínio:', window.location.hostname);
 console.log('Protocol:', window.location.protocol);
 console.log('Path:', window.location.pathname);
 console.log('Search:', window.location.search);
+
+// TESTE DIRETO - deve executar sempre
+alert('🚨 TESTE HTML: Script inline carregado!');
+
+// Teste direto do popup (sem esperar AJAX)
+setTimeout(function() {
+    alert('🧪 TESTE: Tentando mostrar popup diretamente...');
+    
+    const popup = document.getElementById('popupSucesso');
+    if (popup) {
+        popup.style.display = 'flex';
+        popup.style.visibility = 'visible';
+        popup.style.opacity = '1';
+        popup.classList.add('show');
+        
+        alert('✅ TESTE: Popup deveria estar visível agora!');
+    } else {
+        alert('❌ TESTE: Popup não encontrado!');
+    }
+}, 2000);
 </script>
 <script src="/static/js/url-manager.js"></script>  <!-- Gerenciador de URLs dinâmicas -->
 <script src="/static/js/cadastro.js"></script>

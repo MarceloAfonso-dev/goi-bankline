@@ -61,6 +61,15 @@ public class CadastroServlet extends HttpServlet {
             return;
         }
         
+        // Endpoint de teste para forçar sucesso
+        if ("testePopup".equals(acao)) {
+            System.out.println("=== TESTE POPUP ===");
+            req.getSession().setAttribute("cadastroSucesso", "true");
+            resp.setContentType("application/json; charset=UTF-8");
+            resp.getWriter().write("{\"teste\":\"Sucesso forçado na sessão\"}");
+            return;
+        }
+        
         // Verifica se há sucesso via atributo (definido no POST)
         String sucessoAtributo = (String) req.getAttribute("cadastroSucesso");
         System.out.println("=== GET CADASTRO ===");

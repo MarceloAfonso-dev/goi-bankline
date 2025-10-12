@@ -302,7 +302,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Função para verificar sucesso via AJAX (método confiável)
   function verificarSucessoCadastro() {
-    console.log('� Verificando sucesso via AJAX...');
+    console.log('🔄 Verificando sucesso via AJAX...');
+    alert('🔄 TESTE: Função verificarSucessoCadastro chamada!');
     
     fetch('/cadastro?acao=verificarSucesso', {
       method: 'GET',
@@ -347,7 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Debug inicial
   console.log('🔍 URL atual:', window.location.href);
-  console.log('� Domínio atual:', window.location.hostname);
+  console.log('🔍 Domínio atual:', window.location.hostname);
+  
+  // TESTE IMEDIATO - deve aparecer sempre
+  alert('🔍 TESTE: JavaScript do cadastro carregado! Verificando sucesso...');
   
   // SEMPRE verifica via AJAX ao carregar a página
   setTimeout(verificarSucessoCadastro, 500);
