@@ -1,15 +1,20 @@
 package br.com.goibankline.servlet;
 
-import br.com.goibankline.model.Cliente;
-import com.google.gson.Gson;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+
+import br.com.goibankline.model.Cliente;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -92,6 +97,7 @@ public class LoginServlet extends HttpServlet {
         // Lê os índices clicados
         String indicesJson = request.getParameter("indicesClicados");
         if (indicesJson == null || indicesJson.isEmpty()) {
+            // Erro técnico - não deve ser exibido ao usuário
             request.getSession().setAttribute("loginError", "Indices não recebidos");
             request.getRequestDispatcher("/templates/login.html").forward(request, response);
             return;

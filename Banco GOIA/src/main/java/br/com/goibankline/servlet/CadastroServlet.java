@@ -1,18 +1,21 @@
 package br.com.goibankline.servlet;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Random;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import br.com.goibankline.dao.ClienteDAO;
 import br.com.goibankline.dao.ContaDAO;
 import br.com.goibankline.dao.TransferenciaDAO;
 import br.com.goibankline.model.Cliente;
 import br.com.goibankline.model.Conta;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Random;
 
 @WebServlet("/cadastro")
 public class CadastroServlet extends HttpServlet {
@@ -33,6 +36,8 @@ public class CadastroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        // Sempre forward para o template do cadastro
+        // O parâmetro sucesso=1 será lido pelo JavaScript no cliente
         req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
     }
 
@@ -97,9 +102,9 @@ public class CadastroServlet extends HttpServlet {
 
         /* ---------- 5) decide resposta ---------- */
         if (okCadastro) {
-            /* forward p/ GET /cadastro?sucesso=1 para manter o domínio –
+            /* redirect p/ /cadastro?sucesso=1 para alterar a URL do navegador –
                o JS do front lê esse parâmetro e exibe o pop-up */
-            req.getRequestDispatcher("/cadastro?sucesso=1").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/cadastro?sucesso=1");
         } else {
             /* houve algum erro → volta para o formulário exibindo mensagens */
             req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);

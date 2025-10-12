@@ -14,7 +14,19 @@ window.onload = function() {
     .then(data => {
       // Ex.: data = { erro: "Senha incorreta!" } ou { erro: null }
       if (data.erro) {
-        alert(data.erro);
+        console.log('🔍 Erro detectado:', data.erro);
+        
+        // Filtra erros técnicos que não devem ser exibidos ao usuário
+        const errosTecnicos = [
+          "Indices não recebidos",
+          "Recarregue a página!"
+        ];
+        
+        if (!errosTecnicos.includes(data.erro)) {
+          alert(data.erro);
+        } else {
+          console.log('ℹ️ Erro técnico filtrado (não exibido ao usuário):', data.erro);
+        }
       }
     })
     .catch(err => console.error("Erro ao verificar erro:", err));

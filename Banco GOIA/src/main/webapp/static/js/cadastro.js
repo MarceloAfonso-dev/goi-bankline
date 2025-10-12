@@ -106,13 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function popupSucesso(){
     console.log('✅ Função popupSucesso chamada!');
 
-    // Aplica blur no body
-    document.body.classList.add('popup-blur');
-
-    // Mostra o popup customizado
+    // Mostra o popup customizado (usa as classes corretas do CSS)
     const popup = document.getElementById('popupSucesso');
     if (popup) {
       console.log('✅ Popup encontrado, exibindo...');
+      
+      // Aplica as classes corretas conforme o CSS
+      document.body.classList.add('popup-blur');
       popup.classList.add('show');
 
       // Adiciona evento ao botão OK
@@ -120,14 +120,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnOk) {
         btnOk.onclick = function() {
           console.log('✅ Botão OK clicado, redirecionando...');
-          // Remove o blur e popup
+          
+          // Remove as classes do popup
           document.body.classList.remove('popup-blur');
           popup.classList.remove('show');
 
-          // Redireciona para a página inicial (index)
+          // Redireciona para a página inicial após uma pequena animação
           setTimeout(() => {
-            window.location.href = window.location.origin + '/';
-          }, 200);
+            if (window.urlManager) {
+              window.urlManager.navigateTo('/');
+            } else {
+              window.location.href = window.location.origin + '/';
+            }
+          }, 300);
         };
         console.log('✅ Event listener do botão OK configurado');
       } else {
@@ -142,8 +147,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const sucessoParam = urlParams.get('sucesso');
 
+  console.log('🔍 URL atual:', window.location.href);
+  console.log('🔍 Parâmetros da URL:', window.location.search);
+  console.log('🔍 Parâmetro sucesso:', sucessoParam);
+
   if(sucessoParam === '1'){
+    console.log('✅ Parâmetro sucesso=1 detectado, exibindo popup...');
     setTimeout(popupSucesso, 300);
+  } else {
+    console.log('ℹ️ Parâmetro sucesso não encontrado ou diferente de 1');
   }
 
 });
