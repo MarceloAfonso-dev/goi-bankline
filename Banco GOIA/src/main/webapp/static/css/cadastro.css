@@ -15,7 +15,26 @@ header{
   padding:0 30px;box-shadow:0 1px 3px rgba(0,0,0,.05);
 }
 .icone-goia{height:52px;width:52px}
-header h1{margin-left:12px;font-size:26px;font-weight:500;color:#000}
+header h1{
+  margin-left:12px;font-size:26px;font-weight:600;color:#ff4f5a;
+  margin:0 0 0 12px;font-family:'Outfit',sans-serif;
+}
+
+/* ───────── LINK LOGO ───────── */
+.logo-link{
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  transition:opacity 0.2s ease;
+}
+.logo-link:hover{
+  opacity:0.8;
+}
+.logo-link:active{
+  transform:scale(0.98);
+}
 
 /* ───────── MAIN & CARD ───────── */
 .container-principal{

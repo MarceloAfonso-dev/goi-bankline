@@ -9,4 +9,36 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+
+  <!-- Configurações de Páginas de Erro -->
+  <error-page>
+    <error-code>404</error-code>
+    <location>/erro?codigo=404&amp;msg=Página%20não%20encontrada</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/erro?codigo=500&amp;msg=Erro%20interno%20do%20servidor</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>403</error-code>
+    <location>/erro?codigo=403&amp;msg=Acesso%20negado</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>400</error-code>
+    <location>/erro?codigo=400&amp;msg=Requisição%20inválida</location>
+  </error-page>
+  
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/erro?codigo=EXCEPTION&amp;msg=Erro%20inesperado%20no%20sistema</location>
+  </error-page>
+  
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/erro?codigo=THROWABLE&amp;msg=Erro%20crítico%20no%20sistema</location>
+  </error-page>
+
 </web-app>

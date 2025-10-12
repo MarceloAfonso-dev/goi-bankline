@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ops! Algo deu errado • GOIA</title>
+    <link rel="stylesheet" href="/static/css/erro.css">
+    <link rel="icon" type="image/png" href="/static/img/goia-icon-header.png">
+</head>
+<body>
+
+<header>
+    <img src="/static/img/goia-icon-header.png" alt="Logo GOIA" class="icone-goia">
+    <h1>GOIA</h1>
+</header>
+
+<main class="container-principal">
+    <div class="erro-wrapper">
+        <!-- Mascote triste -->
+        <div class="mascote-container">
+            <img src="/static/img/mascote-triste.png" alt="Mascote Triste" class="mascote-erro" onerror="this.style.display='none'">
+        </div>
+        
+        <!-- Título principal -->
+        <h1 class="titulo-erro">Ops! Algo deu errado</h1>
+        
+        <!-- Mensagem descritiva -->
+        <p class="descricao-erro">
+            Encontramos um problema técnico inesperado.<br>
+            Nossa equipe já foi notificada e está trabalhando para resolver.
+        </p>
+        
+        <!-- Código do erro (se disponível) -->
+        <div class="codigo-erro" id="codigoErro" style="display: none;">
+            <span class="label-codigo">Código de referência:</span>
+            <span class="valor-codigo" id="valorCodigo"></span>
+        </div>
+        
+        <!-- Sugestões -->
+        <div class="sugestoes">
+            <h3>O que você pode fazer:</h3>
+            <ul>
+                <li>Aguarde alguns minutos e tente novamente</li>
+                <li>Verifique sua conexão com a internet</li>
+                <li>Limpe o cache do seu navegador</li>
+                <li>Entre em contato conosco se o problema persistir</li>
+            </ul>
+        </div>
+        
+        <!-- Botões de ação -->
+        <div class="acoes-erro">
+            <button onclick="window.history.back()" class="btn-voltar">
+                ← Voltar
+            </button>
+            <button onclick="window.location.href='/'" class="btn-inicio">
+                🏠 Início
+            </button>
+            <button onclick="window.location.reload()" class="btn-tentar">
+                🔄 Tentar novamente
+            </button>
+        </div>
+        
+        <!-- Informações de contato -->
+        <div class="contato-erro">
+            <p>Precisa de ajuda? Entre em contato:</p>
+            <div class="canais-contato">
+                <div class="canal">
+                    <strong>Central:</strong> 4004 123456
+                </div>
+                <div class="canal">
+                    <strong>WhatsApp:</strong> (11) 99999-9999
+                </div>
+                <div class="canal">
+                    <strong>E-mail:</strong> suporte@goia.com.br
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer-erro">
+    <p>&copy; 2025 GOIA Bank & Shop - Todos os direitos reservados</p>
+    <p>Horário de funcionamento: 10h às 17h | SAC: 0800 123 1234</p>
+</footer>
+
+<script>
+// Capturar parâmetros de erro da URL
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const codigoErro = urlParams.get('codigo');
+    const mensagem = urlParams.get('msg');
+    
+    // Mostrar código se disponível
+    if (codigoErro) {
+        document.getElementById('codigoErro').style.display = 'block';
+        document.getElementById('valorCodigo').textContent = codigoErro;
+    }
+    
+    // Personalizar mensagem se disponível
+    if (mensagem) {
+        const descricao = document.querySelector('.descricao-erro');
+        descricao.innerHTML = decodeURIComponent(mensagem);
+    }
+    
+    // Log do erro para analytics/debugging
+    console.log('Erro capturado:', {
+        codigo: codigoErro,
+        mensagem: mensagem,
+        url: window.location.href,
+        timestamp: new Date().toISOString()
+    });
+});
+
+// Função para reportar erro (opcional)
+function reportarErro() {
+    const codigo = document.getElementById('valorCodigo').textContent;
+    const dados = {
+        codigo: codigo,
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: new Date().toISOString()
+    };
+    
+    // Aqui você pode enviar para seu sistema de logs
+    console.log('Relatório de erro:', dados);
+    
+    alert('Erro reportado! Nossa equipe foi notificada.');
+}
+</script>
+
+</body>
+</html>

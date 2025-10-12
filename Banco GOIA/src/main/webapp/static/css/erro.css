@@ -1,0 +1,226 @@
+/* ───────── RESET & TIPOGRAFIA ───────── */
+*{margin:0;padding:0;box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+html,body{height:100%}
+body{
+  font-family:'Outfit',sans-serif;
+  display:flex;flex-direction:column;
+  background:linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height:100vh;
+}
+
+/* ───────── HEADER ───────── */
+header{
+  height:56px;background:#fff;display:flex;align-items:center;
+  padding:0 30px;box-shadow:0 2px 10px rgba(0,0,0,.1);
+  position:relative;z-index:10;
+}
+.icone-goia{height:52px;width:52px}
+header h1{
+  margin-left:12px;font-size:26px;font-weight:600;
+  color:#ff4f5a;font-family:'Outfit',sans-serif;
+}
+
+/* ───────── MAIN CONTAINER ───────── */
+.container-principal{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:40px 20px;
+}
+.erro-wrapper{
+  width:100%;max-width:600px;background:#fff;border-radius:16px;
+  padding:48px 40px;box-shadow:0 8px 32px rgba(0,0,0,.12);
+  text-align:center;
+  border:1px solid rgba(255,79,90,.1);
+}
+
+/* ───────── MASCOTE ───────── */
+.mascote-container{
+  margin-bottom:24px;
+}
+.mascote-erro{
+  width:120px;height:120px;
+  border-radius:50%;
+  filter:drop-shadow(0 4px 12px rgba(255,79,90,.2));
+}
+
+/* ───────── TÍTULOS E TEXTOS ───────── */
+.titulo-erro{
+  font-size:32px;font-weight:700;
+  color:#ff4f5a;margin-bottom:16px;
+  font-family:'Outfit',sans-serif;
+}
+.descricao-erro{
+  font-size:16px;color:#666;
+  line-height:1.6;margin-bottom:24px;
+  font-weight:400;
+}
+
+/* ───────── CÓDIGO DE ERRO ───────── */
+.codigo-erro{
+  background:#f8f9fa;
+  border:1px solid #e9ecef;
+  border-radius:8px;
+  padding:12px 16px;
+  margin-bottom:32px;
+  display:inline-block;
+}
+.label-codigo{
+  font-size:14px;color:#666;
+  margin-right:8px;
+}
+.valor-codigo{
+  font-size:14px;font-weight:600;
+  color:#ff4f5a;font-family:monospace;
+}
+
+/* ───────── SUGESTÕES ───────── */
+.sugestoes{
+  text-align:left;
+  background:#f8f9fa;
+  border-radius:12px;
+  padding:24px;
+  margin-bottom:32px;
+}
+.sugestoes h3{
+  font-size:18px;font-weight:600;
+  color:#333;margin-bottom:16px;
+  text-align:center;
+}
+.sugestoes ul{
+  list-style:none;
+  padding:0;
+}
+.sugestoes li{
+  font-size:15px;color:#555;
+  line-height:1.6;
+  margin-bottom:8px;
+  position:relative;
+  padding-left:24px;
+}
+.sugestoes li::before{
+  content:'✓';
+  position:absolute;left:0;top:0;
+  color:#ff4f5a;font-weight:600;
+  font-size:16px;
+}
+
+/* ───────── BOTÕES DE AÇÃO ───────── */
+.acoes-erro{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-bottom:32px;
+  flex-wrap:wrap;
+}
+.acoes-erro button{
+  padding:12px 20px;
+  border:none;border-radius:8px;
+  font-size:14px;font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  font-family:'Outfit',sans-serif;
+  min-width:120px;
+}
+.btn-voltar{
+  background:#6c757d;color:#fff;
+}
+.btn-voltar:hover{
+  background:#5a6268;
+  transform:translateY(-2px);
+}
+.btn-inicio{
+  background:#ff4f5a;color:#fff;
+}
+.btn-inicio:hover{
+  background:#e63946;
+  transform:translateY(-2px);
+}
+.btn-tentar{
+  background:#28a745;color:#fff;
+}
+.btn-tentar:hover{
+  background:#218838;
+  transform:translateY(-2px);
+}
+
+/* ───────── CONTATO ───────── */
+.contato-erro{
+  border-top:1px solid #e9ecef;
+  padding-top:24px;
+}
+.contato-erro p{
+  font-size:16px;font-weight:600;
+  color:#333;margin-bottom:16px;
+}
+.canais-contato{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.canal{
+  font-size:14px;color:#666;
+  background:#f8f9fa;
+  padding:8px 12px;
+  border-radius:6px;
+  border:1px solid #e9ecef;
+}
+.canal strong{
+  color:#ff4f5a;
+}
+
+/* ───────── FOOTER ───────── */
+.footer-erro{
+  background:#333;color:#fff;
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+  line-height:1.4;
+}
+.footer-erro p{
+  margin-bottom:4px;
+}
+
+/* ───────── RESPONSIVIDADE ───────── */
+@media (max-width: 768px) {
+  .container-principal{
+    padding:20px 16px;
+  }
+  .erro-wrapper{
+    padding:32px 24px;
+  }
+  .titulo-erro{
+    font-size:28px;
+  }
+  .mascote-erro{
+    width:100px;height:100px;
+  }
+  .acoes-erro{
+    flex-direction:column;
+    align-items:center;
+  }
+  .acoes-erro button{
+    width:100%;
+    max-width:200px;
+  }
+  .canais-contato{
+    flex-direction:column;
+    gap:8px;
+  }
+}
+
+@media (max-width: 480px) {
+  header{
+    padding:0 16px;
+  }
+  .erro-wrapper{
+    padding:24px 16px;
+  }
+  .titulo-erro{
+    font-size:24px;
+  }
+  .sugestoes{
+    padding:16px;
+  }
+}

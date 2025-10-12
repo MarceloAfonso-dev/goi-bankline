@@ -2,12 +2,15 @@ br\com\goibankline\model\Conta.class
 br\com\goibankline\dao\ContaDAO.class
 br\com\goibankline\util\PropertiesLoader.class
 br\com\goibankline\model\Cliente.class
+br\com\goibankline\util\ErroUtil$Codigos.class
 br\com\goibankline\servlet\ContaServlet.class
 br\com\goibankline\servlet\ExtratoDadosServlet.class
 br\com\goibankline\util\HikariPool.class
 br\com\goibankline\servlet\SaldoServlet.class
 br\com\goibankline\dao\TransferenciaDAO.class
+br\com\goibankline\servlet\ErroServlet.class
 br\com\goibankline\servlet\LoginServlet$Par.class
+br\com\goibankline\util\ErroUtil.class
 br\com\goibankline\servlet\ConfigServlet.class
 br\com\goibankline\util\EnvironmentConfig.class
 br\com\goibankline\servlet\ValidarCPFServlet.class
