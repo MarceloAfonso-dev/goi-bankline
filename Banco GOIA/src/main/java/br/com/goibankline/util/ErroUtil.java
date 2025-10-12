@@ -97,6 +97,22 @@ public class ErroUtil {
     }
     
     /**
+     * Redireciona de forma segura mantendo o domínio original
+     * Usa redirecionamento relativo ao invés de absoluto
+     */
+    public static void redirecionarSeguro(HttpServletResponse response, String path) 
+            throws IOException {
+        
+        // Garante que o path comece com / para ser relativo
+        if (!path.startsWith("/")) {
+            path = "/" + path;
+        }
+        
+        logger.log(Level.INFO, "Redirecionamento seguro para: {0}", path);
+        response.sendRedirect(path);
+    }
+    
+    /**
      * Códigos de erro padronizados
      */
     public static final class Codigos {
