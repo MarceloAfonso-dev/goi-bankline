@@ -70,18 +70,9 @@ public class CadastroServlet extends HttpServlet {
             return;
         }
         
-        // Verifica se há sucesso via atributo (definido no POST)
-        String sucessoAtributo = (String) req.getAttribute("cadastroSucesso");
-        System.out.println("=== GET CADASTRO ===");
-        System.out.println("Sucesso via atributo: " + sucessoAtributo);
-        
-        if ("true".equals(sucessoAtributo)) {
-            // Salva na sessão para o AJAX pegar
-            req.getSession().setAttribute("cadastroSucesso", "true");
-            System.out.println("Salvo na sessão para AJAX");
-        }
-        
         // Forward normal para o template
+        System.out.println("=== GET CADASTRO ===");
+        System.out.println("Apenas exibindo formulário");
         req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
     }
 
@@ -146,11 +137,14 @@ public class CadastroServlet extends HttpServlet {
 
         /* ---------- 5) decide resposta ---------- */
         if (okCadastro) {
-            /* USA APENAS FORWARD como ValidarCPFServlet - NUNCA redirect */
+            /* SALVA DIRETO NA SESSÃO para o AJAX encontrar */
             System.out.println("=== CADASTRO SUCESSO ===");
             System.out.println("okCadastro: " + okCadastro);
-            req.setAttribute("cadastroSucesso", "true");
-            System.out.println("Atributo cadastroSucesso definido como: true");
+            
+            // Salva na sessão (não em atributo que se perde no forward)
+            req.getSession().setAttribute("cadastroSucesso", "true");
+            System.out.println("Sucesso salvo na SESSÃO para AJAX");
+            
             req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
             System.out.println("Forward realizado para cadastro.html");
         } else {
