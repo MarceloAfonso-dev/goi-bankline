@@ -300,59 +300,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Verifica sucesso do cadastro (via variável JavaScript injetada pelo servlet)
-  console.log('🔍 URL atual:', window.location.href);
-  console.log('🔍 Domínio atual:', window.location.hostname);
-  console.log('🔍 Variável cadastroSucesso:', window.cadastroSucesso);
-  
-  // Método 1: Verifica variável injetada pelo servlet (PRINCIPAL)
-  if (window.cadastroSucesso === true) {
-    console.log('🎉 === SUCESSO DETECTADO VIA SERVLET ===');
-    console.log('✅ window.cadastroSucesso = true');
-    console.log('🔍 Verificando elementos do DOM...');
+  // Função para verificar sucesso via AJAX (método confiável)
+  function verificarSucessoCadastro() {
+    console.log('� Verificando sucesso via AJAX...');
     
-    // Verifica se os elementos existem
-    const popup = document.getElementById('popupSucesso');
-    const btnOk = document.getElementById('btnOk');
-    
-    console.log('🔍 Popup existe?', !!popup);
-    console.log('🔍 Botão OK existe?', !!btnOk);
-    
-    if (popup) {
-      console.log('🔍 Classes atuais do popup:', popup.className);
-      console.log('🔍 Display atual:', window.getComputedStyle(popup).display);
-      console.log('🔍 Visibility atual:', window.getComputedStyle(popup).visibility);
-    }
-    
-    console.log('⏰ Iniciando popup em 300ms...');
-    setTimeout(() => {
-      console.log('🚀 Executando popupSucesso agora!');
-      popupSucesso();
-    }, 300);
-  } 
-  // Método 2: Verifica parâmetro URL (FALLBACK para compatibilidade)
-  else {
-    const urlParams = new URLSearchParams(window.location.search);
-    const sucessoParam = urlParams.get('sucesso');
-    console.log('🔍 Parâmetros da URL:', window.location.search);
-    console.log('🔍 Parâmetro sucesso:', sucessoParam);
-
-    if(sucessoParam === '1'){
-      console.log('🎉 === SUCESSO DETECTADO VIA URL ===');
-      console.log('✅ Parâmetro sucesso=1 encontrado na URL');
+    fetch('/cadastro?acao=verificarSucesso', {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(r => r.json())
+    .then(({sucesso}) => {
+      console.log('🔍 Resposta AJAX - sucesso:', sucesso);
       
-      // Limpa o parâmetro da URL
-      const newUrl = window.location.pathname;
-      window.history.replaceState({}, document.title, newUrl);
-      console.log('🔄 URL limpa, nova URL:', newUrl);
+      if (sucesso) {
+        console.log('🎉 === SUCESSO DETECTADO VIA AJAX ===');
+        console.log('✅ Servidor confirmou cadastro bem-sucedido');
+        
+        // Verifica elementos do DOM
+        const popup = document.getElementById('popupSucesso');
+        const btnOk = document.getElementById('btnOk');
+        
+        console.log('🔍 Popup existe?', !!popup);
+        console.log('🔍 Botão OK existe?', !!btnOk);
+        
+        setTimeout(() => {
+          console.log('� Executando popupSucesso agora!');
+          popupSucesso();
+        }, 300);
+      } else {
+        console.log('ℹ️ Nenhum cadastro pendente na sessão');
+      }
+    })
+    .catch(e => {
+      console.log('⚠️ Erro ao verificar sucesso via AJAX:', e);
       
-      setTimeout(() => {
-        console.log('🚀 Executando popupSucesso agora!');
-        popupSucesso();
-      }, 300);
-    } else {
-      console.log('ℹ️ Nenhum sucesso detectado - cadastro não finalizado');
-    }
+      // Fallback: verifica parâmetro URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const sucessoParam = urlParams.get('sucesso');
+      
+      if(sucessoParam === '1'){
+        console.log('🎉 === FALLBACK: SUCESSO VIA URL ===');
+        setTimeout(popupSucesso, 300);
+      }
+    });
   }
+
+  // Debug inicial
+  console.log('🔍 URL atual:', window.location.href);
+  console.log('� Domínio atual:', window.location.hostname);
+  
+  // SEMPRE verifica via AJAX ao carregar a página
+  setTimeout(verificarSucessoCadastro, 500);
 
 });
