@@ -241,68 +241,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ───────── POP-UP SUCESSO ───────── */
   function popupSucesso(){
-    console.log('✅ Função popupSucesso chamada!');
+    console.log('🎉 === POPUP SUCESSO INICIADO ===');
 
     // Mostra o popup customizado (usa as classes corretas do CSS)
     const popup = document.getElementById('popupSucesso');
+    console.log('🔍 Popup element:', popup);
+    
     if (popup) {
-      console.log('✅ Popup encontrado, exibindo...');
+      console.log('✅ Popup encontrado, aplicando classes...');
+      
+      // Força exibição do popup
+      popup.style.display = 'flex';
+      popup.style.visibility = 'visible';
+      popup.style.opacity = '1';
       
       // Aplica as classes corretas conforme o CSS
       document.body.classList.add('popup-blur');
       popup.classList.add('show');
+      
+      console.log('✅ Classes aplicadas - popup deve estar visível agora');
+      console.log('🔍 Popup classes:', popup.className);
+      console.log('🔍 Body classes:', document.body.className);
 
       // Adiciona evento ao botão OK
       const btnOk = document.getElementById('btnOk');
+      console.log('🔍 Botão OK:', btnOk);
+      
       if (btnOk) {
         btnOk.onclick = function() {
-          console.log('✅ Botão OK clicado, redirecionando...');
+          console.log('✅ Botão OK clicado, fechando popup...');
           
           // Remove as classes do popup
           document.body.classList.remove('popup-blur');
           popup.classList.remove('show');
+          popup.style.display = 'none';
 
           // Redireciona para a página inicial após uma pequena animação
           setTimeout(() => {
+            console.log('🏠 Redirecionando para home...');
             if (window.urlManager) {
               window.urlManager.navigateTo('/');
             } else {
-              window.location.href = window.location.origin + '/';
+              window.location.href = '/';
             }
           }, 300);
         };
         console.log('✅ Event listener do botão OK configurado');
       } else {
-        console.error('❌ Botão OK não encontrado!');
+        console.error('❌ Botão OK não encontrado no DOM!');
       }
     } else {
-      console.error('❌ Popup não encontrado!');
+      console.error('❌ Elemento #popupSucesso não encontrado no DOM!');
+      // Fallback - usa alert simples
+      alert('🎉 Conta criada com sucesso!\nSeu bônus de R$ 1.500 foi creditado.\nRedirecionando para o início...');
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1000);
     }
   }
 
-  // Verifica se cadastro foi bem-sucedido usando AJAX (como ValidarCPFServlet)
-  function verificarSucessoCadastro() {
-    fetch('/cadastro?acao=verificarSucesso', {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'}
-    })
-    .then(r => r.json())
-    .then(({sucesso}) => {
-      console.log('🔍 Resposta do servidor - sucesso:', sucesso);
-      
-      if (sucesso) {
-        console.log('✅ Cadastro bem-sucedido detectado via AJAX, exibindo popup...');
-        setTimeout(popupSucesso, 300);
-      } else {
-        console.log('ℹ️ Nenhum cadastro pendente encontrado');
-      }
-    })
-    .catch(e => {
-      console.log('⚠️ Erro ao verificar sucesso:', e);
-    });
-  }
-  
-  // Verifica parâmetro de sucesso na URL (compatibilidade com método antigo)
+  // Verifica parâmetro de sucesso na URL
   const urlParams = new URLSearchParams(window.location.search);
   const sucessoParam = urlParams.get('sucesso');
 
@@ -312,11 +310,35 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('🔍 Parâmetro sucesso:', sucessoParam);
 
   if(sucessoParam === '1'){
-    console.log('✅ Parâmetro sucesso=1 detectado, exibindo popup...');
-    setTimeout(popupSucesso, 300);
+    console.log('🎉 === SUCESSO DETECTADO ===');
+    console.log('✅ Parâmetro sucesso=1 encontrado na URL');
+    console.log('🔍 Verificando elementos do DOM...');
+    
+    // Verifica se os elementos existem
+    const popup = document.getElementById('popupSucesso');
+    const btnOk = document.getElementById('btnOk');
+    
+    console.log('🔍 Popup existe?', !!popup);
+    console.log('🔍 Botão OK existe?', !!btnOk);
+    
+    if (popup) {
+      console.log('🔍 Classes atuais do popup:', popup.className);
+      console.log('🔍 Display atual:', window.getComputedStyle(popup).display);
+      console.log('🔍 Visibility atual:', window.getComputedStyle(popup).visibility);
+    }
+    
+    // Limpa o parâmetro da URL para não mostrar popup novamente se recarregar
+    const newUrl = window.location.pathname;
+    window.history.replaceState({}, document.title, newUrl);
+    console.log('🔄 URL limpa, nova URL:', newUrl);
+    
+    console.log('⏰ Iniciando popup em 300ms...');
+    setTimeout(() => {
+      console.log('🚀 Executando popupSucesso agora!');
+      popupSucesso();
+    }, 300);
   } else {
-    // Verifica via AJAX se há sucesso na sessão (método novo - como ValidarCPFServlet)
-    verificarSucessoCadastro();
+    console.log('ℹ️ Parâmetro sucesso não encontrado - valor atual:', sucessoParam);
   }
 
 });

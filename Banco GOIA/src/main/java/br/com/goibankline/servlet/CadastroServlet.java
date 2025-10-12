@@ -121,10 +121,9 @@ public class CadastroServlet extends HttpServlet {
 
         /* ---------- 5) decide resposta ---------- */
         if (okCadastro) {
-            /* Usa FORWARD como no ValidarCPFServlet - mantém domínio original */
-            req.setAttribute("cadastroSucesso", "true");
-            req.setAttribute("mostrarPopup", "true");
-            req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
+            /* Salva na sessão e usa redirect relativo (sem protocol/domain) */
+            req.getSession().setAttribute("cadastroSucesso", "true");
+            resp.sendRedirect("cadastro?sucesso=1");
         } else {
             /* houve algum erro → volta para o formulário exibindo mensagens */
             req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
