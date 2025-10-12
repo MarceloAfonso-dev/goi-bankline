@@ -1,11 +1,15 @@
 package br.com.goibankline.servlet;
 
-import br.com.goibankline.dao.ClienteDAO;
-import br.com.goibankline.model.Cliente;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import br.com.goibankline.dao.ClienteDAO;
+import br.com.goibankline.model.Cliente;
 
 @WebServlet("/validarCPF")
 public class ValidarCPFServlet extends HttpServlet {
@@ -29,7 +33,10 @@ public class ValidarCPFServlet extends HttpServlet {
         // fluxo original de login…
         Cliente cliente = clienteDAO.buscarPorCPF(cpf);
         if (cliente != null) {
-            request.getSession().setAttribute("cliente", cliente);
+            // SEGURANÇA: Não colocar cliente na sessão até validar senha
+            // Usar atributo temporário para processo de login
+            request.getSession().setAttribute("clienteTemporario", cliente);
+            request.getSession().removeAttribute("cliente"); // Remove se existir
             request.getRequestDispatcher("/login").forward(request, response);
         } else {
             request.getRequestDispatcher("/index.html?erro=CPF não encontrado.").forward(request, response);

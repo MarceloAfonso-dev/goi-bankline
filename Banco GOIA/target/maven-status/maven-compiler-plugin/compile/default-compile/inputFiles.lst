@@ -1,8 +1,11 @@
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\util\ErroUtil.java
+D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\LogoutServlet.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\util\EnvironmentConfig.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\model\Movimentacao.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\dao\MovimentacaoDAO.java
+D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\filter\AuthenticationFilter.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\ValidarCPFServlet.java
+D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\HomeServlet.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\util\PropertiesLoader.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\dao\CpfLiberadoDAO.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\LoginServlet.java
@@ -16,6 +19,7 @@ D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\model\Conta.jav
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\util\HikariPool.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\dao\TransferenciaDAO.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\ConfigServlet.java
+D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\IndexServlet.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\ExtratoDadosServlet.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\SimuladorServlet.java
 D:\PI4\goia-bankline\Banco GOIA\src\main\java\br\com\goibankline\servlet\ContaServlet.java

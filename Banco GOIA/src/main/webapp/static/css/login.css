@@ -353,3 +353,14 @@ header > h1 {
 .face-item.selected {
   transform: scale(1.2);
 }
+
+/* Estilo para título GOIA Bank clicável */
+header h1[onclick] {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+header h1[onclick]:hover {
+    color: #e63946 !important;
+    transform: translateY(-1px);
+}

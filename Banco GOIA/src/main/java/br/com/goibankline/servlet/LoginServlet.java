@@ -78,10 +78,10 @@ public class LoginServlet extends HttpServlet {
         List<Par> pares = gerarParesAleatorios();
         session.setAttribute("paresAleatorios", pares);
 
-        // Verifica se cliente está na sessão
-        Cliente cliente = (Cliente) session.getAttribute("cliente");
-        if (cliente == null) {
-            // Se não houver cliente, forward para index.html (mantém domínio)
+        // SEGURANÇA: Verifica se cliente temporário está na sessão (processo de login)
+        Cliente clienteTemporario = (Cliente) session.getAttribute("clienteTemporario");
+        if (clienteTemporario == null) {
+            // Se não houver cliente temporário, redirect para index.html
             request.getRequestDispatcher("/index.html").forward(request, response);
             return;
         }
@@ -108,7 +108,8 @@ public class LoginServlet extends HttpServlet {
         int[] arrayIndices = gson.fromJson(indicesJson, int[].class);
 
         HttpSession session = request.getSession();
-        Cliente cliente = (Cliente) session.getAttribute("cliente");
+        // SEGURANÇA: Usa cliente temporário (ainda não autenticado)
+        Cliente cliente = (Cliente) session.getAttribute("clienteTemporario");
         @SuppressWarnings("unchecked")
         List<Par> paresAleatorios = (List<Par>) session.getAttribute("paresAleatorios");
 
@@ -151,7 +152,12 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("loginError", "Senha incorreta!");
             request.getRequestDispatcher("/templates/login.html").forward(request, response);
         } else {
-            // Senha correta: forward para home (mantém o domínio atual)
+            // SEGURANÇA: Senha correta - agora sim autentica o usuário
+            session.setAttribute("cliente", cliente); // Cliente autenticado
+            session.removeAttribute("clienteTemporario"); // Remove temporário
+            session.setAttribute("usuarioLogado", true); // Flag de autenticação
+            
+            // Forward para home (mantém o domínio atual)
             request.getRequestDispatcher("/templates/home.html").forward(request, response);
         }
     }

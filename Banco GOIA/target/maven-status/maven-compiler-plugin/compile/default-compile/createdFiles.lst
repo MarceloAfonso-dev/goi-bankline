@@ -11,9 +11,13 @@ br\com\goibankline\dao\TransferenciaDAO.class
 br\com\goibankline\servlet\ErroServlet.class
 br\com\goibankline\servlet\LoginServlet$Par.class
 br\com\goibankline\util\ErroUtil.class
+br\com\goibankline\filter\AuthenticationFilter.class
 br\com\goibankline\servlet\ConfigServlet.class
 br\com\goibankline\util\EnvironmentConfig.class
+br\com\goibankline\servlet\LogoutServlet.class
+br\com\goibankline\servlet\IndexServlet.class
 br\com\goibankline\servlet\ValidarCPFServlet.class
+br\com\goibankline\servlet\HomeServlet.class
 br\com\goibankline\dao\ClienteDAO.class
 br\com\goibankline\model\Movimentacao.class
 br\com\goibankline\model\Simulacao.class

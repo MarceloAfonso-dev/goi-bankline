@@ -312,6 +312,20 @@ font-weight: bold;
 font-size: 14px;
 }
 
+/* Estilo específico para links externos (ex: GOIA Shop) */
+.card a.external-link {
+color: #ff4b5c;
+text-decoration: none;
+font-weight: bold;
+font-size: 14px;
+transition: color 0.3s ease;
+}
+
+.card a.external-link:hover {
+color: #e63946;
+text-decoration: underline;
+}
+
 .container {
   max-width: 1150px; /* ou outro valor como 960px, 1200px */
 margin: 0 auto;
