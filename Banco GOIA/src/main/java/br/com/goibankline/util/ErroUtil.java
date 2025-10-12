@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ErroUtil {
     
     private static final Logger logger = Logger.getLogger(ErroUtil.class.getName());
-    private static final String ERRO_URL = "/erro";
+    private static final String ERRO_URL = "erro";
     
     /**
      * Redireciona para página de erro com código e mensagem
@@ -103,11 +103,7 @@ public class ErroUtil {
     public static void redirecionarSeguro(HttpServletResponse response, String path) 
             throws IOException {
         
-        // Garante que o path comece com / para ser relativo
-        if (!path.startsWith("/")) {
-            path = "/" + path;
-        }
-        
+        // Usa caminho relativo para compatibilidade com AWS CloudFront
         logger.log(Level.INFO, "Redirecionamento seguro para: {0}", path);
         response.sendRedirect(path);
     }

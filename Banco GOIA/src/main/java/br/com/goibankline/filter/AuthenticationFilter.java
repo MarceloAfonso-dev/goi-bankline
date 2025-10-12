@@ -51,9 +51,8 @@ public class AuthenticationFilter implements Filter {
             // Usuário autenticado - permite acesso
             chain.doFilter(request, response);
         } else {
-            // Usuário não autenticado - redireciona para index
-            String contextPath = httpRequest.getContextPath();
-            httpResponse.sendRedirect(contextPath + "/index.html?erro=Sessão expirada. Faça login novamente.");
+            // Usuário não autenticado - redireciona para index com caminho relativo
+            httpResponse.sendRedirect("../index.html?erro=Sessão expirada. Faça login novamente.");
         }
     }
 

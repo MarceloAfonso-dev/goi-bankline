@@ -28,7 +28,7 @@ public class IndexServlet extends HttpServlet {
             // NÃO remove cliente/usuarioLogado se estiver autenticado
         }
         
-        // Redireciona para index.html ao invés de forward para evitar loops
-        response.sendRedirect(request.getContextPath() + "/index.html");
+        // Redireciona para index.html com caminho relativo (compatível com AWS CloudFront)
+        response.sendRedirect("index.html");
     }
 }

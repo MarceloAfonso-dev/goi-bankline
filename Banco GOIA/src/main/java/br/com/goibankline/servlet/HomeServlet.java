@@ -26,8 +26,8 @@ public class HomeServlet extends HttpServlet {
             session.getAttribute("usuarioLogado") == null || 
             session.getAttribute("cliente") == null) {
             
-            // Não autenticado - redireciona para login
-            response.sendRedirect("/index.html?erro=Acesso negado. Faça login primeiro.");
+            // Não autenticado - redireciona para login com caminho relativo
+            response.sendRedirect("index.html?erro=Acesso negado. Faça login primeiro.");
             return;
         }
         

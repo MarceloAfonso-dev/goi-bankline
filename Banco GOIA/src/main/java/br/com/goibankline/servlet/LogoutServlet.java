@@ -36,8 +36,7 @@ public class LogoutServlet extends HttpServlet {
             session.invalidate();
         }
 
-        // Redireciona para index com mensagem
-        String contextPath = request.getContextPath();
-        response.sendRedirect(contextPath + "/index.html?msg=Logout realizado com sucesso.");
+        // Redireciona para index com mensagem - caminho relativo para AWS CloudFront
+        response.sendRedirect("index.html?msg=Logout realizado com sucesso.");
     }
 }
