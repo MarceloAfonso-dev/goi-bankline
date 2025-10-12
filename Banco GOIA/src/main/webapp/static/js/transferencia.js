@@ -49,18 +49,38 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ===================== overlay helpers ===================== */
   function showOverlay () {
     progEl.style.animation = 'none'; void progEl.offsetWidth;
-    progEl.style.animation = 'donut 5s linear forwards';
+    progEl.style.animation = 'donut 3s linear forwards'; // Reduzido para 3s para melhor UX
     pctEl.textContent = '0 %';
     overlay.classList.remove('hidden');
 
     let p = 0;
     pctTimer = setInterval(() => {
-      p += 2;
-      if (p >= 100) { p = 100; clearInterval(pctTimer); }
+      p += 1; // Incremento menor para animação mais suave
+      if (p >= 100) {
+        p = 100;
+        clearInterval(pctTimer);
+        pctEl.textContent = `${p} %`;
+
+        // Pequeno delay após atingir 100% para melhor experiência
+        setTimeout(() => {
+          // A animação completou, agora pode prosseguir com o submit
+          if (window.pendingFormSubmit) {
+            window.pendingFormSubmit();
+          }
+        }, 500);
+        return;
+      }
       pctEl.textContent = `${p} %`;
-    }, 100);
+    }, 30); // Intervalo reduzido para animação mais suave (3000ms / 100 = 30ms)
   }
-  window.addEventListener('load', () => overlay.classList.add('hidden'));
+
+  function hideOverlay() {
+    overlay.classList.add('hidden');
+    clearInterval(pctTimer);
+    window.pendingFormSubmit = null;
+  }
+
+  window.addEventListener('load', () => hideOverlay());
 
   /* ===================== exibe mensagem do servlet ===================== */
   (function exibeMensagem () {
@@ -102,7 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
     cpfInput.removeAttribute('name');
 
     showOverlay();      // donut aparece
-    form.submit();      // servlet processa e redireciona para /transferencia?msg=...
+
+    // Aguarda a animação completar 100% antes de prosseguir com o submit
+    window.pendingFormSubmit = () => {
+      form.submit();      // servlet processa e redireciona para /transferencia?msg=...
+    };
   });
 
   /* ===================== UX extra: sair e logo ===================== */

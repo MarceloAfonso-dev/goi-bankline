@@ -11,7 +11,7 @@
 <body>
 <header>
     <img src="static/img/goia-icon-header.png" alt="Logo Ícone" class="icone-goia" style="width: 52px;">
-    <h1 style="font-family: 'Outfit', sans-serif; font-weight: 500; color: #000; margin-top: 10px; font-size: 26px;">GOIA Bank</h1>
+    <h1 style="font-family: 'Outfit', sans-serif; font-weight: 600; color: #ff4f5a; margin-top: 10px; font-size: 26px;">GOIA Bank</h1>
     <nav class="menu">
         <img src="static/img/person.png" alt="Ícone de usuário" class="icone-user">
         <div class="dados-conta">
@@ -133,18 +133,35 @@
 <!-- Script para mostrar mensagens do servidor -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Verifica se há mensagem via URL parameter (mantendo compatibilidade)
-    const urlParams = new URLSearchParams(window.location.search);
-    const msg = urlParams.get('msg');
-    
-    if (msg) {
-        Swal.fire({
-            title: 'Transferência',
-            text: decodeURIComponent(msg),
-            icon: msg.toLowerCase().includes('sucesso') ? 'success' : 'error',
-            confirmButtonText: 'OK'
+    // Busca mensagem da sessão via AJAX
+    fetch('/api/mensagem')
+        .then(response => response.json())
+        .then(data => {
+            if (data.mensagem) {
+                Swal.fire({
+                    title: 'Transferência',
+                    text: data.mensagem,
+                    icon: data.mensagem.toLowerCase().includes('sucesso') ? 'success' : 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(error => {
+            console.log('Erro ao buscar mensagem:', error);
+
+            // Fallback: verifica se há mensagem via URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const msg = urlParams.get('msg');
+
+            if (msg) {
+                Swal.fire({
+                    title: 'Transferência',
+                    text: decodeURIComponent(msg),
+                    icon: msg.toLowerCase().includes('sucesso') ? 'success' : 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
         });
-    }
 });
 </script>
 

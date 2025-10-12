@@ -19,9 +19,23 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   }
 
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   .logo {
     width: 52px;
+    height: auto;
+  }
 
+  .logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #ff4f5a;
+    font-size: 26px;
+    margin: 0;
   }
 
   nav {
@@ -32,7 +46,6 @@ body {
   }
 
   .navi{
-    margin-left: -350px;
     font-family: 'Outfit', sans-serif;
     font-weight: 500;
   }
@@ -105,6 +118,14 @@ header {
   gap: 12px;
 }
 
+.logo-container {
+  gap: 8px;
+}
+
+.logo-text {
+  font-size: 22px;
+}
+
 nav {
   flex-wrap: wrap;
   gap: 16px;
@@ -119,6 +140,18 @@ nav {
 }
 
 @media (max-width: 768px) {
+.logo-container {
+  gap: 6px;
+}
+
+.logo {
+  width: 40px;
+}
+
+.logo-text {
+  font-size: 20px;
+}
+
 .banner {
   height: auto;
   padding: 40px 20px;
@@ -150,6 +183,18 @@ nav {
 }
 
 @media (max-width: 480px) {
+.logo-container {
+  gap: 4px;
+}
+
+.logo {
+  width: 36px;
+}
+
+.logo-text {
+  font-size: 18px;
+}
+
 nav {
   flex-direction: column;
   align-items: flex-start;

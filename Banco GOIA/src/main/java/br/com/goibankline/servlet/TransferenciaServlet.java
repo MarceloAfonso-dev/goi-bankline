@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.net.URLEncoder;
 import java.util.List;
 
 @WebServlet("/transferencia")
@@ -111,9 +110,12 @@ public class TransferenciaServlet extends HttpServlet {
     private void redirectWithMsg(HttpServletRequest req,
                                  HttpServletResponse resp,
                                  String msg) throws IOException, ServletException {
-        // Forward para a página com mensagem como query parameter
-        String qs = "?msg=" + URLEncoder.encode(msg, "UTF-8");
-        req.getRequestDispatcher("/transferencia" + qs).forward(req, resp);
+        // Define a mensagem na sessão para que possa ser acessada pelo JavaScript
+        HttpSession session = req.getSession();
+        session.setAttribute("mensagemTransferencia", msg);
+
+        // Forward diretamente para o template HTML
+        req.getRequestDispatcher("/templates/transferencia.html").forward(req, resp);
     }
 
     private Conta findContaPorCliente(int idCliente) {

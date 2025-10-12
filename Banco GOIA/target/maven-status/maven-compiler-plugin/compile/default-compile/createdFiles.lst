@@ -19,5 +19,6 @@ br\com\goibankline\servlet\TransferenciaServlet.class
 br\com\goibankline\servlet\SimuladorServlet.class
 br\com\goibankline\servlet\LoginServlet.class
 br\com\goibankline\filter\DynamicConfigFilter.class
+br\com\goibankline\servlet\MensagemServlet.class
 br\com\goibankline\servlet\ExtratoServlet.class
 br\com\goibankline\servlet\CadastroServlet.class
