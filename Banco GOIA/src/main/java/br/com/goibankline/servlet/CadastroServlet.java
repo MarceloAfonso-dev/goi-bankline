@@ -39,25 +39,34 @@ public class CadastroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         
-        String acao = req.getParameter("acao");
+        // Verifica se há sucesso via atributo (definido no POST)
+        String sucesso = (String) req.getAttribute("cadastroSucesso");
         
-        // Endpoint AJAX para verificar sucesso (como no ValidarCPFServlet)
-        if ("verificarSucesso".equals(acao)) {
-            String sucesso = (String) req.getSession().getAttribute("cadastroSucesso");
-            boolean hasSucesso = sucesso != null && "true".equals(sucesso);
+        if ("true".equals(sucesso)) {
+            // Gera HTML com JavaScript para mostrar popup
+            resp.setContentType("text/html; charset=UTF-8");
             
-            // Remove da sessão após verificar
-            if (hasSucesso) {
-                req.getSession().removeAttribute("cadastroSucesso");
-            }
+            // Lê o template HTML
+            String htmlTemplate = lerTemplateHtml(req);
             
-            resp.setContentType("application/json; charset=UTF-8");
-            resp.getWriter().write("{\"sucesso\":" + hasSucesso + "}");
-            return;
+            // Injeta JavaScript para mostrar popup
+            String htmlComSucesso = htmlTemplate.replace(
+                "window.cadastroSucesso = false;",
+                "window.cadastroSucesso = true;"
+            );
+            
+            resp.getWriter().write(htmlComSucesso);
+        } else {
+            // Forward normal para o template
+            req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
         }
-        
-        // Forward para o template do cadastro (como ValidarCPFServlet faz)
-        req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
+    }
+    
+    /* Lê o template HTML do arquivo */
+    private String lerTemplateHtml(HttpServletRequest req) throws IOException {
+        String realPath = req.getServletContext().getRealPath("/templates/cadastro.html");
+        java.nio.file.Path path = java.nio.file.Paths.get(realPath);
+        return new String(java.nio.file.Files.readAllBytes(path), "UTF-8");
     }
 
     /* ---------- POST: processa o cadastro ---------- */
@@ -121,9 +130,9 @@ public class CadastroServlet extends HttpServlet {
 
         /* ---------- 5) decide resposta ---------- */
         if (okCadastro) {
-            /* Salva na sessão e usa redirect relativo (sem protocol/domain) */
-            req.getSession().setAttribute("cadastroSucesso", "true");
-            resp.sendRedirect("cadastro?sucesso=1");
+            /* USA APENAS FORWARD como ValidarCPFServlet - NUNCA redirect */
+            req.setAttribute("cadastroSucesso", "true");
+            req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
         } else {
             /* houve algum erro → volta para o formulário exibindo mensagens */
             req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);

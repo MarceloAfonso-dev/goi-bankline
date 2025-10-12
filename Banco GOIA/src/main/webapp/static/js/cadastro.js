@@ -300,18 +300,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Verifica parâmetro de sucesso na URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const sucessoParam = urlParams.get('sucesso');
-
+  // Verifica sucesso do cadastro (via variável JavaScript injetada pelo servlet)
   console.log('🔍 URL atual:', window.location.href);
   console.log('🔍 Domínio atual:', window.location.hostname);
-  console.log('🔍 Parâmetros da URL:', window.location.search);
-  console.log('🔍 Parâmetro sucesso:', sucessoParam);
-
-  if(sucessoParam === '1'){
-    console.log('🎉 === SUCESSO DETECTADO ===');
-    console.log('✅ Parâmetro sucesso=1 encontrado na URL');
+  console.log('🔍 Variável cadastroSucesso:', window.cadastroSucesso);
+  
+  // Método 1: Verifica variável injetada pelo servlet (PRINCIPAL)
+  if (window.cadastroSucesso === true) {
+    console.log('🎉 === SUCESSO DETECTADO VIA SERVLET ===');
+    console.log('✅ window.cadastroSucesso = true');
     console.log('🔍 Verificando elementos do DOM...');
     
     // Verifica se os elementos existem
@@ -327,18 +324,35 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('🔍 Visibility atual:', window.getComputedStyle(popup).visibility);
     }
     
-    // Limpa o parâmetro da URL para não mostrar popup novamente se recarregar
-    const newUrl = window.location.pathname;
-    window.history.replaceState({}, document.title, newUrl);
-    console.log('🔄 URL limpa, nova URL:', newUrl);
-    
     console.log('⏰ Iniciando popup em 300ms...');
     setTimeout(() => {
       console.log('🚀 Executando popupSucesso agora!');
       popupSucesso();
     }, 300);
-  } else {
-    console.log('ℹ️ Parâmetro sucesso não encontrado - valor atual:', sucessoParam);
+  } 
+  // Método 2: Verifica parâmetro URL (FALLBACK para compatibilidade)
+  else {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sucessoParam = urlParams.get('sucesso');
+    console.log('🔍 Parâmetros da URL:', window.location.search);
+    console.log('🔍 Parâmetro sucesso:', sucessoParam);
+
+    if(sucessoParam === '1'){
+      console.log('🎉 === SUCESSO DETECTADO VIA URL ===');
+      console.log('✅ Parâmetro sucesso=1 encontrado na URL');
+      
+      // Limpa o parâmetro da URL
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+      console.log('🔄 URL limpa, nova URL:', newUrl);
+      
+      setTimeout(() => {
+        console.log('🚀 Executando popupSucesso agora!');
+        popupSucesso();
+      }, 300);
+    } else {
+      console.log('ℹ️ Nenhum sucesso detectado - cadastro não finalizado');
+    }
   }
 
 });
