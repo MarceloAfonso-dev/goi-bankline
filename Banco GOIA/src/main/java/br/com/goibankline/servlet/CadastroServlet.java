@@ -31,13 +31,32 @@ public class CadastroServlet extends HttpServlet {
         for (int i = 0; i < 10; i++) sb.append(r.nextInt(10));
         return sb.toString();
     }
+    
+
 
     /* ---------- GET: devolve o formulário ---------- */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        // Sempre forward para o template do cadastro
-        // O parâmetro sucesso=1 será lido pelo JavaScript no cliente
+        
+        String acao = req.getParameter("acao");
+        
+        // Endpoint AJAX para verificar sucesso (como no ValidarCPFServlet)
+        if ("verificarSucesso".equals(acao)) {
+            String sucesso = (String) req.getSession().getAttribute("cadastroSucesso");
+            boolean hasSucesso = sucesso != null && "true".equals(sucesso);
+            
+            // Remove da sessão após verificar
+            if (hasSucesso) {
+                req.getSession().removeAttribute("cadastroSucesso");
+            }
+            
+            resp.setContentType("application/json; charset=UTF-8");
+            resp.getWriter().write("{\"sucesso\":" + hasSucesso + "}");
+            return;
+        }
+        
+        // Forward para o template do cadastro (como ValidarCPFServlet faz)
         req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
     }
 
@@ -102,9 +121,10 @@ public class CadastroServlet extends HttpServlet {
 
         /* ---------- 5) decide resposta ---------- */
         if (okCadastro) {
-            /* redirect RELATIVO p/ /cadastro?sucesso=1 para manter o domínio original –
-               o JS do front lê esse parâmetro e exibe o pop-up */
-            resp.sendRedirect("/cadastro?sucesso=1");
+            /* Usa FORWARD como no ValidarCPFServlet - mantém domínio original */
+            req.setAttribute("cadastroSucesso", "true");
+            req.setAttribute("mostrarPopup", "true");
+            req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);
         } else {
             /* houve algum erro → volta para o formulário exibindo mensagens */
             req.getRequestDispatcher("/templates/cadastro.html").forward(req, resp);

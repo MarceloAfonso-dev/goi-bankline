@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="/static/css/cadastro.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/png" href="/static/img/goia-icon-header.png">
+    
+    <!-- Variável JavaScript será definida pelo servlet -->
+    <script>
+        // Será definida pelo servlet quando houver sucesso
+        window.cadastroSucesso = false;
+    </script>
 </head>
 <body>
 
@@ -41,6 +47,7 @@
         <p  class="subtitulo">Leva apenas alguns minutos.</p>
 
         <form id="wizard" action="/cadastro" method="post" novalidate>
+            <!-- Campo será preenchido via JavaScript quando houver sucesso -->
             <progress id="progress" value="1" max="4"></progress>
 
             <!-- PASSO 1 -->
@@ -183,6 +190,15 @@
     </div>
 </div>
 
+<script>
+// Debug: Verifica domínio atual e URLs
+console.log('=== DEBUG CADASTRO ===');
+console.log('URL completa:', window.location.href);
+console.log('Domínio:', window.location.hostname);
+console.log('Protocol:', window.location.protocol);
+console.log('Path:', window.location.pathname);
+console.log('Search:', window.location.search);
+</script>
 <script src="/static/js/url-manager.js"></script>  <!-- Gerenciador de URLs dinâmicas -->
 <script src="/static/js/cadastro.js"></script>
 </body>

@@ -280,11 +280,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Verifica parâmetro de sucesso na URL
+  // Verifica se cadastro foi bem-sucedido usando AJAX (como ValidarCPFServlet)
+  function verificarSucessoCadastro() {
+    fetch('/cadastro?acao=verificarSucesso', {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(r => r.json())
+    .then(({sucesso}) => {
+      console.log('🔍 Resposta do servidor - sucesso:', sucesso);
+      
+      if (sucesso) {
+        console.log('✅ Cadastro bem-sucedido detectado via AJAX, exibindo popup...');
+        setTimeout(popupSucesso, 300);
+      } else {
+        console.log('ℹ️ Nenhum cadastro pendente encontrado');
+      }
+    })
+    .catch(e => {
+      console.log('⚠️ Erro ao verificar sucesso:', e);
+    });
+  }
+  
+  // Verifica parâmetro de sucesso na URL (compatibilidade com método antigo)
   const urlParams = new URLSearchParams(window.location.search);
   const sucessoParam = urlParams.get('sucesso');
 
   console.log('🔍 URL atual:', window.location.href);
+  console.log('🔍 Domínio atual:', window.location.hostname);
   console.log('🔍 Parâmetros da URL:', window.location.search);
   console.log('🔍 Parâmetro sucesso:', sucessoParam);
 
@@ -292,7 +315,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('✅ Parâmetro sucesso=1 detectado, exibindo popup...');
     setTimeout(popupSucesso, 300);
   } else {
-    console.log('ℹ️ Parâmetro sucesso não encontrado ou diferente de 1');
+    // Verifica via AJAX se há sucesso na sessão (método novo - como ValidarCPFServlet)
+    verificarSucessoCadastro();
   }
 
 });
