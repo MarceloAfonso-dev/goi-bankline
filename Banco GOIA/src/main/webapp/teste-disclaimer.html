@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Disclaimer - Banco GOIA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f1f2f4 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #ff4f5a;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .demo-content {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .demo-button {
+            background: #ff4f5a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            background: #e63946;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #ff4f5a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+    </style>
+    
+    <!-- Disclaimer CSS -->
+    <link rel="stylesheet" href="/static/css/disclaimer.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🏦 Teste Disclaimer Acadêmico</h1>
+        
+        <div class="demo-content">
+            <p>Esta é uma página de demonstração do disclaimer acadêmico do Banco GOIA.</p>
+            
+            <div class="info-box">
+                <h3>🎯 Características do Disclaimer:</h3>
+                <ul>
+                    <li><strong>Amarelo pastel harmonioso</strong> - Combina com o rosa #ff4f5a</li>
+                    <li><strong>Fixo no rodapé</strong> - Não interfere no conteúdo</li>
+                    <li><strong>Botão X para fechar</strong> - Usuário pode esconder</li>
+                    <li><strong>LocalStorage</strong> - Lembra se foi fechado</li>
+                    <li><strong>Responsivo</strong> - Funciona em mobile</li>
+                    <li><strong>Animações suaves</strong> - Entrada e saída elegantes</li>
+                </ul>
+            </div>
+            
+            <h3>🔧 Controles de Teste:</h3>
+            <button class="demo-button" onclick="resetDisclaimerAcademico(); location.reload()">
+                🔄 Resetar e Mostrar Disclaimer
+            </button>
+            
+            <button class="demo-button" onclick="showDisclaimerStatus()">
+                ℹ️ Status do Disclaimer
+            </button>
+            
+            <p><strong>Instruções:</strong></p>
+            <ol>
+                <li>O disclaimer aparece automaticamente quando você carrega a página</li>
+                <li>Clique no "✕" para fechá-lo</li>
+                <li>Recarregue a página - ele não aparecerá novamente</li>
+                <li>Use "Resetar" para vê-lo novamente</li>
+            </ol>
+            
+            <p>O disclaimer é discreto e informa claramente que é um projeto acadêmico.</p>
+        </div>
+    </div>
+
+    <!-- Disclaimer JavaScript -->
+    <script src="/static/js/disclaimer.js"></script>
+    
+    <script>
+        function showDisclaimerStatus() {
+            const closed = localStorage.getItem('goia-disclaimer-closed') === 'true';
+            const hasElement = document.getElementById('disclaimerAcademico') !== null;
+            
+            alert(`Status do Disclaimer:\n\n• Foi fechado pelo usuário: ${closed ? 'Sim' : 'Não'}\n• Elemento na página: ${hasElement ? 'Sim' : 'Não'}`);
+        }
+    </script>
+</body>
+</html>
