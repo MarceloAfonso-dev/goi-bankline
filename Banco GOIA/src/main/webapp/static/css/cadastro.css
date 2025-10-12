@@ -25,7 +25,74 @@ header h1{margin-left:12px;font-size:26px;font-weight:500;color:#000}
   width:100%;max-width:440px;background:#fff;border-radius:12px;
   padding:40px 32px;box-shadow:0 4px 12px rgba(0,0,0,.1);
 }
-.logo-center{display:block;height:60px;margin:0 auto 24px}
+/* ───────── LOGOS DUPLAS ───────── */
+.logos-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  margin-bottom:16px;
+}
+.logo-dual{
+  height:60px;
+  width:auto;
+  object-fit:contain;
+}
+
+/* ───────── ECOSSISTEMA GOIA ───────── */
+.ecossistema-goia{
+  text-align:center;
+  margin-bottom:20px;
+}
+.goia-title{
+  font-family:'Outfit',sans-serif;
+  font-weight:600;
+  color:#ff4f5a;
+  font-size:26px;
+  margin:0 0 4px 0;
+  line-height:1.2;
+}
+.goia-separator{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:8px 0;
+  position:relative;
+}
+.separator-symbol{
+  background:linear-gradient(135deg,#ff4f5a,#ff6b75);
+  color:#fff;
+  font-size:18px;
+  font-weight:700;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 2px 8px rgba(255,79,90,0.3);
+  position:relative;
+  z-index:2;
+}
+.goia-separator::before{
+  content:'';
+  position:absolute;
+  width:60px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#ff4f5a,transparent);
+  top:50%;
+  transform:translateY(-50%);
+  z-index:1;
+}
+.ecossistema-descricao{
+  text-align:center;
+  font-size:15px;
+  color:#555;
+  margin-bottom:32px;
+  line-height:1.4;
+  font-weight:400;
+}
+
 .titulo{text-align:center;font-size:24px;font-weight:600;margin-bottom:6px}
 .subtitulo{text-align:center;font-size:14px;color:#666;margin-bottom:24px}
 
@@ -285,7 +352,35 @@ body.popup-blur > *:not(#popupSucesso) {
 }
 
 /* responsivo */
+@media(max-width:768px){
+  .goia-title{font-size:22px}
+  .ecossistema-descricao{font-size:14px;margin-bottom:28px}
+  .separator-symbol{
+    width:28px;
+    height:28px;
+    font-size:16px;
+  }
+  .goia-separator::before{
+    width:50px;
+  }
+}
+
 @media(max-width:480px){
   .wizard-wrapper{padding:32px 22px}
   .footer{gap:24px;padding:28px}
+  
+  .goia-title{font-size:20px}
+  .ecossistema-descricao{
+    font-size:13px;
+    margin-bottom:24px;
+    padding:0 8px;
+  }
+  .separator-symbol{
+    width:24px;
+    height:24px;
+    font-size:14px;
+  }
+  .goia-separator::before{
+    width:40px;
+  }
 }

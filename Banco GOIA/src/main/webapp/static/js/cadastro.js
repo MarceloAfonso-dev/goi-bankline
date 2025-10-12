@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const cpfInput   = document.getElementById('cpf');
   const cpfMsg     = document.getElementById('cpf-msg');
   const nascInput  = document.getElementById('dataNascimento');
+  const nascMsg    = document.getElementById('nasc-msg');
+  const emailInput = document.getElementById('email');
+  const emailMsg   = document.getElementById('email-msg');
+  const senhaInput = document.getElementById('senha');
+  const senhaMsg   = document.getElementById('senha-msg');
 
   const steps    = [...document.querySelectorAll('fieldset[data-step]')];
   const progress = document.getElementById('progress');
@@ -15,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ───────── ESTADO ───────── */
   let idx = 0;
   let cpfValido = false;
+  let nascimentoValido = false;
+  let emailValido = false;
+  let senhaValida = false;
 
   /* ─────────  CPF  ───────── */
   cpfInput.addEventListener('input', mascaraCpf);
@@ -50,24 +58,119 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ───────── LIMITE DE DATA ───────── */
-  nascInput.addEventListener('change',()=>{
-    nascInput.setCustomValidity(
-      nascInput.value > '2025-12-31' ?
-      'O ano não pode ser maior que 2025' : ''
-    );
-  });
+  /* ───────── VALIDAÇÃO DE IDADE (18+) ───────── */
+  nascInput.addEventListener('change', validarIdade);
+  nascInput.addEventListener('blur', validarIdade);
+
+  function validarIdade() {
+    if (!nascInput.value) {
+      nascimentoValido = false;
+      return;
+    }
+
+    const hoje = new Date();
+    const nascimento = new Date(nascInput.value);
+    const idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mesAtual = hoje.getMonth();
+    const mesNasc = nascimento.getMonth();
+    
+    // Ajusta se ainda não fez aniversário este ano
+    const idadeExata = (mesAtual < mesNasc || (mesAtual === mesNasc && hoje.getDate() < nascimento.getDate())) 
+      ? idade - 1 
+      : idade;
+
+    nascimentoValido = idadeExata >= 18;
+    
+    if (!nascimentoValido) {
+      nascInput.classList.add('input-erro');
+      nascMsg.classList.add('visivel');
+      nascInput.setCustomValidity('Você deve ter pelo menos 18 anos');
+    } else {
+      nascInput.classList.remove('input-erro');
+      nascMsg.classList.remove('visivel');
+      nascInput.setCustomValidity('');
+    }
+  }
+
+  /* ───────── VALIDAÇÃO DE EMAIL ───────── */
+  emailInput.addEventListener('input', validarEmail);
+  emailInput.addEventListener('blur', validarEmail);
+
+  function validarEmail() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    emailValido = emailRegex.test(emailInput.value);
+    
+    if (!emailValido && emailInput.value.length > 0) {
+      emailInput.classList.add('input-erro');
+      emailMsg.classList.add('visivel');
+      emailInput.setCustomValidity('E-mail deve estar em formato válido');
+    } else {
+      emailInput.classList.remove('input-erro');
+      emailMsg.classList.remove('visivel');
+      emailInput.setCustomValidity('');
+    }
+  }
+
+  /* ───────── VALIDAÇÃO DE SENHA (APENAS NÚMEROS) ───────── */
+  senhaInput.addEventListener('input', validarSenha);
+  senhaInput.addEventListener('blur', validarSenha);
+
+  function validarSenha() {
+    // Remove qualquer caractere que não seja número
+    let valor = senhaInput.value.replace(/\D/g, '');
+    senhaInput.value = valor;
+    
+    senhaValida = valor.length === 6 && /^\d{6}$/.test(valor);
+    
+    if (!senhaValida && valor.length > 0) {
+      senhaInput.classList.add('input-erro');
+      senhaMsg.classList.add('visivel');
+      senhaInput.setCustomValidity('A senha deve conter apenas números (6 dígitos)');
+    } else {
+      senhaInput.classList.remove('input-erro');
+      senhaMsg.classList.remove('visivel');
+      senhaInput.setCustomValidity('');
+    }
+  }
 
   /* ───────── WIZARD NAV ───────── */
   nextBtn.addEventListener('click',()=>{
     const fs = steps[idx];
     if(!fs.reportValidity()) return;
-    if(idx===0 && !cpfValido){cpfInput.focus();return;}
-    if(idx===2){
-      const {senha,confirma}=wizardForm;
-      if(senha.value!==confirma.value){alert('As senhas não conferem.');return;}
+    
+    // Validações específicas por passo
+    if(idx === 0) {
+      if(!cpfValido) {
+        cpfInput.focus();
+        return;
+      }
+      if(!nascimentoValido) {
+        nascInput.focus();
+        return;
+      }
     }
-    idx++; render();
+    
+    if(idx === 1) {
+      if(!emailValido) {
+        emailInput.focus();
+        return;
+      }
+    }
+    
+    if(idx === 2) {
+      if(!senhaValida) {
+        senhaInput.focus();
+        return;
+      }
+      const {senha, confirma} = wizardForm;
+      if(senha.value !== confirma.value) {
+        alert('As senhas não conferem.');
+        return;
+      }
+    }
+    
+    idx++; 
+    render();
   });
   prevBtn.addEventListener('click',()=>{idx--;render();});
 
@@ -91,12 +194,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ───────── SUBMIT ───────── */
   wizardForm.addEventListener('submit',ev=>{
+    // Validação final de todos os campos
     const raw = cpfInput.value.replace(/\D/g,'');
+    
+    // Verifica CPF
     if(raw.length!==11 || !cpfValido){
       ev.preventDefault();
-      cpfInput.classList.add('input-erro'); cpfMsg.classList.add('visivel');
+      cpfInput.classList.add('input-erro'); 
+      cpfMsg.classList.add('visivel');
+      alert('CPF inválido ou já cadastrado.');
       return;
     }
+    
+    // Verifica idade
+    if(!nascimentoValido){
+      ev.preventDefault();
+      nascInput.classList.add('input-erro');
+      nascMsg.classList.add('visivel');
+      alert('Você deve ter pelo menos 18 anos para criar uma conta.');
+      return;
+    }
+    
+    // Verifica email
+    if(!emailValido){
+      ev.preventDefault();
+      emailInput.classList.add('input-erro');
+      emailMsg.classList.add('visivel');
+      alert('E-mail deve estar em formato válido.');
+      return;
+    }
+    
+    // Verifica senha
+    if(!senhaValida){
+      ev.preventDefault();
+      senhaInput.classList.add('input-erro');
+      senhaMsg.classList.add('visivel');
+      alert('A senha deve conter apenas números (6 dígitos).');
+      return;
+    }
+    
+    // Se chegou até aqui, tudo válido - prepara dados para envio
     const h=document.createElement('input');
     h.type='hidden';h.name='cpf';h.value=raw;
     wizardForm.appendChild(h); cpfInput.removeAttribute('name');

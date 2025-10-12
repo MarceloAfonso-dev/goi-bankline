@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Cadastro • GOIA Bank</title>
+    <title>Cadastro • GOIA</title>
     <link rel="stylesheet" href="/static/css/cadastro.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" type="image/png" href="/static/img/goia-icon-header.png">
@@ -12,12 +12,29 @@
 
 <header>
     <img src="/static/img/goia-icon-header.png" alt="Logo GOIA" class="icone-goia" style="width: 52px;">
-    <h1 style="font-family: 'Outfit', sans-serif; font-weight: 600; color: #ff4f5a; margin-top: 10px; font-size: 26px;">GOIA Bank</h1>
+    <h1 style="font-family: 'Outfit', sans-serif; font-weight: 600; color: #ff4f5a; margin-top: 10px; font-size: 26px;">GOIA</h1>
 </header>
 
 <main class="container-principal">
     <div class="wizard-wrapper">
-        <img src="/static/img/goia-icon-header.png" alt="Logo" class="logo-center" style="width: 52px;">
+        <div class="logos-container">
+            <img src="/static/img/goia-bank-logo.png" alt="GOIA Bank" class="logo-dual">
+            <img src="/static/img/goia-shop-logo.png" alt="GOIA Shop" class="logo-dual">
+        </div>
+        
+        <!-- Títulos do Ecossistema GOIA -->
+        <div class="ecossistema-goia">
+            <h1 class="goia-title">GOIA Bank</h1>
+            <div class="goia-separator">
+                <!-- Símbolos alternativos: + & × ⚡ ◊ ★ ⬢ -->
+                <span class="separator-symbol">+</span>
+            </div>
+            <h1 class="goia-title">GOIA Shop</h1>
+        </div>
+        
+        <!-- Frase descritiva -->
+        <p class="ecossistema-descricao">Crie sua conta e tenha acesso ao ecossistema GOIA, seu banco e marketplace a poucos cliques</p>
+        
         <h2 class="titulo">Abra sua conta</h2>
         <p  class="subtitulo">Leva apenas alguns minutos.</p>
 
@@ -43,6 +60,7 @@
                        type="date"
                        required
                        max="2025-12-31">
+                <span id="nasc-msg" class="msg-erro">Você deve ter pelo menos 18 anos para criar uma conta.</span>
             </fieldset>
 
             <!-- PASSO 2 -->
@@ -51,6 +69,7 @@
 
                 <label for="email">E-mail</label>
                 <input id="email" name="email" type="email" required placeholder="voce@email.com">
+                <span id="email-msg" class="msg-erro">E-mail deve estar em formato válido (ex: nome@email.com).</span>
 
                 <label for="celular">Celular (11 dígitos)</label>
                 <input id="celular" name="celular" type="tel"
@@ -68,6 +87,7 @@
                 <label for="senha">Senha (6 dígitos)</label>
                 <input id="senha" name="senha" type="password"
                        pattern="\d{6}" minlength="6" maxlength="6" required placeholder="******">
+                <span id="senha-msg" class="msg-erro">A senha deve conter apenas números (6 dígitos).</span>
 
                 <label for="confirma">Confirmar senha</label>
                 <input id="confirma" type="password"
